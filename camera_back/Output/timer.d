@@ -22,5 +22,3 @@
 ..\output\timer.o: ..\User\include.h
 ..\output\timer.o: ..\Hardware\led\led.h
 ..\output\timer.o: ..\Hardware\usart\usart.h
-..\output\timer.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
-..\output\timer.o: ..\Hardware\pwm_out.h

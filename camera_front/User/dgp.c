@@ -2,8 +2,10 @@
 #include "include.h"
 #include "ov7670.h"
 
+//u32 jpeg_buf[jpeg_buf_size];
 u8 ov_frame=0;  						//帧率
-
+u8 frame_count=0;//控制帧率
+u16 over_count=0;
 //DCMI中断服务函数
 void DCMI_IRQHandler(void)
 {
@@ -12,6 +14,11 @@ void DCMI_IRQHandler(void)
 				jpeg_data_process(); 	//jpeg数据处理	
 				DCMI_ClearITPendingBit(DCMI_IT_FRAME);//清除帧中断
 				ov_frame++;	
+		}
+		if(DCMI_GetITStatus(DCMI_IT_OVF)==SET)//溢出中断
+		{
+				over_count++;				
+				DCMI_ClearITPendingBit(DCMI_IT_OVF);
 		}
 } 
 
@@ -27,6 +34,10 @@ void jpeg_data_process(void)
 {
 		if(jpeg_data_ok==0)	//jpeg数据还未采集完?
 		{
+//			while (DMA_GetFlagStatus(DMA2_Stream1,DMA_FLAG_TCIF1)!=RESET)
+//				delay_ms(10);
+//			printf("传输完成\r\n");
+//			DMA_ClearFlag(DMA2_Stream1,DMA_FLAG_TCIF1);
 			DMA_Cmd(DMA2_Stream1, DISABLE);//停止当前传输 
 			while (DMA_GetCmdStatus(DMA2_Stream1) != DISABLE){}//等待DMA2_Stream1可配置  
 			jpeg_data_len=jpeg_buf_size-DMA_GetCurrDataCounter(DMA2_Stream1);//得到此次数据传输的长度
@@ -41,62 +52,5 @@ void jpeg_data_process(void)
 			jpeg_data_ok=0;						//标记数据未采集
 		}
 } 
-void getH_op1(u16 *jpeg,u8 *H,R_info *info)//去掉MAX=B的情况，去掉H<0的情况
-{
-	u8 R,G,B;
-	float h_tmp;
-	u16 i,j,count_x=0,count_y=0;
-	u32 x=0,y=0;
-	for(i=0;i<PIC_ROW;i++)
-	{
-		for(j=0;j<PIC_COL;j++)
-		{
-			R=((*(jpeg+i*PIC_COL+j))&0x1f)<<3;//R
-			G=((*(jpeg+i*PIC_COL+j))&0x7e0)>>3;//G
-			B=((*(jpeg+i*PIC_COL+j))&0xf800)>>8;//B
-					
-			h_tmp=TWO_PI;
-			if		 (R>B&&B>G){
-				h_tmp=((G-B)/(R-G))*PI_3_40;
-			}
-			else if(R>G&&G>B){
-				h_tmp=((G-B)/(R-B))*PI_3_40;
-			}
-			else if(G>B&&B>R){
-				h_tmp=((B-R)/(G-R)+2)*PI_3_40;
-			}
-			else if(G>R&&R>B){
-				h_tmp=((B-R)/(G-B)+2)*PI_3_40;
-			}
-			
-			if(h_tmp<LOW_THRESHOLD&&h_tmp>LOW_THRESHOLD)
-			{
-				x+=i; //row
-				count_x++;
-				y+=j; //col
-				count_y++;
-			}
-			*(H+i*PIC_COL+j)=h_tmp;
-		}
-	}
-	
-	info->x = x/count_x;
-	info->y = y/count_y;
-	info->ratio = count_x/(PIC_ROW*PIC_COL);
-	
-	for(i=(info->x-2);i<(info->x+3);i++)
-	{
-		for(j=0;j<PIC_COL;j++)
-		{
-			*(H+i*PIC_COL+j)=255;
-		}
-	}
-	for(i=0;i<PIC_ROW;i++)
-	{
-		for(j=(info->y-2);j<(info->y+3);j++)
-		{
-			*(H+i*PIC_COL+j)=255;
-		}
-	}
-}
-
+im_info front_target_info;
+im_info back_target_info;

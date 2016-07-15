@@ -52,3 +52,5 @@ void jpeg_data_process(void)
 			jpeg_data_ok=0;						//标记数据未采集
 		}
 } 
+im_info front_target_info;
+im_info back_target_info;

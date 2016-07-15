@@ -145,7 +145,10 @@ void SysTick_Handler(void)
 /*  available peripheral interrupt handler's name please refer to the startup */
 /*  file (startup_stm32f4xx.s).                                               */
 /******************************************************************************/
-
+void USART2_IRQHandler(void)
+{
+	Usart2_IRQ();
+}
 /**
   * @brief  This function handles PPP interrupt request.
   * @param  None

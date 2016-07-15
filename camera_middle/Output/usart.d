@@ -23,3 +23,4 @@
 ..\output\usart.o: ..\User\include.h
 ..\output\usart.o: ..\Hardware\led\led.h
 ..\output\usart.o: ..\Hardware\pwm_out.h
+..\output\usart.o: ..\User\data_transfer.h

@@ -498,6 +498,11 @@
               <FilePath>..\Hardware\usart\usart.c</FilePath>
             </File>
             <File>
+              <FileName>usart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\usart\usart.h</FilePath>
+            </File>
+            <File>
               <FileName>ov7670.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\ov7670\ov7670.c</FilePath>
@@ -511,16 +516,6 @@
               <FileName>ov7670cfg.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Hardware\ov7670\ov7670cfg.h</FilePath>
-            </File>
-            <File>
-              <FileName>pwm_out.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Hardware\pwm_out.c</FilePath>
-            </File>
-            <File>
-              <FileName>pwm_out.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Hardware\pwm_out.h</FilePath>
             </File>
             <File>
               <FileName>timer.c</FileName>
@@ -607,16 +602,6 @@
               <FileType>2</FileType>
               <FilePath>..\Startup\startup_stm32f4xx.s</FilePath>
             </File>
-            <File>
-              <FileName>sys.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Startup\sys.c</FilePath>
-            </File>
-            <File>
-              <FileName>sys.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Startup\sys.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -626,41 +611,6 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>..\readme.txt</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>usmart</GroupName>
-          <Files>
-            <File>
-              <FileName>readme.txt</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\usmart\readme.txt</FilePath>
-            </File>
-            <File>
-              <FileName>usmart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\usmart\usmart.c</FilePath>
-            </File>
-            <File>
-              <FileName>usmart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\usmart\usmart.h</FilePath>
-            </File>
-            <File>
-              <FileName>usmart_config.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\usmart\usmart_config.c</FilePath>
-            </File>
-            <File>
-              <FileName>usmart_str.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\usmart\usmart_str.c</FilePath>
-            </File>
-            <File>
-              <FileName>usmart_str.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\usmart\usmart_str.h</FilePath>
             </File>
           </Files>
         </Group>

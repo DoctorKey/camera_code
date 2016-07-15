@@ -2,6 +2,8 @@
 #include "pwm_out.h"
 
 pid_group pid_camera;
+Rc_group Rc;
+
 void pid_set()
 {
 	pid_camera.p=1;

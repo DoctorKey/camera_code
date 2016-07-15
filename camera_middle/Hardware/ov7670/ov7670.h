@@ -39,6 +39,7 @@ void DCMI_Start(void);
 void DCMI_Stop(void);
 
 extern u32 jpeg_buf[jpeg_buf_size];
+extern u8 im[PIC_ROW*PIC_COL];
 
 #endif 
 

@@ -11,7 +11,7 @@
 #define NVIC_PWMIN_P			1		//接收机采集
 #define NVIC_PWMIN_S			1
 
-#define NVIC_TIM3_P       1		//暂未使用
+#define NVIC_TIM3_P       1		//计时器
 #define NVIC_TIM3_S       3
 
 #define NVIC_DCMI_P       1		//DCMI中断

@@ -21,8 +21,6 @@
 ..\output\ov7670.o: ..\User\include.h
 ..\output\ov7670.o: ..\Hardware\led\led.h
 ..\output\ov7670.o: ..\Hardware\usart\usart.h
-..\output\ov7670.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
-..\output\ov7670.o: ..\Hardware\pwm_out.h
 ..\output\ov7670.o: ..\Hardware\delay\delay.h
 ..\output\ov7670.o: ..\User\dgp.h
 ..\output\ov7670.o: ..\Hardware\ov7670\ov7670cfg.h

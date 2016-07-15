@@ -22,75 +22,16 @@ Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
 F:\electricity\光电设计大赛\camera_code\camera_front\Project\camera_front.uvprojx
-Project File Date:  07/12/2016
+Project File Date:  07/15/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin'
 Build target 'SY-STM32F407 V2.0'
-compiling main.c...
-..\User\include.h(33): warning:  #47-D: incompatible redefinition of macro "LOW_THRESHOLD" (declared at line 32)
-  #define LOW_THRESHOLD 25   //??H?卸?值化??色?母???值
-..\Hardware\ov7670\ov7670.h(21): warning:  #1295-D: Deprecated declaration Cam_Init - give arg types
-  void Cam_Init();
-..\User\main.c: 2 warnings, 0 errors
-compiling ctrl.c...
-..\User\include.h(33): warning:  #47-D: incompatible redefinition of macro "LOW_THRESHOLD" (declared at line 32)
-  #define LOW_THRESHOLD 25   //??H?卸?值化??色?母???值
-..\User\ctrl.c: 1 warning, 0 errors
-compiling init.c...
-..\User\include.h(33): warning:  #47-D: incompatible redefinition of macro "LOW_THRESHOLD" (declared at line 32)
-  #define LOW_THRESHOLD 25   //??H?卸?值化??色?母???值
-..\User\init.c(13): warning:  #223-D: function "SysTick_Init" declared implicitly
-    SysTick_Init();
-..\User\init.c(21): warning:  #223-D: function "TIM3_Int_Init" declared implicitly
-        TIM3_Int_Init(10000-1,8400-1);//10Khz????,1?????卸?一??
-..\User\init.c(25): warning:  #223-D: function "OV7670_Init" declared implicitly
-        if(OV7670_Init())
-..\User\init.c(30): warning:  #223-D: function "delay_ms" declared implicitly
-                        delay_ms(300);
-..\User\init.c(37): warning:  #223-D: function "delay_ms" declared implicitly
-        delay_ms(1000);
-..\User\init.c(39): warning:  #223-D: function "DCMI_Start" declared implicitly
-        DCMI_Start();
-..\User\init.c: 7 warnings, 0 errors
-compiling dgp.c...
-..\User\include.h(33): warning:  #47-D: incompatible redefinition of macro "LOW_THRESHOLD" (declared at line 32)
-  #define LOW_THRESHOLD 25   //??H?卸?值化??色?母???值
-..\Hardware\ov7670\ov7670.h(21): warning:  #1295-D: Deprecated declaration Cam_Init - give arg types
-  void Cam_Init();
-..\User\dgp.c: 2 warnings, 0 errors
-compiling usart.c...
-..\User\include.h(33): warning:  #47-D: incompatible redefinition of macro "LOW_THRESHOLD" (declared at line 32)
-  #define LOW_THRESHOLD 25   //??H?卸?值化??色?母???值
-..\Hardware\usart\usart.c(189): warning:  #550-D: variable "com_data" was set but never used
-        u8 com_data;
-..\Hardware\usart\usart.c: 2 warnings, 0 errors
-compiling ov7670.c...
-..\User\include.h(33): warning:  #47-D: incompatible redefinition of macro "LOW_THRESHOLD" (declared at line 32)
-  #define LOW_THRESHOLD 25   //??H?卸?值化??色?母???值
-..\Hardware\ov7670\ov7670.h(21): warning:  #1295-D: Deprecated declaration Cam_Init - give arg types
-  void Cam_Init();
-..\Hardware\ov7670\ov7670.c(142): warning:  #550-D: variable "id" was set but never used
-        u8 i,id;
-..\Hardware\ov7670\ov7670.c(191): warning:  #550-D: variable "state" was set but never used
-        u8 state,temp;
-..\Hardware\ov7670\ov7670.c: 4 warnings, 0 errors
-compiling timer.c...
-..\User\include.h(33): warning:  #47-D: incompatible redefinition of macro "LOW_THRESHOLD" (declared at line 32)
-  #define LOW_THRESHOLD 25   //??H?卸?值化??色?母???值
-..\Hardware\timer.c: 1 warning, 0 errors
 compiling usmart_config.c...
-..\User\include.h(33): warning:  #47-D: incompatible redefinition of macro "LOW_THRESHOLD" (declared at line 32)
-  #define LOW_THRESHOLD 25   //??H?卸?值化??色?母???值
-..\Hardware\ov7670\ov7670.h(21): warning:  #1295-D: Deprecated declaration Cam_Init - give arg types
-  void Cam_Init();
-..\usmart\usmart_config.c(47): warning:  #1-D: last line of file ends without a newline
-  };   
-..\usmart\usmart_config.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=13532 RO-data=1356 RW-data=408 ZI-data=40136  
+Program Size: Code=14156 RO-data=1364 RW-data=436 ZI-data=59196  
 FromELF: creating hex file...
-"..\Output\camera_front.axf" - 0 Error(s), 22 Warning(s).
+"..\Output\camera_front.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 

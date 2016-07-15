@@ -1,6 +1,8 @@
 #include "usart.h"
 #include "sys.h"
 #include "include.h"
+#include "data_transfer.h"
+
 //////////////////////////////////////////////////////////////////
 //加入以下代码,支持printf函数,而不需要选择use MicroLIB	  
 #if 1
@@ -182,8 +184,6 @@ u8 TxBuffer[256];
 u8 TxCounter=0;
 u8 count=0; 
 
-u8 Rx_Buf[256];	//串口接收缓存
-
 void Usart2_IRQ(void)
 {
 	u8 com_data;
@@ -199,7 +199,7 @@ void Usart2_IRQ(void)
 		USART_ClearITPendingBit(USART2,USART_IT_RXNE);//清除中断标志
 
 		com_data = USART2->DR;
-//		ANO_DT_Data_Receive_Prepare(com_data);
+		Data_Receive_Prepare_2(com_data);
 	}
 	//发送（进入移位）中断
 	if( USART_GetITStatus(USART2,USART_IT_TXE ) )

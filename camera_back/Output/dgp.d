@@ -21,6 +21,4 @@
 ..\output\dgp.o: ..\User\include.h
 ..\output\dgp.o: ..\Hardware\led\led.h
 ..\output\dgp.o: ..\Hardware\usart\usart.h
-..\output\dgp.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
-..\output\dgp.o: ..\Hardware\pwm_out.h
 ..\output\dgp.o: ..\Hardware\ov7670\ov7670.h

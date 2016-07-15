@@ -2,19 +2,35 @@
 #define __CTRL_H
 #include "include.h"
 
-#define PITCH_CH 0
-#define ROLL_CH  1
-#define YAW_CH   2
-#define THR_CH   3
 
 typedef struct
 {
-	double p;
-	double i;
-	double d;
-}pid_group;
+	float kp;
+	float ki;
+	float kd;
+	float error;
+	float preerror;
+	float prepreerror;
+	float integ;
+	float integ_max;
+	float deriv;
+	float output; 
+}PID_Typedef;
 
-extern int16_t CH[];
+typedef struct
+{
+	u16 pitch;
+	u16 roll;
+	u16 thr;
+	u16 yaw;
+}Rc_group;
+
 void ctrl_pwm(int16_t CH[CH_NUM]);
+void PID_Position(PID_Typedef * PID,float target,float measure);
+void PID_Incremental(PID_Typedef * PID,float target,float measure);
+
+extern Rc_group Rc_front;
+extern Rc_group Rc_back;
+extern Rc_group Rc_send;
 
 #endif 

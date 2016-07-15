@@ -6,6 +6,10 @@
 #include "usart.h"
 #include "pwm_out.h"
 
+//================系统===================
+//#define USE_USART1
+#define USE_USART2
+
 /***************中断优先级******************/
 #define NVIC_GROUP NVIC_PriorityGroup_3		//中断分组选择 0~7抢占 0~1响应
 #define NVIC_PWMIN_P			1		//接收机采集
@@ -28,9 +32,6 @@
 #define PIC_ROW 120
 #define PIC_COL 160
 #define jpeg_buf_size (PIC_ROW*PIC_COL/2)
-
-#define LOW_THRESHOLD 0   //从H中二值化红色的低阈值
-#define LOW_THRESHOLD 25   //从H中二值化红色的高阈值
 /***********************************************/
 
 /***************ctrl******************/
