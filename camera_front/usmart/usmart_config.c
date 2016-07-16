@@ -23,8 +23,8 @@ struct _m_usmart_nametab usmart_nametab[]=
 	(void*)LED_SET,"void LED_SET(u8 mode)",
 	(void*)OV_WriteReg,"u8 OV_WriteReg(u8 regID, u8 regDat)",
 	(void*)set_Rc,"void set_Rc(u16 pitch,u16 roll,u16 thr,u16 yaw)",
-  (void*)set_Front_Target,"void set_Front_Target(u8 x,u8 y)",
-  (void*)set_Back_Target,"void set_Back_Target(u8 x,u8 y)",
+  (void*)set_Front_Measure,"void set_Front_Measure(u8 x,u8 y)",
+  (void*)set_Back_Measure,"void set_Back_Measure(u8 x,u8 y)",
 //	(void*)led_set,"void led_set(u8 sta)",
 //	(void*)test_fun,"void test_fun(void(*ledset)(u8),u8 sta)",				  	    
 };						  

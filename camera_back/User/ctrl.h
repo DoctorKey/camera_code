@@ -1,7 +1,7 @@
 #ifndef __CTRL_H
 #define __CTRL_H
 #include "include.h"
-
+#include "dgp.h"
 
 typedef struct
 {
@@ -25,12 +25,12 @@ typedef struct
 	u16 yaw;
 }Rc_group;
 
-void ctrl_pwm(int16_t CH[CH_NUM]);
+void pid_set(void);
+void back_duty(void);
+void control_pwm(im_info front_info,im_info back_info);
 void PID_Position(PID_Typedef * PID,float target,float measure);
 void PID_Incremental(PID_Typedef * PID,float target,float measure);
 
 extern Rc_group Rc_front;
-extern Rc_group Rc_back;
-extern Rc_group Rc_send;
 
 #endif 

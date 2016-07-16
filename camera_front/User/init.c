@@ -2,7 +2,7 @@
 #include "include.h"
 #include "usmart.h"
 
-u8 All_Init()
+void All_Init()
 {
 	NVIC_PriorityGroupConfig(NVIC_GROUP);		//中断优先级组别设置
 	
@@ -38,5 +38,4 @@ u8 All_Init()
 	
 	DCMI_Start();
 	
-	return (1);
 }

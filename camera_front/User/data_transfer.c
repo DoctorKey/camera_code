@@ -114,13 +114,13 @@ void Data_Receive_deal(u8 *data_buf,u8 num)
 	
 	if(*(data_buf+2)==0X01)
 	{
-		front_target_info.x = *(data_buf+4);
-		front_target_info.y = *(data_buf+5);
+		front_measure_info.x = *(data_buf+4);
+		front_measure_info.y = *(data_buf+5);
 	}
 	if(*(data_buf+2)==0X02)
 	{
-		back_target_info.x = *(data_buf+4);
-		back_target_info.y = *(data_buf+5);
+		back_measure_info.x = *(data_buf+4);
+		back_measure_info.y = *(data_buf+5);
 	}
 	if(*(data_buf+2)==0X03)
 	{
@@ -139,7 +139,7 @@ void Send_Data(u8 *dataToSend , u8 length)
 	Usart1_Send(data_to_send, length);
 #endif
 }
-void Send_Front_Target(im_info info)
+void Send_Front_Measure(im_info info)
 {
 	u8 _cnt=0;
 	vs16 _temp;
@@ -164,7 +164,7 @@ void Send_Front_Target(im_info info)
 	
 	Send_Data(data_to_send, _cnt);
 }
-void Send_Back_Target(im_info info)
+void Send_Back_Measure(im_info info)
 {
 	u8 _cnt=0;
 	vs16 _temp;

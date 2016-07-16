@@ -3,7 +3,8 @@
 #include "ov7670.h"
 
 u8 ov_frame=0;  						//帧率
-
+im_info front_measure_info;
+im_info back_measure_info;
 //DCMI中断服务函数
 void DCMI_IRQHandler(void)
 {
@@ -41,8 +42,7 @@ void jpeg_data_process(void)
 			jpeg_data_ok=0;						//标记数据未采集
 		}
 } 
-im_info front_target_info;
-im_info back_target_info;
+
 
 void getH_op1(u16 *jpeg,u8 *H,im_info *info)//去掉MAX=B的情况，去掉H<0的情况
 {

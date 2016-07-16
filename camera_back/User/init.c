@@ -33,4 +33,5 @@ void All_Init()
 	
 	DCMI_Start();
 	
+	pid_set();
 }

@@ -51,8 +51,8 @@ void TIM3_IRQHandler(void)
 //		printf("jpeg_data_len:%d\r\n",jpeg_data_len);//´òÓ¡Ö¡ÂÊ
 //		printf("Òç³ö:%d\r\n",over_count);
 		printf("pitch:%d,roll:%d,thr:%d,yaw:%d\r\n",Rc.pitch,Rc.roll,Rc.thr,Rc.yaw);
-		printf("front x:%d,y:%d\r\n",front_target_info.x,front_target_info.y);
-		printf("back x:%d,y:%d\r\n",back_target_info.x,back_target_info.y);
+		printf("front x:%d,y:%d\r\n",front_measure_info.x,front_measure_info.y);
+		printf("back x:%d,y:%d\r\n",back_measure_info.x,back_measure_info.y);
 		ov_frame=0;
 		over_count=0;
 	}

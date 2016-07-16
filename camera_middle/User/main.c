@@ -1,5 +1,3 @@
-
-/* ------------------------------------------包含的头文件-----------------------------------------------*/
 #include "stm32f4xx.h"
 #include "init.h"
 #include "delay.h"
@@ -11,7 +9,6 @@
 #include "usmart.h"
 #include "dgp.h"
 
-u8 Init_Finish = 0;
 /*************************************************************************************
   * 函数名称：main()
   * 参数    ：void
@@ -20,41 +17,22 @@ u8 Init_Finish = 0;
   *************************************************************************************/
 int main(void)
 { 
-	u8 *p;
-	u32 i;
+	u16 *jpeg;
 	
-	Init_Finish=All_Init();
+	All_Init();
 
-  delay_ms(100);
-	ctrl_pwm(CH);
-	i=jpeg_buf_size;
-  	while(1)
+	jpeg=(u16*)jpeg_buf;
+	
+  while(1)
 	{
-//		if(jpeg_data_ok==1)	//已经采集完一帧图像了
-//		{ 			
-////			i=jpeg_data_len*4;
-//			i=jpeg_buf_size*4;
-//			p=(u8*)jpeg_buf;
-//			LED0(On);
-//			USART_SendString_bysize(USART2,p,i);
-////			USART_SendData(USART2,255);
-//			delay_ms(300);
-//			LED0(Off);
-//			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
-//		}		
-//		p=(u8*)jpeg_buf;
-//			LED0(On);
-//			USART_SendString_bysize(USART2,p,i*4);
-//			USART_SendData(USART2,255);
-//			delay_ms(300);
-//			LED0(Off);
-//		DCMI_Start();
-//		delay_ms(2000);
-//		DCMI_Stop();
-		LED0(On);
-		delay_ms(1000);
+		if(jpeg_data_ok==1)	//已经采集完一帧图像了
+		{ 
+			LED0(On);
+			get_info(jpeg,im,&middle_measure_info);
+			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
+		}	
 		LED0(Off);
-		delay_ms(1000);		
+		middle_duty();	
 	}
 }
 

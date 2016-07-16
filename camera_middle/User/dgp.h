@@ -9,11 +9,13 @@ typedef struct{
 }im_info;
 
 void jpeg_data_process(void);
+void get_info(u16 *jpeg,u8 *H,im_info *info);
 
 extern volatile u8 jpeg_data_ok;
 extern volatile u32 jpeg_data_len;
-extern im_info front_target_info;
-extern im_info back_target_info;
+extern im_info front_measure_info;
+extern im_info back_measure_info;
+extern im_info middle_measure_info;
 
 #endif
 

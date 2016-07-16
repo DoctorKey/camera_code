@@ -4,7 +4,6 @@
 #include "stm32f4xx.h"
 #include "led.h"
 #include "usart.h"
-#include "pwm_out.h"
 
 //================ϵͳ===================
 //#define USE_USART1
@@ -35,9 +34,7 @@
 /***********************************************/
 
 /***************ctrl******************/
-#define CH_NUM 4
-#define PWM_MIN 0
-#define PWM_MAX 1000
+
 /***********************************************/
 
 #endif

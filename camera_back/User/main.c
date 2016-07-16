@@ -1,5 +1,3 @@
-
-/* ------------------------------------------包含的头文件-----------------------------------------------*/
 #include "stm32f4xx.h"
 #include "init.h"
 #include "delay.h"
@@ -10,12 +8,6 @@
 #include "dgp.h"
 #include "data_transfer.h"
 
-/*************************************************************************************
-  * 函数名称：main()
-  * 参数    ：void
-  * 返回值  ：void
-  * 描述    ：程序主入口main函数
-  *************************************************************************************/
 int main(void)
 { 
 	u16 *jpeg;
@@ -24,19 +16,16 @@ int main(void)
 
 	jpeg=(u16*)jpeg_buf;
 	
-  	while(1)
+  while(1)
 	{
-//		if(jpeg_data_ok==1)	//已经采集完一帧图像了
-//		{ 			
-//			get_info(jpeg,im,&back_target_info);
-//			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
-//		}	
-		LED0(On);
-		delay_ms(1000);
-		Send_Target(front_target_info.x,front_target_info.y);
-		Send_Rc(Rc_send);
+		if(jpeg_data_ok==1)	//已经采集完一帧图像了
+		{ 
+			LED0(On);
+			get_info(jpeg,im,&back_measure_info);
+			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
+		}	
 		LED0(Off);
-		delay_ms(1000);		
+		back_duty();	
 	}
 }
 

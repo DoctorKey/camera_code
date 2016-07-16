@@ -3,14 +3,24 @@
 
 pid_group pid_camera;
 Rc_group Rc;
-
+Rc_group Rc_old;
+u8 mode=0;//go 1,back 2
 void pid_set()
 {
 	pid_camera.p=1;
 	pid_camera.i=1;
 	pid_camera.d=1;
 }
-
+void middle_duty()
+{
+	if(mode==1)
+	{
+	
+	}else if(mode==2)
+	{
+		
+	}
+}
 //=================== filter ===================================
 //  全局输出，CH[],0横滚，1俯仰，2油门，3航向 	
 //=================== filter =================================== 	

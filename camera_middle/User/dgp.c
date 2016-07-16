@@ -2,7 +2,6 @@
 #include "include.h"
 #include "ov7670.h"
 
-//u32 jpeg_buf[jpeg_buf_size];
 u8 ov_frame=0;  						//帧率
 u8 frame_count=0;//控制帧率
 u16 over_count=0;
@@ -34,10 +33,6 @@ void jpeg_data_process(void)
 {
 		if(jpeg_data_ok==0)	//jpeg数据还未采集完?
 		{
-//			while (DMA_GetFlagStatus(DMA2_Stream1,DMA_FLAG_TCIF1)!=RESET)
-//				delay_ms(10);
-//			printf("传输完成\r\n");
-//			DMA_ClearFlag(DMA2_Stream1,DMA_FLAG_TCIF1);
 			DMA_Cmd(DMA2_Stream1, DISABLE);//停止当前传输 
 			while (DMA_GetCmdStatus(DMA2_Stream1) != DISABLE){}//等待DMA2_Stream1可配置  
 			jpeg_data_len=jpeg_buf_size-DMA_GetCurrDataCounter(DMA2_Stream1);//得到此次数据传输的长度
@@ -52,5 +47,19 @@ void jpeg_data_process(void)
 			jpeg_data_ok=0;						//标记数据未采集
 		}
 } 
-im_info front_target_info;
-im_info back_target_info;
+im_info front_measure_info;
+im_info back_measure_info;
+im_info middle_measure_info;
+void get_info(u16 *jpeg,u8 *H,im_info *info)
+{
+	u16 i;
+	u8 *p;
+		i=jpeg_data_len*4;
+//		i=jpeg_buf_size*4;
+		p=(u8*)jpeg_buf;
+		LED0(On);
+		USART_SendString_bysize(USART2,p,i);
+//		USART_SendData(USART2,255);
+		delay_ms(300);
+		LED0(Off);
+}

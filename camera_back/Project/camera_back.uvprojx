@@ -488,9 +488,19 @@
               <FilePath>..\Hardware\delay\delay.c</FilePath>
             </File>
             <File>
+              <FileName>delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\delay\delay.h</FilePath>
+            </File>
+            <File>
               <FileName>led.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\led\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\led\led.h</FilePath>
             </File>
             <File>
               <FileName>usart.c</FileName>
@@ -521,6 +531,11 @@
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\timer.h</FilePath>
             </File>
           </Files>
         </Group>

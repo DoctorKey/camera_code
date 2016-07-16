@@ -2,8 +2,6 @@
 #define _INCLUDE_H_
 
 #include "stm32f4xx.h"
-#include "led.h"
-#include "usart.h"
 
 //================ϵͳ===================
 #define USE_USART1
@@ -40,9 +38,7 @@
 /***************ctrl******************/
 #define YAW_OFFSET 0
 #define ROLL_OFFSET 0
-#define CH_NUM 4
-#define PWM_MIN 0
-#define PWM_MAX 1000
+
 /***********************************************/
 
 #endif

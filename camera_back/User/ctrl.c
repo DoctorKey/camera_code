@@ -4,8 +4,8 @@
 
 PID_Typedef roll_pid;
 PID_Typedef yaw_pid;
+
 Rc_group Rc_front;
-Rc_group Rc_back;
 Rc_group Rc_send;
 
 void pid_set()
@@ -18,7 +18,14 @@ void pid_set()
 	yaw_pid.ki=1;
 	yaw_pid.kd=0;
 }
-
+void back_duty()
+{
+//	delay_ms(1000);
+//		Send_Front_Target(front_target_info);
+//		Send_Rc(Rc_send);	
+//		delay_ms(1000);	
+	control_pwm(front_measure_info,back_measure_info);
+}
 void control_yaw(PID_Typedef * PID,im_info front_info,im_info back_info)
 {
 	float target,measure;
