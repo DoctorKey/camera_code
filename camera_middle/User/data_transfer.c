@@ -2,6 +2,7 @@
 #include "stm32f4xx.h"
 #include "ctrl.h"
 #include "dgp.h"
+#include "init.h"
 
 /////////////////////////////////////////////////////////////////////////////////////
 //数据拆分宏定义，在发送大于1字节的数据类型时，比如int16、float等，需要把数据拆分成单独字节进行发送
@@ -129,6 +130,17 @@ void Data_Receive_deal(u8 *data_buf,u8 num)
 		Rc.thr  =(u16)(*(data_buf+8)<<8)|*(data_buf+9);
 		Rc.yaw  =(u16)(*(data_buf+10)<<8)|*(data_buf+11);
 	}
+	if(*(data_buf+2)==0X04)
+	{
+		if(*(data_buf+4)==0x01)
+		{
+			ready_1 = *(data_buf+5);
+		}
+		if(*(data_buf+4)==0x02)
+		{
+			ready_2 = *(data_buf+5);
+		}
+	}
 }
 void Send_Data(u8 *dataToSend , u8 length)
 {
@@ -197,7 +209,7 @@ void Send_Rc(Rc_group rc)
 	u8 i = 0;
 	data_to_send[_cnt++]=0xAA;
 	data_to_send[_cnt++]=0xAF;
-	data_to_send[_cnt++]=0x02;
+	data_to_send[_cnt++]=0x03;
 	data_to_send[_cnt++]=0;
 	
 	data_to_send[_cnt++]=BYTE1(rc.pitch);

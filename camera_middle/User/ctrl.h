@@ -2,17 +2,20 @@
 #define __CTRL_H
 #include "include.h"
 
-#define PITCH_CH 0
-#define ROLL_CH  1
-#define YAW_CH   2
-#define THR_CH   3
 
 typedef struct
 {
-	double p;
-	double i;
-	double d;
-}pid_group;
+	float kp;
+	float ki;
+	float kd;
+	float error;
+	float preerror;
+	float prepreerror;
+	float integ;
+	float integ_max;
+	float deriv;
+	float output; 
+}PID_Typedef;
 
 typedef struct
 {
@@ -22,9 +25,13 @@ typedef struct
 	u16 yaw;
 }Rc_group;
 
-extern int16_t CH[];
+void pid_set(void);
 void ctrl_pwm(int16_t CH[CH_NUM]);
+void ctrl_throw(u8 command);
+void control_duty(void);
+void control_throw(void);
 
+extern int16_t CH[];
 extern Rc_group Rc;
 
 #endif 

@@ -21,7 +21,6 @@ struct _m_usmart_nametab usmart_nametab[]=
  	(void*)delay_us,"void delay_us(u32 nus)",	 
 	(void*)LED_SET,"void LED_SET(u8 mode)",
 	(void*)OV_WriteReg,"u8 OV_WriteReg(u8 regID, u8 regDat)",
-	(void*)OV7670_HW,"void OV7670_HW(u16 hstart,u16 vstart,u16 hstop,u16 vstop)",
 //	(void*)led_set,"void led_set(u8 sta)",
 //	(void*)test_fun,"void test_fun(void(*ledset)(u8),u8 sta)",				  	    
 };						  
@@ -45,3 +44,4 @@ struct _m_usmart_dev usmart_dev=
 	0,	  	//每个参数的长度暂存表,需要MAX_PARM个0初始化
 	0,		//函数的参数,需要PARM_LEN个0初始化
 };   
+

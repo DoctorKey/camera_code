@@ -2,17 +2,18 @@
 #include "init.h"
 #include "delay.h"
 #include "led.h"
-#include "usart.h"
 #include "ctrl.h"
-#include "usmart.h"
 #include "dgp.h"
+#include "data_transfer.h"
 
 int main(void)
 { 
 	u16 *jpeg;
 
-	All_Init();
+	ready_1 = All_Init();
 
+	Send_ready(1,ready_1);
+	
 	jpeg=(u16*)jpeg_buf;
 	
   	while(1)
@@ -21,14 +22,6 @@ int main(void)
 		{ 			
 			LED0(On);
 			get_info(jpeg,im,&front_measure_info);
-////			i=jpeg_data_len*4;
-//			i=jpeg_buf_size*4;
-//			p=(u8*)jpeg_buf;
-//			LED0(On);
-//			USART_SendString_bysize(USART2,p,i);
-////			USART_SendData(USART2,255);
-//			delay_ms(300);
-//			LED0(Off);
 			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
 		}		
 		LED0(Off);

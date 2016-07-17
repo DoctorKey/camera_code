@@ -1,6 +1,7 @@
 #include "ctrl.h"
 #include "dgp.h"
 #include "data_transfer.h"
+#include "init.h"
 
 PID_Typedef roll_pid;
 PID_Typedef yaw_pid;
@@ -25,6 +26,8 @@ void back_duty()
 //		Send_Rc(Rc_send);	
 //		delay_ms(1000);	
 	control_pwm(front_measure_info,back_measure_info);
+	Send_ready(1,ready_1);
+	Send_ready(2,ready_2);
 }
 void control_yaw(PID_Typedef * PID,im_info front_info,im_info back_info)
 {

@@ -1,26 +1,15 @@
 #include "stm32f4xx.h"
 #include "init.h"
-#include "delay.h"
 #include "led.h"
-#include "usart.h"
-#include "ov7670.h"
-#include "pwm_out.h"
-#include "ctrl.h"
-#include "usmart.h"
 #include "dgp.h"
+#include "myduty.h"
 
-/*************************************************************************************
-  * 函数名称：main()
-  * 参数    ：void
-  * 返回值  ：void
-  * 描述    ：程序主入口main函数
-  *************************************************************************************/
 int main(void)
 { 
 	u16 *jpeg;
 	
-	All_Init();
-
+	ready_3 = All_Init();
+	
 	jpeg=(u16*)jpeg_buf;
 	
   while(1)

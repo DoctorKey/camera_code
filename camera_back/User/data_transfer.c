@@ -2,6 +2,7 @@
 #include "stm32f4xx.h"
 #include "ctrl.h"
 #include "dgp.h"
+#include "init.h"
 
 /////////////////////////////////////////////////////////////////////////////////////
 //数据拆分宏定义，在发送大于1字节的数据类型时，比如int16、float等，需要把数据拆分成单独字节进行发送
@@ -125,7 +126,17 @@ void Data_Receive_deal(u8 *data_buf,u8 num)
 		Rc_front.thr  =(u16)(*(data_buf+8)<<8)|*(data_buf+9);
 		Rc_front.yaw  =(u16)(*(data_buf+10)<<8)|*(data_buf+11);
 	}
-
+	if(*(data_buf+2)==0X04)
+	{
+		if(*(data_buf+4)==0x01)
+		{
+			ready_1 = *(data_buf+5);
+		}
+		if(*(data_buf+4)==0x02)
+		{
+			ready_2 = *(data_buf+5);
+		}
+	}
 }
 void Send_Data(u8 *dataToSend , u8 length)
 {
@@ -194,7 +205,7 @@ void Send_Rc(Rc_group rc)
 	u8 i = 0;
 	data_to_send[_cnt++]=0xAA;
 	data_to_send[_cnt++]=0xAF;
-	data_to_send[_cnt++]=0x02;
+	data_to_send[_cnt++]=0x03;
 	data_to_send[_cnt++]=0;
 	
 	data_to_send[_cnt++]=BYTE1(rc.pitch);
@@ -215,4 +226,26 @@ void Send_Rc(Rc_group rc)
 	
 	Send_Data(data_to_send, _cnt);
 }
-
+void Send_ready(u8 camera_num,u8 ready)
+{
+	u8 _cnt=0;
+	vs16 _temp;
+	u8 sum = 0;
+	u8 i = 0;
+	data_to_send[_cnt++]=0xAA;
+	data_to_send[_cnt++]=0xAF;
+	data_to_send[_cnt++]=0x04;
+	data_to_send[_cnt++]=0;
+	
+	data_to_send[_cnt++]=camera_num;
+	data_to_send[_cnt++]=ready;
+	
+	data_to_send[3] = _cnt-4;
+	
+	
+	for(i=0;i<_cnt;i++)
+		sum += data_to_send[i];
+	data_to_send[_cnt++]=sum;
+	
+	Send_Data(data_to_send, _cnt);
+}

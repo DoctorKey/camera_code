@@ -1,7 +1,9 @@
 #include "init.h"
 #include "include.h"
 
-void All_Init()
+u8 ready_1;
+u8 ready_2=0;
+u8 All_Init()
 {
 	NVIC_PriorityGroupConfig(NVIC_GROUP);		//中断优先级组别设置
 	
@@ -34,4 +36,6 @@ void All_Init()
 	DCMI_Start();
 	
 	pid_set();
+	
+	return 1;
 }

@@ -2,6 +2,10 @@
 #define _DGP_H_
 #include "stm32f4xx.h"
 
+#define PI_3 1.0472
+#define TWO_PI 6.2832
+#define PI_3_40 41.888 //  pi/3*40
+
 typedef struct{
 	u8 x;
 	u8 y;

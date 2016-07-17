@@ -477,6 +477,16 @@
               <FileType>5</FileType>
               <FilePath>..\User\mymath.h</FilePath>
             </File>
+            <File>
+              <FileName>myduty.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\myduty.c</FilePath>
+            </File>
+            <File>
+              <FileName>myduty.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\myduty.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -12,6 +12,7 @@ void Data_Receive_deal(u8 *data_buf,u8 num);
 void Send_Front_Measure(im_info info);
 void Send_Back_Measure(im_info info);
 void Send_Rc(Rc_group rc);
+void Send_ready(u8 camera_num,u8 ready);
 
 #endif
 

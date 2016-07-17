@@ -2,7 +2,11 @@
 #include "include.h"
 #include "usmart.h"
 
-void All_Init()
+u8 ready_1;
+u8 ready_2;
+u8 ready_3;
+
+u8 All_Init()
 {
 	NVIC_PriorityGroupConfig(NVIC_GROUP);		//中断优先级组别设置
 	
@@ -15,6 +19,8 @@ void All_Init()
 	Usart2_Init(115200);
 	
 	PWM_Out_Init(50);				//初始化PWM输出功能
+	
+	ctrl_throw(0);
 	
 	uart_init(115200);
 	
@@ -38,4 +44,7 @@ void All_Init()
 	
 	DCMI_Start();
 	
+	pid_set();
+	
+	return 1;
 }

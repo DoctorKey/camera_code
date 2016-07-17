@@ -197,7 +197,7 @@ void Send_Rc(Rc_group rc)
 	u8 i = 0;
 	data_to_send[_cnt++]=0xAA;
 	data_to_send[_cnt++]=0xAF;
-	data_to_send[_cnt++]=0x02;
+	data_to_send[_cnt++]=0x03;
 	data_to_send[_cnt++]=0;
 	
 	data_to_send[_cnt++]=BYTE1(rc.pitch);
@@ -218,4 +218,26 @@ void Send_Rc(Rc_group rc)
 	
 	Send_Data(data_to_send, _cnt);
 }
-
+void Send_ready(u8 camera_num,u8 ready)
+{
+	u8 _cnt=0;
+	vs16 _temp;
+	u8 sum = 0;
+	u8 i = 0;
+	data_to_send[_cnt++]=0xAA;
+	data_to_send[_cnt++]=0xAF;
+	data_to_send[_cnt++]=0x04;
+	data_to_send[_cnt++]=0;
+	
+	data_to_send[_cnt++]=camera_num;
+	data_to_send[_cnt++]=ready;
+	
+	data_to_send[3] = _cnt-4;
+	
+	
+	for(i=0;i<_cnt;i++)
+		sum += data_to_send[i];
+	data_to_send[_cnt++]=sum;
+	
+	Send_Data(data_to_send, _cnt);
+}

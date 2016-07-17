@@ -9,6 +9,10 @@
 #include "usart.h"
 #include "led.h"
 
-void All_Init(void);
+u8 All_Init(void);
+
+extern u8 ready_3;
+extern u8 ready_1;
+extern u8 ready_2;
 
 #endif

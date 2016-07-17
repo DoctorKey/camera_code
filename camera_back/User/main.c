@@ -7,13 +7,16 @@
 #include "ctrl.h"
 #include "dgp.h"
 #include "data_transfer.h"
+#include "init.h"
 
 int main(void)
 { 
 	u16 *jpeg;
 
-	All_Init();
+	ready_2 = All_Init();
 
+	Send_ready(2,ready_2);
+	
 	jpeg=(u16*)jpeg_buf;
 	
   while(1)

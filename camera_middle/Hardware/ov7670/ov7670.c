@@ -163,7 +163,7 @@ u8 OV7670_Init(void)
 //  	}
 		
 //	OV7670_HW(192,192,842,442);
-		OV7670_config_window(184,10,320,120);
+		OV7670_config_window(184+80*2,10+60*2,161,121);
 		
 	return 0; 
 }
@@ -209,23 +209,7 @@ void OV7670_config_window(u16 startx,u16 starty,u16 width, u16 height)
 	state = OV_WriteReg(0x19, temp );
 	temp = (endy&0x3FC)>>2;
 	state = OV_WriteReg(0x1A, temp );
-}
-void OV7670_HW(u16 hstart,u16 vstart,u16 hstop,u16 vstop)
-{
-	u8 v;		
-	OV_WriteReg(0x17,(hstart>>3)&0xff);//HSTART
-	OV_WriteReg(0x18,(hstop>>3)&0xff);//HSTOP
-	OV_ReadReg(0x32,&v);
-	v=(v&0xc0)|((hstop&0x7)<<3)|(hstart&0x7);
-	OV_WriteReg(0x32,v);//HREF
-	
-	OV_WriteReg(0x19,(vstart>>2)&0xff);//VSTART 开始高8位
-	OV_WriteReg(0x1a,(vstop>>2)&0xff);//VSTOP	结束高8位
-	OV_ReadReg(0x03,&v);
-	v=(v&0xf0)|((vstop&0x3)<<2)|(vstart&0x3);	
-	OV_WriteReg(0x03,v);//VREF																 
-	OV_WriteReg(0x11,0x00);
-}			
+}	
 void OV_Reset(void)
 {
 	OV_WriteReg(0x12,0x80);
