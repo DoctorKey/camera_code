@@ -52,17 +52,6 @@ im_info back_measure_info;
 im_info middle_measure_info;
 void get_info(u16 *jpeg,u8 *H,im_info *info)
 {
-//	u16 i;
-//	u8 *p;
-//		i=jpeg_data_len*4;
-////		i=jpeg_buf_size*4;
-//		p=(u8*)jpeg_buf;
-//		LED0(On);
-//		USART_SendString_bysize(USART2,p,i);
-////		USART_SendData(USART2,255);
-//		delay_ms(300);
-//		LED0(Off);
-	
 	u8 R,G,B;
 	float h_tmp;
 	u16 i,j,count_x=0;
@@ -106,7 +95,9 @@ void get_info(u16 *jpeg,u8 *H,im_info *info)
 				y+=(j+158)%PIC_COL; //col
 			}
 			
-//			*(H+i*PIC_COL+j)=h_tmp;
+			#ifdef TEST
+			*(H+i*PIC_COL+(j+158)%PIC_COL)=h_tmp;
+			#endif
 		}
 	}
 	
@@ -114,15 +105,62 @@ void get_info(u16 *jpeg,u8 *H,im_info *info)
 	info->y = y/count_x;
 	info->ratio = (float)count_x/(PIC_ROW*PIC_COL);
 	
-//	j=info->y;
-//	for(i=info->x-3;i<info->x+4;i++)
-//	{
-//		*(H+i*PIC_COL+j)=254;
-//	}
+	#ifdef TEST
+	j=info->y;
+	for(i=info->x-3;i<info->x+4;i++)
+	{
+		*(H+i*PIC_COL+j)=254;
+	}
 
-//	i=info->x;
-//	for(j=info->y-3;j<info->y+4;j++)
-//	{
-//		*(H+i*PIC_COL+j)=254;
-//	}
+	i=info->x;
+	for(j=info->y-3;j<info->y+4;j++)
+	{
+		*(H+i*PIC_COL+j)=254;
+	}
+	#endif
 }
+void test(u32* jpeg_buf,u8* im)
+{
+	u32 i;
+	u16 *jpeg;
+	i=PIC_COL*PIC_ROW;
+	jpeg=(u16*)jpeg_buf;
+	get_info(jpeg,im,&middle_measure_info);
+	LED0(On);
+	USART_SendString_bysize(USART2,im,i);
+	USART_SendData(USART2,255);
+	LED0(Off);
+}
+void get_H(u16 *jpeg,u8 *H,im_info *info)
+{
+	u8 R,G,B;
+	u16 i,j,count_x=0;
+	u32 x=0,y=0,y_tmp;
+	for(i=0;i<PIC_ROW;i++)
+	{
+		for(j=0;j<PIC_COL;j++)
+		{
+			R=((*(jpeg+i*PIC_COL+j))&0x1f)<<3;//R
+			G=((*(jpeg+i*PIC_COL+j))&0x7e0)>>3;//G
+			B=((*(jpeg+i*PIC_COL+j))&0xf800)>>8;//B
+			
+			y_tmp = 1224*R + 2404*G + 467*B;
+			y_tmp = y_tmp>>12;
+			
+			*(H+i*PIC_COL+(j+158)%PIC_COL)=y_tmp;
+		}
+	}
+}
+void test_Y(u32* jpeg_buf,u8* im)
+{
+	u32 i;
+	u16 *jpeg;
+	i=PIC_COL*PIC_ROW;
+	jpeg=(u16*)jpeg_buf;
+	get_H(jpeg,im,&middle_measure_info);
+	LED0(On);
+	USART_SendString_bysize(USART2,im,i);
+	USART_SendData(USART2,255);
+	LED0(Off);
+}
+

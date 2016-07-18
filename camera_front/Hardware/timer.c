@@ -1,8 +1,11 @@
 #include "timer.h"
 #include "include.h"
+#include "data_transfer.h"
 
 extern u8 ov_frame;
-extern volatile u16 jpeg_data_len;
+extern volatile u32 jpeg_data_len;
+extern u8 ready_1;
+extern im_info front_measure_info;
 
 //通用定时器3中断初始化
 //arr：自动重装值。
@@ -41,7 +44,15 @@ void TIM3_IRQHandler(void)
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET) //溢出中断
 	{
 		printf("frame:%d\r\n",ov_frame);//打印帧率
-		printf("jpeg_data_len:%d\r\n",jpeg_data_len);//打印帧率
+		printf("jpeg_data_len:%d\r\n",jpeg_data_len);
+		printf("front_info:x:%d,y:%d,ratio:%f\r\n",front_measure_info.x,front_measure_info.y,front_measure_info.ratio);
+		printf("ready_1:%d\r\n",ready_1);
+		
+		#ifdef DUTY
+		Send_ready(1,ready_1);
+		#endif
+		
+		ready_1=0;
 		ov_frame=0;
 	}
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);  //清除中断标志位

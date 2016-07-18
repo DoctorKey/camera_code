@@ -19,8 +19,7 @@
 ..\output\dgp.o: ..\Libraries\FWlib\inc\stm32f4xx_usart.h
 ..\output\dgp.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\dgp.o: ..\User\include.h
-..\output\dgp.o: ..\Hardware\led\led.h
-..\output\dgp.o: ..\Hardware\usart\usart.h
+..\output\dgp.o: ..\Hardware\led.h
+..\output\dgp.o: ..\Hardware\usart.h
 ..\output\dgp.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
-..\output\dgp.o: ..\Hardware\pwm_out.h
-..\output\dgp.o: ..\Hardware\ov7670\ov7670.h
+..\output\dgp.o: ..\Hardware\ov7670.h

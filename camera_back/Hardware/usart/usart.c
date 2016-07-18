@@ -221,5 +221,18 @@ void Usart2_Send(unsigned char *DataToSend ,u8 data_num)
 
 }
 
+void USART_SendString_bysize(USART_TypeDef* USARTx,u8 *str,u32 size)
+{
+	u32 i=1;
+  for(i=1;i<=size;i++)
+  {
+  	 USART_SendData(USARTx,*str);													   //将*str从USARTx发送出去
+	  while (USART_GetFlagStatus(USARTx, USART_FLAG_TXE) == RESET)				       //等待发送完毕
+    {
+      																		           //str的地址增加1，到下一个字符
+    }
+	str++;	
+  }
+}
 
 

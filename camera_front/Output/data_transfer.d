@@ -21,7 +21,6 @@
 ..\output\data_transfer.o: ..\User\dgp.h
 ..\output\data_transfer.o: ..\User\ctrl.h
 ..\output\data_transfer.o: ..\User\include.h
-..\output\data_transfer.o: ..\Hardware\led\led.h
-..\output\data_transfer.o: ..\Hardware\usart\usart.h
+..\output\data_transfer.o: ..\Hardware\led.h
+..\output\data_transfer.o: ..\Hardware\usart.h
 ..\output\data_transfer.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
-..\output\data_transfer.o: ..\Hardware\pwm_out.h

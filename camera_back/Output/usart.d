@@ -19,6 +19,6 @@
 ..\output\usart.o: ..\Libraries\FWlib\inc\stm32f4xx_usart.h
 ..\output\usart.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\usart.o: ..\User\include.h
-..\output\usart.o: ..\Hardware\led\led.h
 ..\output\usart.o: ..\User\data_transfer.h
 ..\output\usart.o: ..\User\ctrl.h
+..\output\usart.o: ..\User\dgp.h

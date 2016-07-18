@@ -1,5 +1,5 @@
-..\output\usart.o: ..\Hardware\usart\usart.c
-..\output\usart.o: ..\Hardware\usart\usart.h
+..\output\usart.o: ..\Hardware\usart.c
+..\output\usart.o: ..\Hardware\usart.h
 ..\output\usart.o: ..\Libraries\CMSIS\inc\stm32f4xx.h
 ..\output\usart.o: ..\Libraries\CMSIS\inc\core_cm4.h
 ..\output\usart.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdint.h
@@ -21,8 +21,7 @@
 ..\output\usart.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\usart.o: ..\Startup\sys.h
 ..\output\usart.o: ..\User\include.h
-..\output\usart.o: ..\Hardware\led\led.h
-..\output\usart.o: ..\Hardware\pwm_out.h
+..\output\usart.o: ..\Hardware\led.h
 ..\output\usart.o: ..\User\data_transfer.h
 ..\output\usart.o: ..\User\dgp.h
 ..\output\usart.o: ..\User\ctrl.h

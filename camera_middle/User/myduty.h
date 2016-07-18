@@ -11,5 +11,9 @@ void go(void);
 void throw_ball(void);
 void back(void);
 void drop(void);
+void set_mode(u8 command);
+
+extern u8 all_ready;
+extern u8 mode;
 
 #endif

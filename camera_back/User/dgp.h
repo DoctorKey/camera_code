@@ -13,8 +13,9 @@ typedef struct{
 }im_info;
 
 void jpeg_data_process(void);
-void getH_op1(u16 *jpeg,u8 *H,im_info *info);
 void get_info(u16 *jpeg,u8 *H,im_info *info);
+void test(u32* jpeg_buf,u8* im);
+void test_Y(u32* jpeg_buf,u8* im);
 
 extern volatile u8 jpeg_data_ok;
 extern volatile u32 jpeg_data_len;

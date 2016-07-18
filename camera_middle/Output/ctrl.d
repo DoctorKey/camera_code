@@ -23,3 +23,4 @@
 ..\output\ctrl.o: ..\Hardware\usart\usart.h
 ..\output\ctrl.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\ctrl.o: ..\Hardware\pwm_out.h
+..\output\ctrl.o: ..\User\dgp.h

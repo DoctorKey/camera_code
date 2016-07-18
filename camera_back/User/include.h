@@ -4,6 +4,9 @@
 #include "stm32f4xx.h"
 
 //================ϵͳ===================
+//#define TEST
+//#define TEST_Y
+
 #define USE_USART1
 //#define USE_USART2
 

@@ -1,5 +1,5 @@
-..\output\led.o: ..\Hardware\led\led.c
-..\output\led.o: ..\Hardware\led\led.h
+..\output\led.o: ..\Hardware\led.c
+..\output\led.o: ..\Hardware\led.h
 ..\output\led.o: ..\Libraries\CMSIS\inc\stm32f4xx.h
 ..\output\led.o: ..\Libraries\CMSIS\inc\core_cm4.h
 ..\output\led.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdint.h

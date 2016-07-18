@@ -19,7 +19,11 @@
 ..\output\ctrl.o: ..\Libraries\FWlib\inc\stm32f4xx_tim.h
 ..\output\ctrl.o: ..\Libraries\FWlib\inc\stm32f4xx_usart.h
 ..\output\ctrl.o: ..\Libraries\FWlib\inc\misc.h
-..\output\ctrl.o: ..\Hardware\led\led.h
-..\output\ctrl.o: ..\Hardware\usart\usart.h
 ..\output\ctrl.o: ..\User\dgp.h
 ..\output\ctrl.o: ..\User\data_transfer.h
+..\output\ctrl.o: ..\User\init.h
+..\output\ctrl.o: ..\Hardware\ov7670\ov7670.h
+..\output\ctrl.o: ..\Hardware\delay\delay.h
+..\output\ctrl.o: ..\Hardware\timer.h
+..\output\ctrl.o: ..\Hardware\usart\usart.h
+..\output\ctrl.o: ..\Hardware\led\led.h

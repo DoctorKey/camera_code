@@ -21,7 +21,6 @@
 ..\output\test.o: ..\User\dgp.h
 ..\output\test.o: ..\User\ctrl.h
 ..\output\test.o: ..\User\include.h
-..\output\test.o: ..\Hardware\led\led.h
-..\output\test.o: ..\Hardware\usart\usart.h
+..\output\test.o: ..\Hardware\led.h
+..\output\test.o: ..\Hardware\usart.h
 ..\output\test.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
-..\output\test.o: ..\Hardware\pwm_out.h

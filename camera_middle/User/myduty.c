@@ -4,6 +4,7 @@
 #include "include.h"
 #include "dgp.h"
 
+u8 all_ready=0;
 u8 mode=0;
 //wait ready 0
 //take off 1
@@ -33,88 +34,94 @@ void middle_duty()
 	{
 		drop();
 	}
+	ready_3++;
 }
 void wait_ready()
 {
-	if(ready_3==1)
+	if(ready_3 > 0)
 	{
-		if(ready_2==1)
+		if(ready_2 > 0)
 		{
-			if(ready_1==1)
-			{
-				CH[YAW_CH] = 1100;
-				CH[THR_CH] = 1100;
-				CH[ROLL_CH] = 1900;
-				CH[PIT_CH] = 1900;
-				ctrl_pwm(CH);
-				delay_ms(1500);
-				CH[YAW_CH] = 1500;
-				CH[THR_CH] = 1100;
-				CH[ROLL_CH] = 1500;
-				CH[PIT_CH] = 1500;
-				ctrl_pwm(CH);
+			if(ready_1 > 0)
+			{			
+//				Rc_out.yaw = 1100;
+//				Rc_out.thr = 1100;
+//				Rc_out.roll = 1900;
+//				Rc_out.pitch = 1900;
+//				set_pwm(&Rc_out);
+//				delay_ms(1500);
+				Rc_out.yaw = 1500 + YAW_CH_OFFSET;
+				Rc_out.thr = 1100;
+				Rc_out.roll = 1500 + ROLL_CH_OFFSET;
+				Rc_out.pitch = 1500 + PIT_CH_OFFSET;
+				set_pwm(&Rc_out);
 				delay_ms(500);
-				mode = 1;
+//				mode = 1;
+				all_ready=1;
 			}
 		}
 	}	
 }
 void take_off()
 {
-	CH[ROLL_CH] = 1500 + ROLL_CH_OFFSET;
-	CH[PIT_CH] = 1500 + PIT_CH_OFFSET;
-	CH[YAW_CH] = 1500 + YAW_CH_OFFSET;
-	CH[THR_CH] = 1200;
-	ctrl_pwm(CH);
-	mode = 2;
+	Rc_out.roll = 1500 + ROLL_CH_OFFSET;
+	Rc_out.pitch = 1500 + PIT_CH_OFFSET;
+	Rc_out.yaw = 1500 + YAW_CH_OFFSET;
+	Rc_out.thr = 1200;
+	set_pwm(&Rc_out);
+//	mode = 2;
 }
 void go()
 {
-	CH[PIT_CH] = 1500 + PIT_CH_OFFSET + GO_PIT;
-	CH[THR_CH] = 1300;
+	Rc_out.pitch = 1500 + PIT_CH_OFFSET + GO_PIT;
+	Rc_out.thr = 1300;
 	control_duty();
 	if(middle_measure_info.ratio > THROW_READY)
 	{
-		CH[PIT_CH] = 1500 + PIT_CH_OFFSET;
-		CH[THR_CH] = 1400;
-		ctrl_pwm(CH);
-		mode = 3;
+		Rc_out.pitch = 1500 + PIT_CH_OFFSET;
+		Rc_out.thr = 1400;
+		set_pwm(&Rc_out);
+//		mode = 3;
 	}
 }
 void throw_ball()
 {
-	CH[THR_CH] = 1400;
-	CH[YAW_CH] = 1500 + YAW_CH_OFFSET;
+	Rc_out.thr = 1400;
+	Rc_out.yaw = 1500 + YAW_CH_OFFSET;
 	control_throw();
 	if(middle_measure_info.ratio > THROW_BALL)
 	{
 		ctrl_throw(1);
-		CH[PIT_CH] = 1500 + PIT_CH_OFFSET;
-		CH[THR_CH] = 1400;
-		ctrl_pwm(CH);
-		mode = 4;
+		Rc_out.pitch = 1500 + PIT_CH_OFFSET;
+		Rc_out.thr = 1400;
+		set_pwm(&Rc_out);
+//		mode = 4;
 	}
 }
 void back()
 {
-	CH[PIT_CH] = 1500 + PIT_CH_OFFSET + BACK_PIT;
-	CH[THR_CH] = 1500;
+	Rc_out.pitch = 1500 + PIT_CH_OFFSET + BACK_PIT;
+	Rc_out.thr = 1500;
 	control_duty();
 	if(middle_measure_info.ratio > DROP_READY)
 	{
 		ctrl_throw(0);
-		CH[PIT_CH] = 1500 + PIT_CH_OFFSET;
-		CH[THR_CH] = 1600;
-		ctrl_pwm(CH);
-		mode = 5;
+		Rc_out.pitch = 1500 + PIT_CH_OFFSET;
+		Rc_out.thr = 1600;
+		set_pwm(&Rc_out);
+//		mode = 5;
 	}
 }
 void drop()
 {
-	CH[ROLL_CH] = 1500 + ROLL_CH_OFFSET;
-	CH[PIT_CH] = 1500 + PIT_CH_OFFSET;
-	CH[YAW_CH] = 1500 + YAW_CH_OFFSET;
-	CH[THR_CH] = 1600;
-	ctrl_pwm(CH);
-	mode = 6;
+	Rc_out.roll = 1500 + ROLL_CH_OFFSET;
+	Rc_out.pitch = 1500 + PIT_CH_OFFSET;
+	Rc_out.yaw = 1500 + YAW_CH_OFFSET;
+	Rc_out.thr = 1600;
+	set_pwm(&Rc_out);
+//	mode = 6;
+}
+void set_mode(u8 command)
+{
+	mode = command;
 }

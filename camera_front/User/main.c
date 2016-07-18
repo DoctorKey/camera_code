@@ -16,6 +16,30 @@ int main(void)
 	
 	jpeg=(u16*)jpeg_buf;
 	
+	#ifdef TEST
+	while(1)
+	{
+		if(jpeg_data_ok==1)	//已经采集完一帧图像了
+		{ 
+			LED0(On);
+			test(jpeg_buf,im);
+			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
+		}	
+		LED0(Off);
+	}
+	#endif
+	#ifdef TEST_Y
+	while(1)
+	{
+		if(jpeg_data_ok==1)	//已经采集完一帧图像了
+		{ 
+			LED0(On);
+			test_Y(jpeg_buf,im);
+			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
+		}	
+		LED0(Off);
+	}
+	#endif
   	while(1)
 	{
 		if(jpeg_data_ok==1)	//已经采集完一帧图像了

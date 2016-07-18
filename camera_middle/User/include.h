@@ -6,6 +6,10 @@
 #include "usart.h"
 #include "pwm_out.h"
 
+/***************系统******************/
+//#define TEST
+//#define TEST_Y
+
 /***************中断优先级******************/
 #define NVIC_GROUP NVIC_PriorityGroup_3		//中断分组选择 0~7抢占 0~1响应
 #define NVIC_PWMIN_P			4		//接收机采集

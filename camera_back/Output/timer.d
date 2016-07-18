@@ -1,6 +1,5 @@
 ..\output\timer.o: ..\Hardware\timer.c
 ..\output\timer.o: ..\Hardware\timer.h
-..\output\timer.o: ..\Startup\sys.h
 ..\output\timer.o: ..\Libraries\CMSIS\inc\stm32f4xx.h
 ..\output\timer.o: ..\Libraries\CMSIS\inc\core_cm4.h
 ..\output\timer.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdint.h
@@ -20,5 +19,11 @@
 ..\output\timer.o: ..\Libraries\FWlib\inc\stm32f4xx_usart.h
 ..\output\timer.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\timer.o: ..\User\include.h
-..\output\timer.o: ..\Hardware\led\led.h
+..\output\timer.o: ..\User\data_transfer.h
+..\output\timer.o: ..\User\ctrl.h
+..\output\timer.o: ..\User\dgp.h
+..\output\timer.o: ..\User\init.h
+..\output\timer.o: ..\Hardware\ov7670\ov7670.h
+..\output\timer.o: ..\Hardware\delay\delay.h
 ..\output\timer.o: ..\Hardware\usart\usart.h
+..\output\timer.o: ..\Hardware\led\led.h

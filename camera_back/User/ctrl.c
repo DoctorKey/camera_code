@@ -11,37 +11,36 @@ Rc_group Rc_send;
 
 void pid_set()
 {
-	roll_pid.kp=0;
-	roll_pid.ki=1;
+	roll_pid.kp=1;
+	roll_pid.ki=0;
 	roll_pid.kd=0;
 	
-	yaw_pid.kp=0;
-	yaw_pid.ki=1;
+	yaw_pid.kp=1;
+	yaw_pid.ki=0;
 	yaw_pid.kd=0;
 }
 void back_duty()
 {
-//	delay_ms(1000);
-//		Send_Front_Target(front_target_info);
-//		Send_Rc(Rc_send);	
-//		delay_ms(1000);	
-	control_pwm(front_measure_info,back_measure_info);
 	Send_ready(1,ready_1);
 	Send_ready(2,ready_2);
+	Send_Front_Target(front_measure_info);
+	Send_Back_Target(back_measure_info);
+	control_pwm(front_measure_info,back_measure_info);
+	ready_2++;
 }
 void control_yaw(PID_Typedef * PID,im_info front_info,im_info back_info)
 {
 	float target,measure;
 	target = 0;
-	measure = back_info.x - front_info.x;
-	PID_Incremental(PID,target,measure);
+	measure = front_info.y - back_info.y;
+	PID_Position(PID,target,measure);
 }
 void control_roll(PID_Typedef * PID,im_info front_info,im_info back_info)
 {
 	float target,measure;
 	target = 0;
-	measure = PIC_COL - (front_info.x + back_info.x)/2;
-	PID_Incremental(PID,target,measure);
+	measure = (front_info.y + back_info.y)/2 - PIC_COL;
+	PID_Position(PID,target,measure);
 }
 void control_pwm(im_info front_info,im_info back_info)
 {

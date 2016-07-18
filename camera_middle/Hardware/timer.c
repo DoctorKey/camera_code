@@ -7,9 +7,15 @@ extern u8 ov_frame;
 //extern volatile u16 jpeg_data_len;
 extern volatile u8 frame_count;
 extern volatile u16 over_count;
-extern Rc_group Rc;
+extern Rc_group Rc_out;
 extern im_info front_target_info;
 extern im_info back_target_info;
+extern im_info middle_measure_info;
+extern u8 all_ready;
+extern u8 mode;
+extern u8 ready_3;
+extern u8 ready_1;
+extern u8 ready_2;
 
 //通用定时器3中断初始化
 //arr：自动重装值。
@@ -47,12 +53,30 @@ void TIM3_IRQHandler(void)
 {
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET) //溢出中断
 	{
-//		printf("frame:%d\r\n",ov_frame);//打印帧率
-//		printf("jpeg_data_len:%d\r\n",jpeg_data_len);//打印帧率
-//		printf("溢出:%d\r\n",over_count);
-		printf("pitch:%d,roll:%d,thr:%d,yaw:%d\r\n",Rc.pitch,Rc.roll,Rc.thr,Rc.yaw);
-		printf("front x:%d,y:%d\r\n",front_measure_info.x,front_measure_info.y);
-		printf("back x:%d,y:%d\r\n",back_measure_info.x,back_measure_info.y);
+		printf("roll:%d,pitch:%d,thr:%d,yaw:%d\r\n",Rc_out.roll,Rc_out.pitch,Rc_out.thr,Rc_out.yaw);
+		printf("front x:%d,y:%d,ratio:%f\r\n",front_measure_info.x,front_measure_info.y,front_measure_info.ratio);
+		printf("back x:%d,y:%d,ratio:%f\r\n",back_measure_info.x,back_measure_info.y,back_measure_info.ratio);
+		printf("middle x:%d,y:%d,ratio:%f\r\n",middle_measure_info.x,middle_measure_info.y,middle_measure_info.ratio);
+		printf("ready_1:%d,ready_2:%d,ready_3:%d\r\n",ready_1,ready_2,ready_3);
+		printf("mode :%d\r\n",mode);
+//		if(all_ready==1)
+//		{
+//			if(ready_1==0)
+//			{
+//				mode=5;
+//			}
+//			else if(ready_2==0)
+//			{
+//				mode=5;
+//			}
+//			else if(ready_3==0)
+//			{
+//				mode=5;
+//			}
+//		}
+//		ready_1=0;
+//		ready_2=0;
+		ready_3=0;
 		ov_frame=0;
 		over_count=0;
 	}

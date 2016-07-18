@@ -23,9 +23,7 @@ u8 All_Init()
 	ctrl_throw(0);
 	
 	uart_init(115200);
-	
-	TIM3_Int_Init(10000-1,8400-1);//10Khz计数,1秒钟中断一次
-	
+		
 	usmart_dev.init(84);
 	
 	if(OV7670_Init())
@@ -45,6 +43,10 @@ u8 All_Init()
 	DCMI_Start();
 	
 	pid_set();
+	
+	delay_ms(1000);
+	
+	TIM3_Int_Init(10000-1,8400-1);//10Khz计数,1秒钟中断一次
 	
 	return 1;
 }

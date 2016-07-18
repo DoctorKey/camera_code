@@ -5,7 +5,17 @@
 #include "led.h"
 #include "usart.h"
 
+#if __FPU_USED==1
+#define SCORE_FPU_MODE                  //\"FPU On\" 
+#else
+#define SCORE_FPU_MODE                  //\"FPU Off\" 
+#endif
+
 //================ϵͳ===================
+//#define TEST
+//#define TEST_Y
+#define DUTY
+
 //#define USE_USART1
 #define USE_USART2
 

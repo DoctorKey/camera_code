@@ -18,10 +18,15 @@
 ..\output\data_transfer.o: ..\Libraries\FWlib\inc\stm32f4xx_tim.h
 ..\output\data_transfer.o: ..\Libraries\FWlib\inc\stm32f4xx_usart.h
 ..\output\data_transfer.o: ..\Libraries\FWlib\inc\misc.h
+..\output\data_transfer.o: ..\User\dgp.h
 ..\output\data_transfer.o: ..\User\ctrl.h
 ..\output\data_transfer.o: ..\User\include.h
 ..\output\data_transfer.o: ..\Hardware\led\led.h
 ..\output\data_transfer.o: ..\Hardware\usart\usart.h
 ..\output\data_transfer.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\data_transfer.o: ..\Hardware\pwm_out.h
-..\output\data_transfer.o: ..\User\dgp.h
+..\output\data_transfer.o: ..\User\init.h
+..\output\data_transfer.o: ..\Hardware\ov7670\ov7670.h
+..\output\data_transfer.o: ..\Hardware\delay\delay.h
+..\output\data_transfer.o: ..\Hardware\timer.h
+..\output\data_transfer.o: ..\Startup\sys.h

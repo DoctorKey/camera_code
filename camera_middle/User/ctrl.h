@@ -26,12 +26,13 @@ typedef struct
 }Rc_group;
 
 void pid_set(void);
-void ctrl_pwm(int16_t CH[CH_NUM]);
+void set_pwm(Rc_group *Rc);
 void ctrl_throw(u8 command);
 void control_duty(void);
 void control_throw(void);
 
 extern int16_t CH[];
-extern Rc_group Rc;
+extern Rc_group Rc_out;
+extern Rc_group Back_Rc;
 
 #endif 

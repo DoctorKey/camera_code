@@ -11,4 +11,6 @@ void Usart2_Init(u32 br_num);
 void Usart2_IRQ(void);
 void Usart2_Send(unsigned char *DataToSend ,u8 data_num);
 
+void USART_SendString_bysize(USART_TypeDef* USARTx,u8 *str,u32 size);
+
 #endif

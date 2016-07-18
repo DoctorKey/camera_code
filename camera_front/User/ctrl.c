@@ -7,11 +7,8 @@ Rc_group Rc_front;
 
 void front_duty()
 {
-	
-//	delay_ms(1000);
-//	Send_Front_Measure(front_measure_info);
-//	Send_Rc(Rc_front);
-	Send_Front_Measure(front_measure_info);
 	Send_ready(1,ready_1);
+	Send_Front_Measure(front_measure_info);
+	ready_1++;
 }
 

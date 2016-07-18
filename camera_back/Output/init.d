@@ -20,7 +20,9 @@
 ..\output\init.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\init.o: ..\Hardware\ov7670\ov7670.h
 ..\output\init.o: ..\User\include.h
-..\output\init.o: ..\Hardware\led\led.h
-..\output\init.o: ..\Hardware\usart\usart.h
 ..\output\init.o: ..\Hardware\delay\delay.h
-..\output\init.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\time.h
+..\output\init.o: ..\Hardware\timer.h
+..\output\init.o: ..\User\ctrl.h
+..\output\init.o: ..\User\dgp.h
+..\output\init.o: ..\Hardware\usart\usart.h
+..\output\init.o: ..\Hardware\led\led.h

@@ -125,10 +125,10 @@ void Data_Receive_deal(u8 *data_buf,u8 num)
 	}
 	if(*(data_buf+2)==0X03)
 	{
-		Rc.pitch=(u16)(*(data_buf+4)<<8)|*(data_buf+5);
-		Rc.roll =(u16)(*(data_buf+6)<<8)|*(data_buf+7);
-		Rc.thr  =(u16)(*(data_buf+8)<<8)|*(data_buf+9);
-		Rc.yaw  =(u16)(*(data_buf+10)<<8)|*(data_buf+11);
+		Back_Rc.pitch=(u16)(*(data_buf+4)<<8)|*(data_buf+5);
+		Back_Rc.roll =(u16)(*(data_buf+6)<<8)|*(data_buf+7);
+		Back_Rc.thr  =(u16)(*(data_buf+8)<<8)|*(data_buf+9);
+		Back_Rc.yaw  =(u16)(*(data_buf+10)<<8)|*(data_buf+11);
 	}
 	if(*(data_buf+2)==0X04)
 	{

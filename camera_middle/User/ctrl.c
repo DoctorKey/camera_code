@@ -4,7 +4,8 @@
 
 PID_Typedef pitch_pid;
 PID_Typedef roll_pid;
-Rc_group Rc;
+Rc_group Rc_out;
+Rc_group Back_Rc;
 Rc_group Rc_old;
 
 
@@ -42,41 +43,41 @@ void control_pitch(PID_Typedef * PID,im_info middle_info)
 {
 	float target,measure;
 	target = PIC_ROW/2;
-	measure = target - middle_info.x;
+	measure = middle_info.x;
 	PID_Position(PID,target,measure);
 }
 void control_roll(PID_Typedef * PID,im_info middle_info)
 {
 	float target,measure;
 	target = PIC_COL/2;
-	measure = target - middle_info.y;
+	measure = middle_info.y;
 	PID_Position(PID,target,measure);
 }
 void control_duty()
 {
-	CH[ROLL_CH] = Rc.roll;
-	CH[YAW_CH] = Rc.yaw;
-	ctrl_pwm(CH);
+	Rc_out.roll = Back_Rc.roll;
+	Rc_out.yaw = Back_Rc.yaw;
+	set_pwm(&Rc_out);
 }
 void control_throw()
 {
 	control_pitch(&pitch_pid,middle_measure_info);
 	control_roll(&roll_pid,middle_measure_info);
-	CH[PIT_CH] = 1500 + PIT_CH_OFFSET + pitch_pid.output;
-	CH[ROLL_CH] = 1500 + ROLL_CH_OFFSET + roll_pid.output;
+	Rc_out.pitch = 1500 + PIT_CH_OFFSET + pitch_pid.output;
+	Rc_out.roll = 1500 + ROLL_CH_OFFSET + roll_pid.output;
 	
-	ctrl_pwm(CH);
+	set_pwm(&Rc_out);
 }
 
 
 int16_t pwm[4]={0,0,0,0};//0~500
 int16_t CH[CH_NUM]={1500,1500,1000,1500};//1000~2000
-void ctrl_pwm(int16_t CH[CH_NUM])
+void set_pwm(Rc_group *Rc)
 {
-	pwm[0]=(CH[0]-1000)/2;
-	pwm[1]=(CH[1]-1000)/2;
-	pwm[2]=(CH[2]-1000)/2;
-	pwm[3]=(CH[3]-1000)/2;
+	pwm[0]=(Rc->roll-1000)/2;
+	pwm[1]=(Rc->pitch-1000)/2;
+	pwm[2]=(Rc->thr-1000)/2;
+	pwm[3]=(Rc->yaw-1000)/2;
 	SetPwm_1(pwm,PWM_MIN,PWM_MAX);
 }
 int16_t pwm_throw[2]={0,0};

@@ -119,7 +119,7 @@ void Cam_Init()
   	DCMI_InitStructure.DCMI_PCKPolarity = DCMI_PCKPolarity_Falling;
   	DCMI_InitStructure.DCMI_VSPolarity = DCMI_VSPolarity_High;
   	DCMI_InitStructure.DCMI_HSPolarity = DCMI_HSPolarity_Low;
-  	DCMI_InitStructure.DCMI_CaptureRate = DCMI_CaptureRate_1of4_Frame;
+  	DCMI_InitStructure.DCMI_CaptureRate = DCMI_CaptureRate_All_Frame;
   	DCMI_InitStructure.DCMI_ExtendedDataMode = DCMI_ExtendedDataMode_8b;
   	DCMI_Init(&DCMI_InitStructure); 
 		
@@ -139,22 +139,19 @@ void Cam_Init()
 
 u8 OV7670_Init(void)
 {
-  	u8 i,id;
+  u8 i,id;
  	Cam_Init();
 	SCCB_Init();
 	OV_Reset();
 	delay_ms(5);
 	id=OV_ReadID();
-//  	for(i=0;i<sizeof(OV7670_reg)/sizeof(OV7670_reg[0]);i++)
-//  	{
-//    	if(OV_WriteReg(OV7670_reg[i][0],OV7670_reg[i][1]))return 1;
-//  	}
-		for(i=0;i<sizeof(ov7670_init_reg_tbl)/sizeof(ov7670_init_reg_tbl[0]);i++)
-		{
-	   	OV_WriteReg(ov7670_init_reg_tbl[i][0],ov7670_init_reg_tbl[i][1]);
-  	}
 
-		OV7670_config_window(184+80*2,10+60*2,161,121);
+	for(i=0;i<sizeof(ov7670_init_reg_tbl)/sizeof(ov7670_init_reg_tbl[0]);i++)
+	{
+		OV_WriteReg(ov7670_init_reg_tbl[i][0],ov7670_init_reg_tbl[i][1]);
+	}
+
+	OV7670_config_window(184+80*2,10+60*2,161,121);
 		
 	return 0; 
 }
