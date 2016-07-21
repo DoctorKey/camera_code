@@ -27,6 +27,7 @@ typedef struct
 
 void pid_set(void);
 void set_pwm(Rc_group *Rc);
+void pwm_test(u16 p1,u16 p2,u16 p3,u16 p4);
 void ctrl_throw(u8 command);
 void control_duty(void);
 void control_throw(void);

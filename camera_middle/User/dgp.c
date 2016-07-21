@@ -163,4 +163,46 @@ void test_Y(u32* jpeg_buf,u8* im)
 	USART_SendData(USART2,255);
 	LED0(Off);
 }
+void get_target2(u16 *jpeg,u8 *H,im_info *info)
+{
+	u8 R,G,B;
+	u16 i,j,count=0;
+	u32 x=0,y=0;
+	for(i=0;i<PIC_ROW;i++)
+	{
+		for(j=0;j<PIC_COL;j++)
+		{
+			R=((*(jpeg+i*PIC_COL+j))&0x1f)<<3;//R
+			G=((*(jpeg+i*PIC_COL+j))&0x7e0)>>3;//G
+			B=((*(jpeg+i*PIC_COL+j))&0xf800)>>8;//B
 
+			if( R<R_threshold && G<G_threshold && B>B_threshold)
+			{
+				x+=i; //row
+				count++;
+				y+=(j+158)%PIC_COL; //col
+//				*(H+i*PIC_COL+(j+158)%PIC_COL)=254;
+			}
+			else
+			{
+//				*(H+i*PIC_COL+(j+158)%PIC_COL)=1;
+			}
+			
+		}
+	}
+	
+	info->x = x/count;
+	info->y = y/count;
+//	info->ratio = (float)count/(PIC_ROW*PIC_COL);
+	
+//	j=info->y;
+//	for(i=info->x-3;i<info->x+4;i++)
+//	{
+//		*(H+i*PIC_COL+j)=0;
+//	}
+//	i=info->x;
+//	for(j=info->y-3;j<info->y+4;j++)
+//	{
+//		*(H+i*PIC_COL+j)=0;
+//	}
+}

@@ -3,9 +3,16 @@
 
 #include "stm32f4xx.h"
 
+#if __FPU_USED==1
+#define SCORE_FPU_MODE                  //\"FPU On\" 
+#else
+#define SCORE_FPU_MODE                  //\"FPU Off\" 
+#endif
+
 //================ϵͳ===================
 //#define TEST
 //#define TEST_Y
+#define DUTY
 
 #define USE_USART1
 //#define USE_USART2
@@ -39,8 +46,12 @@
 /***********************************************/
 
 /***************ctrl******************/
-#define YAW_OFFSET 0
-#define ROLL_OFFSET 0
+#define YAW_OFFSET (0)
+#define ROLL_OFFSET (-76)
+
+#define R_threshold 60
+#define G_threshold 60
+#define B_threshold 100
 
 /***********************************************/
 

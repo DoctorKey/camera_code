@@ -16,6 +16,7 @@ extern u8 mode;
 extern u8 ready_3;
 extern u8 ready_1;
 extern u8 ready_2;
+extern s16 go_pit_offset;
 
 //通用定时器3中断初始化
 //arr：自动重装值。
@@ -54,6 +55,7 @@ void TIM3_IRQHandler(void)
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET) //溢出中断
 	{
 		printf("roll:%d,pitch:%d,thr:%d,yaw:%d\r\n",Rc_out.roll,Rc_out.pitch,Rc_out.thr,Rc_out.yaw);
+		printf("go_pit_offset:%d\r\n",go_pit_offset);
 		printf("front x:%d,y:%d,ratio:%f\r\n",front_measure_info.x,front_measure_info.y,front_measure_info.ratio);
 		printf("back x:%d,y:%d,ratio:%f\r\n",back_measure_info.x,back_measure_info.y,back_measure_info.ratio);
 		printf("middle x:%d,y:%d,ratio:%f\r\n",middle_measure_info.x,middle_measure_info.y,middle_measure_info.ratio);

@@ -7,6 +7,7 @@
 #include "led.h"		
 #include "ov7670.h"
 #include "myduty.h"
+#include "ctrl.h"
 
 //extern void led_set(u8 sta);
 //extern void test_fun(void(*ledset)(u8),u8 sta);
@@ -23,6 +24,9 @@ struct _m_usmart_nametab usmart_nametab[]=
 	(void*)LED_SET,"void LED_SET(u8 mode)",
 	(void*)OV_WriteReg,"u8 OV_WriteReg(u8 regID, u8 regDat)",
 	(void*)set_mode,"void set_mode(u8 command)",
+	(void*)pwm_test,"void pwm_test(u16 p1,u16 p2,u16 p3,u16 p4)",
+	(void*)set_offset,"void set_offset(u16 roll_offset,u16 pit_offset,u16 yaw_offset)",
+	(void*)set_gopit,"void set_gopit(u16 go_pit)",
 //	(void*)led_set,"void led_set(u8 sta)",
 //	(void*)test_fun,"void test_fun(void(*ledset)(u8),u8 sta)",				  	    
 };						  

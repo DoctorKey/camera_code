@@ -6,6 +6,12 @@
 #include "usart.h"
 #include "pwm_out.h"
 
+#if __FPU_USED==1
+#define SCORE_FPU_MODE                  //\"FPU On\" 
+#else
+#define SCORE_FPU_MODE                  //\"FPU Off\" 
+#endif
+
 /***************系统******************/
 //#define TEST
 //#define TEST_Y
@@ -42,18 +48,22 @@
 #define THR_CH 2
 #define YAW_CH 3
 
-#define ROLL_CH_OFFSET 0
-#define PIT_CH_OFFSET 0
+#define ROLL_CH_OFFSET -56
+#define PIT_CH_OFFSET -38
 #define YAW_CH_OFFSET 0
 
 #define PWM_MIN 0
 #define PWM_MAX 500
 
-#define GO_PIT   (50)
-#define BACK_PIT (-50)
+#define GO_PIT   (20)
+#define BACK_PIT (-20)
+
+#define R_threshold 163
+#define G_threshold 140
+#define B_threshold 190
 
 #define THROW_READY 0.2 //中间摄像头准备投球的阈值
-#define THROW_BALL 0.4 //中间摄像头决定投球的阈值
+#define THROW_BALL 0.6 //中间摄像头决定投球的阈值
 #define DROP_READY 0.3 //准备降落
 /***********************************************/
 

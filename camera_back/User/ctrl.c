@@ -9,6 +9,8 @@ PID_Typedef yaw_pid;
 Rc_group Rc_front;
 Rc_group Rc_send;
 
+u8 front_info_y_last;
+
 void pid_set()
 {
 	roll_pid.kp=1;
@@ -22,7 +24,7 @@ void pid_set()
 void back_duty()
 {
 	Send_ready(1,ready_1);
-	Send_ready(2,ready_2);
+//	Send_ready(2,ready_2);
 	Send_Front_Target(front_measure_info);
 	Send_Back_Target(back_measure_info);
 	control_pwm(front_measure_info,back_measure_info);
@@ -39,16 +41,30 @@ void control_roll(PID_Typedef * PID,im_info front_info,im_info back_info)
 {
 	float target,measure;
 	target = 0;
-	measure = (front_info.y + back_info.y)/2 - PIC_COL;
-	PID_Position(PID,target,measure);
+//	measure = (front_info.y + back_info.y)/2 - PIC_COL;
+	if(front_info.y > 40 && front_info.y < 120)
+	{
+		PID->output = 0;
+	}else if(front_info.y < 40 && front_info.y > 10)
+	{
+		PID->output = -15;
+	}else if(front_info.y >120 && front_info.y <155)
+	{
+		PID->output = 15;
+	}else
+	{
+		front_info.y = front_info_y_last;
+	}
+	front_info_y_last = front_info.y;
+//	PID_Position(PID,target,measure);
 }
 void control_pwm(im_info front_info,im_info back_info)
 {
 	control_yaw(&yaw_pid,front_info,back_info);
 	control_roll(&roll_pid,front_info,back_info);
 	
-	Rc_send.yaw = 1500 + YAW_OFFSET + yaw_pid.output;
-	Rc_send.roll = 1500 + ROLL_OFFSET + roll_pid.output;
+	Rc_send.yaw = 1500 + yaw_pid.output;
+	Rc_send.roll = 1500 + roll_pid.output;
 	
 	Send_Rc(Rc_send);
 }

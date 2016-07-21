@@ -41,7 +41,7 @@ int main(void)
 		if(jpeg_data_ok==1)	//已经采集完一帧图像了
 		{ 
 			LED0(On);
-			get_info(jpeg,im,&middle_measure_info);
+			get_target2(jpeg,im,&middle_measure_info);
 			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
 		}	
 		LED0(Off);

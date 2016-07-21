@@ -1,6 +1,7 @@
 #include "ctrl.h"
 #include "pwm_out.h"
 #include "dgp.h"
+#include "myduty.h"
 
 PID_Typedef pitch_pid;
 PID_Typedef roll_pid;
@@ -55,16 +56,18 @@ void control_roll(PID_Typedef * PID,im_info middle_info)
 }
 void control_duty()
 {
-	Rc_out.roll = Back_Rc.roll;
-	Rc_out.yaw = Back_Rc.yaw;
+	Rc_out.roll = Back_Rc.roll + roll_ch_offset;
+//	Rc_out.yaw = Back_Rc.yaw;
+//	Rc_out.roll = 1500 + roll_ch_offset;
+	Rc_out.yaw = 1500 + yaw_ch_offset;
 	set_pwm(&Rc_out);
 }
 void control_throw()
 {
 	control_pitch(&pitch_pid,middle_measure_info);
 	control_roll(&roll_pid,middle_measure_info);
-	Rc_out.pitch = 1500 + PIT_CH_OFFSET + pitch_pid.output;
-	Rc_out.roll = 1500 + ROLL_CH_OFFSET + roll_pid.output;
+	Rc_out.pitch = 1500 + pit_ch_offset + pitch_pid.output;
+	Rc_out.roll = 1500 + roll_ch_offset + roll_pid.output;
 	
 	set_pwm(&Rc_out);
 }
@@ -78,6 +81,14 @@ void set_pwm(Rc_group *Rc)
 	pwm[1]=(Rc->pitch-1000)/2;
 	pwm[2]=(Rc->thr-1000)/2;
 	pwm[3]=(Rc->yaw-1000)/2;
+	SetPwm_1(pwm,PWM_MIN,PWM_MAX);
+}
+void pwm_test(u16 p1,u16 p2,u16 p3,u16 p4)
+{
+	pwm[0]=(p1-1000)/2;
+	pwm[1]=(p2-1000)/2;
+	pwm[2]=(p3-1000)/2;
+	pwm[3]=(p4-1000)/2;
 	SetPwm_1(pwm,PWM_MIN,PWM_MAX);
 }
 int16_t pwm_throw[2]={0,0};

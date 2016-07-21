@@ -42,10 +42,14 @@ void TIM3_IRQHandler(void)
 {
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET) //溢出中断
 	{
-//		Send_ready(1,ready_1);
-//		Send_ready(2,ready_2);
-		ready_2=0;
+		
+		#ifdef DUTY
+		Send_ready(1,ready_1);
+		Send_ready(2,ready_2);
+		#endif
+		
 		ov_frame=0;
+		ready_2=0;
 	}
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);  //清除中断标志位
 }

@@ -13,6 +13,11 @@ u8 mode=0;
 //back 4
 //drop 5
 
+s16 roll_ch_offset;
+s16 pit_ch_offset;
+s16 yaw_ch_offset;
+s16 go_pit_offset;
+
 void middle_duty()
 {
 	if(mode==0)
@@ -44,16 +49,10 @@ void wait_ready()
 		{
 			if(ready_1 > 0)
 			{			
-//				Rc_out.yaw = 1100;
-//				Rc_out.thr = 1100;
-//				Rc_out.roll = 1900;
-//				Rc_out.pitch = 1900;
-//				set_pwm(&Rc_out);
-//				delay_ms(1500);
-				Rc_out.yaw = 1500 + YAW_CH_OFFSET;
+				Rc_out.yaw = 1500 + yaw_ch_offset;
 				Rc_out.thr = 1100;
-				Rc_out.roll = 1500 + ROLL_CH_OFFSET;
-				Rc_out.pitch = 1500 + PIT_CH_OFFSET;
+				Rc_out.roll = 1500 + roll_ch_offset;
+				Rc_out.pitch = 1500 + pit_ch_offset;
 				set_pwm(&Rc_out);
 				delay_ms(500);
 //				mode = 1;
@@ -64,64 +63,77 @@ void wait_ready()
 }
 void take_off()
 {
-	Rc_out.roll = 1500 + ROLL_CH_OFFSET;
-	Rc_out.pitch = 1500 + PIT_CH_OFFSET;
-	Rc_out.yaw = 1500 + YAW_CH_OFFSET;
+	Rc_out.roll = 1500 + roll_ch_offset;
+	Rc_out.pitch = 1500 + pit_ch_offset;
+	Rc_out.yaw = 1500 + yaw_ch_offset;
 	Rc_out.thr = 1200;
 	set_pwm(&Rc_out);
+	delay_ms(500);
 //	mode = 2;
 }
 void go()
 {
-	Rc_out.pitch = 1500 + PIT_CH_OFFSET + GO_PIT;
+	Rc_out.pitch = 1500 + pit_ch_offset + go_pit_offset;
 	Rc_out.thr = 1300;
 	control_duty();
-	if(middle_measure_info.ratio > THROW_READY)
-	{
-		Rc_out.pitch = 1500 + PIT_CH_OFFSET;
-		Rc_out.thr = 1400;
-		set_pwm(&Rc_out);
-//		mode = 3;
-	}
+//	if(middle_measure_info.ratio > THROW_READY)
+//	{
+//		Rc_out.pitch = 1500 + PIT_CH_OFFSET;
+//		Rc_out.thr = 1400;
+//		set_pwm(&Rc_out);
+////		mode = 3;
+//	}
 }
 void throw_ball()
 {
-	Rc_out.thr = 1400;
-	Rc_out.yaw = 1500 + YAW_CH_OFFSET;
-	control_throw();
-	if(middle_measure_info.ratio > THROW_BALL)
-	{
-		ctrl_throw(1);
-		Rc_out.pitch = 1500 + PIT_CH_OFFSET;
-		Rc_out.thr = 1400;
-		set_pwm(&Rc_out);
-//		mode = 4;
-	}
+//	Rc_out.thr = 1400;
+//	Rc_out.yaw = 1500 + yaw_ch_offset;
+//	control_throw();
+//	if(middle_measure_info.ratio > THROW_BALL)
+//	{
+//		ctrl_throw(1);
+//		Rc_out.pitch = 1500 + pit_ch_offset;
+//		Rc_out.thr = 1400;
+//		set_pwm(&Rc_out);
+////		mode = 4;
+//	}
+	ctrl_throw(1);
 }
 void back()
 {
-	Rc_out.pitch = 1500 + PIT_CH_OFFSET + BACK_PIT;
-	Rc_out.thr = 1500;
+	Rc_out.pitch = 1500 + pit_ch_offset + BACK_PIT;
+	Rc_out.thr = 1600;
 	control_duty();
 	if(middle_measure_info.ratio > DROP_READY)
 	{
 		ctrl_throw(0);
-		Rc_out.pitch = 1500 + PIT_CH_OFFSET;
-		Rc_out.thr = 1600;
+		Rc_out.pitch = 1500 + pit_ch_offset;
+		Rc_out.thr = 1700;
 		set_pwm(&Rc_out);
 //		mode = 5;
 	}
 }
 void drop()
 {
-	Rc_out.roll = 1500 + ROLL_CH_OFFSET;
-	Rc_out.pitch = 1500 + PIT_CH_OFFSET;
-	Rc_out.yaw = 1500 + YAW_CH_OFFSET;
-	Rc_out.thr = 1600;
+	Rc_out.roll = 1500 + roll_ch_offset;
+	Rc_out.pitch = 1500 + pit_ch_offset;
+	Rc_out.yaw = 1500 + yaw_ch_offset;
+	Rc_out.thr = 1700;
 	set_pwm(&Rc_out);
+	ctrl_throw(0);
 //	mode = 6;
 }
 void set_mode(u8 command)
 {
 	mode = command;
+}
+void set_offset(u16 roll_offset,u16 pit_offset,u16 yaw_offset)
+{
+	roll_ch_offset = roll_offset -1500;
+	pit_ch_offset = pit_offset -1500;
+	yaw_ch_offset = yaw_offset -1500;
+}
+void set_gopit(u16 go_pit)
+{
+	go_pit_offset = go_pit - 1500;
 }

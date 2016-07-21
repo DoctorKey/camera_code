@@ -27,7 +27,73 @@ Project File Date:  07/18/2016
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin'
 Build target 'SY-STM32F407 V2.0'
-"..\Output\camera_front.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+..\User\ctrl.h(14): warning:  #1295-D: Deprecated declaration front_duty - give arg types
+  void front_duty();
+..\User\main.c: 1 warning, 0 errors
+compiling ctrl.c...
+..\User\ctrl.h(14): warning:  #1295-D: Deprecated declaration front_duty - give arg types
+  void front_duty();
+..\User\ctrl.c: 1 warning, 0 errors
+compiling data_transfer.c...
+..\User\ctrl.h(14): warning:  #1295-D: Deprecated declaration front_duty - give arg types
+  void front_duty();
+..\User\data_transfer.c: 1 warning, 0 errors
+compiling init.c...
+..\User\ctrl.h(14): warning:  #1295-D: Deprecated declaration front_duty - give arg types
+  void front_duty();
+..\User\init.c(18): warning:  #223-D: function "PWM_Out_Init" declared implicitly
+        PWM_Out_Init(50);                               //??Ê¼»¯PWM?ä³ö¹???
+..\User\init.c: 2 warnings, 0 errors
+compiling dgp.c...
+..\User\dgp.c(61): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((G-B)/(R-G))*
+I_3_40;
+..\User\dgp.c(64): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((G-B)/(R-B))*
+I_3_40;
+..\User\dgp.c(67): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((B-R)/(G-B)+2)*
+I_3_40;
+..\User\dgp.c(70): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((B-R)/(G-R)+2)*
+I_3_40;
+..\User\dgp.c(73): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((R-G)/(B-G)+4)*
+I_3_40;
+..\User\dgp.c(76): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((R-G)/(B-R)+4)*
+I_3_40;
+..\User\dgp.c(131): warning:  #177-D: variable "count_x" was declared but never referenced
+        u16 i,j,count_x=0;
+..\User\dgp.c(132): warning:  #177-D: variable "x" was declared but never referenced
+        u32 x=0,y=0,y_tmp;
+..\User\dgp.c(132): warning:  #177-D: variable "y" was declared but never referenced
+        u32 x=0,y=0,y_tmp;
+..\User\dgp.c: 9 warnings, 0 errors
+compiling test.c...
+..\User\ctrl.h(14): warning:  #1295-D: Deprecated declaration front_duty - give arg types
+  void front_duty();
+..\User\test.c: 1 warning, 0 errors
+compiling ov7670.c...
+..\Hardware\ov7670.c(142): warning:  #550-D: variable "id" was set but never used
+    u8 i,id;
+..\Hardware\ov7670.c(179): warning:  #550-D: variable "state" was set but never used
+        u8 state,temp;
+..\Hardware\ov7670.c: 2 warnings, 0 errors
+compiling usart.c...
+..\User\ctrl.h(14): warning:  #1295-D: Deprecated declaration front_duty - give arg types
+  void front_duty();
+..\Hardware\usart.c: 1 warning, 0 errors
+compiling timer.c...
+..\User\ctrl.h(14): warning:  #1295-D: Deprecated declaration front_duty - give arg types
+  void front_duty();
+..\Hardware\timer.c: 1 warning, 0 errors
+compiling usmart_config.c...
+linking...
+Program Size: Code=16604 RO-data=1108 RW-data=436 ZI-data=59204  
+FromELF: creating hex file...
+"..\Output\camera_front.axf" - 0 Error(s), 19 Warning(s).
 
 <h2>Software Packages used:</h2>
 

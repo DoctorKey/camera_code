@@ -12,8 +12,8 @@
 #endif
 
 //================系统===================
-//#define TEST
-//#define TEST_Y
+//#define TEST //找红点
+//#define TEST_Y //只测试图像
 #define DUTY
 
 //#define USE_USART1
@@ -44,6 +44,9 @@
 /***********************************************/
 
 /***************ctrl******************/
+#define R_threshold 60
+#define G_threshold 60
+#define B_threshold 100
 
 /***********************************************/
 
