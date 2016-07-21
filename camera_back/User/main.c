@@ -50,9 +50,20 @@ int main(void)
 			LED0(On);
 			get_target2(jpeg,im,&back_measure_info);
 			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
+			back_ctrl_finish = 0;
 		}	
-		LED0(Off);
-		back_duty();	
+		if(back_ctrl_finish==0&&jpeg_data_ok==0)//当获得新的图片数据之后执行
+		{
+			LED0(Off);
+			back_duty();	
+			back_ctrl_finish = 1;
+		}
+		if(front_data_ok==1)
+		{
+			LED0(Off);
+			front_duty();
+			front_data_ok = 0;
+		}
 	}
 }
 

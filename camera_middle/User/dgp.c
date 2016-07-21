@@ -3,8 +3,7 @@
 #include "ov7670.h"
 
 u8 ov_frame=0;  						//帧率
-u8 frame_count=0;//控制帧率
-u16 over_count=0;
+
 //DCMI中断服务函数
 void DCMI_IRQHandler(void)
 {
@@ -13,11 +12,6 @@ void DCMI_IRQHandler(void)
 				jpeg_data_process(); 	//jpeg数据处理	
 				DCMI_ClearITPendingBit(DCMI_IT_FRAME);//清除帧中断
 				ov_frame++;	
-		}
-		if(DCMI_GetITStatus(DCMI_IT_OVF)==SET)//溢出中断
-		{
-				over_count++;				
-				DCMI_ClearITPendingBit(DCMI_IT_OVF);
 		}
 } 
 

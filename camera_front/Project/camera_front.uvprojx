@@ -477,11 +477,6 @@
               <FileType>5</FileType>
               <FilePath>..\User\mymath.h</FilePath>
             </File>
-            <File>
-              <FileName>test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\test.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -521,16 +516,6 @@
               <FileName>led.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Hardware\led.h</FilePath>
-            </File>
-            <File>
-              <FileName>pwm_out.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Hardware\pwm_out.c</FilePath>
-            </File>
-            <File>
-              <FileName>pwm_out.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Hardware\pwm_out.h</FilePath>
             </File>
             <File>
               <FileName>timer.c</FileName>

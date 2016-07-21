@@ -26,4 +26,3 @@
 ..\output\usmart_config.o: ..\User\include.h
 ..\output\usmart_config.o: ..\Hardware\usart.h
 ..\output\usmart_config.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
-..\output\usmart_config.o: ..\User\test.h

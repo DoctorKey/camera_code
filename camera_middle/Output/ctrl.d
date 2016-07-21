@@ -25,3 +25,4 @@
 ..\output\ctrl.o: ..\Hardware\pwm_out.h
 ..\output\ctrl.o: ..\User\dgp.h
 ..\output\ctrl.o: ..\User\myduty.h
+..\output\ctrl.o: ..\User\data_transfer.h

@@ -11,8 +11,11 @@ void Data_Receive_deal(u8 *data_buf,u8 num);
 
 void Send_Front_Target(im_info info);
 void Send_Back_Target(im_info info);
-void Send_Rc(Rc_group rc);
+void Send_Front_Rc(Rc_group rc);
+void Send_Back_Rc(Rc_group rc);
 void Send_ready(u8 camera_num,u8 ready);
+
+extern u8 front_data_ok;
 
 #endif
 

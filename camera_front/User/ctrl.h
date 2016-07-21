@@ -14,5 +14,6 @@ typedef struct
 void front_duty();
 	
 extern Rc_group Rc_front;
+extern u8 ctrl_finish;
 
 #endif 

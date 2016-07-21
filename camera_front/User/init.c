@@ -15,7 +15,7 @@ u8 All_Init()
 		
 	Usart2_Init(115200);
 	
-	PWM_Out_Init(50);				//初始化PWM输出功能
+//	PWM_Out_Init(50);				//初始化PWM输出功能
 	
 	uart_init(115200);
 	
@@ -27,11 +27,11 @@ u8 All_Init()
 	{
 		while(1)
 		{
-			LED0(On);
-			delay_ms(300);
+//			LED0(On);
+//			delay_ms(300);
 			LED0(Off);
 			delay_ms(300);	
-			USART_SendData(USART2,00);			
+//			USART_SendData(USART2,00);			
 		}
 	}
 

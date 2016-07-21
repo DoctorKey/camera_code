@@ -2,12 +2,15 @@
 #include "pwm_out.h"
 #include "dgp.h"
 #include "myduty.h"
+#include "data_transfer.h"
 
+//中间摄像头的两组pid参数
 PID_Typedef pitch_pid;
 PID_Typedef roll_pid;
+
 Rc_group Rc_out;
-Rc_group Back_Rc;
-Rc_group Rc_old;
+Rc_group Rc_front;
+Rc_group Rc_back;
 
 
 void pid_set()
@@ -20,6 +23,10 @@ void pid_set()
 	roll_pid.kd = 0;
 	roll_pid.ki = 0;
 }
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 
 void PID_Position(PID_Typedef * PID,float target,float measure)
 {
@@ -54,14 +61,6 @@ void control_roll(PID_Typedef * PID,im_info middle_info)
 	measure = middle_info.y;
 	PID_Position(PID,target,measure);
 }
-void control_duty()
-{
-	Rc_out.roll = Back_Rc.roll + roll_ch_offset;
-//	Rc_out.yaw = Back_Rc.yaw;
-//	Rc_out.roll = 1500 + roll_ch_offset;
-	Rc_out.yaw = 1500 + yaw_ch_offset;
-	set_pwm(&Rc_out);
-}
 void control_throw()
 {
 	control_pitch(&pitch_pid,middle_measure_info);
@@ -72,9 +71,36 @@ void control_throw()
 	set_pwm(&Rc_out);
 }
 
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+void control_go()
+{
+	if(front_rc_ok==1)
+	{
+		Rc_out.roll = Rc_front.roll + roll_ch_offset;
+	//	Rc_out.yaw = Back_Rc.yaw;
+	//	Rc_out.roll = 1500 + roll_ch_offset;
+		Rc_out.yaw = 1500 + yaw_ch_offset;
+		set_pwm(&Rc_out);
+	}
+}
+void control_back()
+{
+	if(back_rc_ok==1)
+	{
+		Rc_out.roll = Rc_back.roll + roll_ch_offset;
+	//	Rc_out.yaw = Back_Rc.yaw;
+	//	Rc_out.roll = 1500 + roll_ch_offset;
+		Rc_out.yaw = 1500 + yaw_ch_offset;
+		set_pwm(&Rc_out);
+	}
+}
+
+
 
 int16_t pwm[4]={0,0,0,0};//0~500
-int16_t CH[CH_NUM]={1500,1500,1000,1500};//1000~2000
 void set_pwm(Rc_group *Rc)
 {
 	pwm[0]=(Rc->roll-1000)/2;
@@ -83,14 +109,7 @@ void set_pwm(Rc_group *Rc)
 	pwm[3]=(Rc->yaw-1000)/2;
 	SetPwm_1(pwm,PWM_MIN,PWM_MAX);
 }
-void pwm_test(u16 p1,u16 p2,u16 p3,u16 p4)
-{
-	pwm[0]=(p1-1000)/2;
-	pwm[1]=(p2-1000)/2;
-	pwm[2]=(p3-1000)/2;
-	pwm[3]=(p4-1000)/2;
-	SetPwm_1(pwm,PWM_MIN,PWM_MAX);
-}
+
 int16_t pwm_throw[2]={0,0};
 void ctrl_throw(u8 command)
 {

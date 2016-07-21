@@ -145,23 +145,12 @@ u8 OV7670_Init(void)
 	OV_Reset();
 	delay_ms(5);
 	id=OV_ReadID();
-//  	for(i=0;i<sizeof(OV7670_reg)/sizeof(OV7670_reg[0]);i++)
-//  	{
-//    	if(OV_WriteReg(OV7670_reg[i][0],OV7670_reg[i][1]))return 1;
-//  	}
-//		for(i=0;i<sizeof(OV7670_Reg_new)/sizeof(OV7670_Reg_new[0]);i++)
-//  	{
-//    	if(OV_WriteReg(OV7670_Reg_new[i][0],OV7670_Reg_new[i][1]))return 1;
-//  	}
+
 		for(i=0;i<sizeof(ov7670_init_reg_tbl)/sizeof(ov7670_init_reg_tbl[0]);i++)
 		{
 	   	OV_WriteReg(ov7670_init_reg_tbl[i][0],ov7670_init_reg_tbl[i][1]);
   	}
-//		for(i=0;i<sizeof(OV7670_Reg_2)/sizeof(OV7670_Reg_2[0]);i++)
-//  	{
-//    	if(OV_WriteReg(OV7670_Reg_2[i][0],OV7670_Reg_2[i][1]))return 1;
-//  	}
-		
+
 //	OV7670_HW(192,192,842,442);
 		OV7670_config_window(184+80*2,10+60*2,161,121);
 		

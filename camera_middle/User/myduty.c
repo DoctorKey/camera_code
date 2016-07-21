@@ -43,6 +43,7 @@ void middle_duty()
 }
 void wait_ready()
 {
+	ctrl_throw(0);
 	if(ready_3 > 0)
 	{
 		if(ready_2 > 0)
@@ -69,13 +70,13 @@ void take_off()
 	Rc_out.thr = 1200;
 	set_pwm(&Rc_out);
 	delay_ms(500);
-//	mode = 2;
+	mode = 2;
 }
 void go()
 {
 	Rc_out.pitch = 1500 + pit_ch_offset + go_pit_offset;
 	Rc_out.thr = 1300;
-	control_duty();
+	control_go();
 //	if(middle_measure_info.ratio > THROW_READY)
 //	{
 //		Rc_out.pitch = 1500 + PIT_CH_OFFSET;
@@ -103,7 +104,7 @@ void back()
 {
 	Rc_out.pitch = 1500 + pit_ch_offset + BACK_PIT;
 	Rc_out.thr = 1600;
-	control_duty();
+	control_back();
 	if(middle_measure_info.ratio > DROP_READY)
 	{
 		ctrl_throw(0);

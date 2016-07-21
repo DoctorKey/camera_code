@@ -43,10 +43,12 @@ void TIM3_IRQHandler(void)
 {
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET) //溢出中断
 	{
+		#ifndef DUTY
 		printf("frame:%d\r\n",ov_frame);//打印帧率
 		printf("jpeg_data_len:%d\r\n",jpeg_data_len);
 		printf("front_info:x:%d,y:%d,ratio:%f\r\n",front_measure_info.x,front_measure_info.y,front_measure_info.ratio);
 		printf("ready_1:%d\r\n",ready_1);
+		#endif
 		
 		#ifdef DUTY
 		Send_ready(1,ready_1);

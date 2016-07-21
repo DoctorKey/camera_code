@@ -27,7 +27,15 @@ Project File Date:  07/20/2016
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin'
 Build target 'SY-STM32F407 V2.0'
-"..\Output\camera_back.axf" - 0 Error(s), 0 Warning(s).
+compiling myduty.c...
+..\User\myduty.c(108): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        if(middle_measure_info.ratio > 
+ROP_READY)
+..\User\myduty.c: 1 warning, 0 errors
+linking...
+Program Size: Code=17780 RO-data=1072 RW-data=480 ZI-data=59536  
+FromELF: creating hex file...
+"..\Output\camera_back.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 

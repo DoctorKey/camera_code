@@ -27,13 +27,13 @@ typedef struct
 
 void pid_set(void);
 void set_pwm(Rc_group *Rc);
-void pwm_test(u16 p1,u16 p2,u16 p3,u16 p4);
-void ctrl_throw(u8 command);
-void control_duty(void);
+void ctrl_throw(u8 command);// 0 关舵机，1 开舵机
+void control_go(void);
+void control_back(void);
 void control_throw(void);
 
-extern int16_t CH[];
 extern Rc_group Rc_out;
-extern Rc_group Back_Rc;
+extern Rc_group Rc_front;
+extern Rc_group Rc_back;
 
 #endif 

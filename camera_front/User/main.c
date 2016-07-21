@@ -28,6 +28,7 @@ int main(void)
 		LED0(Off);
 	}
 	#endif
+	
 	#ifdef TEST_Y
 	while(1)
 	{
@@ -40,6 +41,7 @@ int main(void)
 		LED0(Off);
 	}
 	#endif
+	
   	while(1)
 	{
 		if(jpeg_data_ok==1)	//已经采集完一帧图像了
@@ -47,10 +49,15 @@ int main(void)
 			LED0(On);
 			get_target2(jpeg,im,&front_measure_info);
 //			get_info(jpeg,im,&front_measure_info);
-			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
-		}		
-		LED0(Off);
-		front_duty();	
+			jpeg_data_ok = 2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
+			ctrl_finish = 0;
+		}			
+		if(ctrl_finish==0&&jpeg_data_ok==0)
+		{
+			LED0(Off);
+			front_duty();	
+			ctrl_finish = 1;
+		}
 	}
 }
 

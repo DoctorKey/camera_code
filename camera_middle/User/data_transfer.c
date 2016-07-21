@@ -11,7 +11,7 @@
 #define BYTE2(dwTemp)       ( *( (char *)(&dwTemp) + 2) )
 #define BYTE3(dwTemp)       ( *( (char *)(&dwTemp) + 3) )
 
-u8 data_to_send[10];	//发送数据缓存
+u8 data_to_send[20];	//发送数据缓存
 
 /////////////////////////////////////////////////////////////////////////////////////
 //Data_Receive_Prepare函数是协议预解析，根据协议的格式，将收到的数据进行一次格式性解析，格式正确的话再进行数据解析
@@ -105,6 +105,8 @@ void Data_Receive_Prepare_2(u8 data)//usart2
 	else
 		state = 0;
 }
+u8 front_rc_ok=0;
+u8 back_rc_ok=0;
 void Data_Receive_deal(u8 *data_buf,u8 num)
 {
 	u8 sum = 0,i;
@@ -125,10 +127,19 @@ void Data_Receive_deal(u8 *data_buf,u8 num)
 	}
 	if(*(data_buf+2)==0X03)
 	{
-		Back_Rc.pitch=(u16)(*(data_buf+4)<<8)|*(data_buf+5);
-		Back_Rc.roll =(u16)(*(data_buf+6)<<8)|*(data_buf+7);
-		Back_Rc.thr  =(u16)(*(data_buf+8)<<8)|*(data_buf+9);
-		Back_Rc.yaw  =(u16)(*(data_buf+10)<<8)|*(data_buf+11);
+		Rc_front.pitch=(u16)(*(data_buf+4)<<8)|*(data_buf+5);
+		Rc_front.roll =(u16)(*(data_buf+6)<<8)|*(data_buf+7);
+		Rc_front.thr  =(u16)(*(data_buf+8)<<8)|*(data_buf+9);
+		Rc_front.yaw  =(u16)(*(data_buf+10)<<8)|*(data_buf+11);
+		front_rc_ok = 1;
+	}
+	if(*(data_buf+2)==0X06)
+	{
+		Rc_back.pitch=(u16)(*(data_buf+4)<<8)|*(data_buf+5);
+		Rc_back.roll =(u16)(*(data_buf+6)<<8)|*(data_buf+7);
+		Rc_back.thr  =(u16)(*(data_buf+8)<<8)|*(data_buf+9);
+		Rc_back.yaw  =(u16)(*(data_buf+10)<<8)|*(data_buf+11);
+		back_rc_ok = 1;
 	}
 	if(*(data_buf+2)==0X04)
 	{

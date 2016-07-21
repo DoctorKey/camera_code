@@ -1,6 +1,6 @@
 Dependencies for Project 'camera_front', Target 'SY-STM32F407 V2.0': (DO NOT MODIFY !)
 F (..\User\include.h)(0x579056FE)()
-F (..\User\main.c)(0x578F41AF)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
+F (..\User\main.c)(0x5790AAC6)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
 I (..\Libraries\CMSIS\inc\stm32f4xx.h)(0x4EAA13F6)
 I (..\Libraries\CMSIS\inc\core_cm4.h)(0x4EAA13F6)
 I (F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\include\stdint.h)(0x54C245B8)
@@ -27,10 +27,10 @@ I (F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\include\stdio.h)(0x54C245B8)
 I (..\Hardware\delay.h)(0x50740556)
 I (..\Hardware\timer.h)(0x5781C4CE)
 I (..\Startup\sys.h)(0x55CC1471)
-I (..\User\ctrl.h)(0x578A2637)
+I (..\User\ctrl.h)(0x57908D02)
 I (..\User\dgp.h)(0x578F41B0)
 I (..\User\data_transfer.h)(0x578BA658)
-F (..\User\stm32f4xx_it.c)(0x57888B2A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\stm32f4xx_it.o --omf_browse ..\output\stm32f4xx_it.crf --depend ..\output\stm32f4xx_it.d)
+F (..\User\stm32f4xx_it.c)(0x57908354)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\stm32f4xx_it.o --omf_browse ..\output\stm32f4xx_it.crf --depend ..\output\stm32f4xx_it.d)
 I (..\User\stm32f4xx_it.h)(0x4E9287E0)
 I (..\Libraries\CMSIS\inc\stm32f4xx.h)(0x4EAA13F6)
 I (..\Libraries\CMSIS\inc\core_cm4.h)(0x4EAA13F6)
@@ -49,8 +49,10 @@ I (..\Libraries\FWlib\inc\stm32f4xx_syscfg.h)(0x4EAA13FA)
 I (..\Libraries\FWlib\inc\stm32f4xx_tim.h)(0x4EAA13FA)
 I (..\Libraries\FWlib\inc\stm32f4xx_usart.h)(0x4EAA13FA)
 I (..\Libraries\FWlib\inc\misc.h)(0x4EAA13FA)
-F (..\User\ctrl.c)(0x578CB84A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\ctrl.o --omf_browse ..\output\ctrl.crf --depend ..\output\ctrl.d)
-I (..\User\ctrl.h)(0x578A2637)
+I (..\Hardware\usart.h)(0x5781FF3E)
+I (F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\include\stdio.h)(0x54C245B8)
+F (..\User\ctrl.c)(0x57908D02)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\ctrl.o --omf_browse ..\output\ctrl.crf --depend ..\output\ctrl.d)
+I (..\User\ctrl.h)(0x57908D02)
 I (..\User\include.h)(0x579056FE)
 I (..\Libraries\CMSIS\inc\stm32f4xx.h)(0x4EAA13F6)
 I (..\Libraries\CMSIS\inc\core_cm4.h)(0x4EAA13F6)
@@ -79,7 +81,7 @@ I (..\Hardware\ov7670.h)(0x5789096C)
 I (..\Hardware\delay.h)(0x50740556)
 I (..\Hardware\timer.h)(0x5781C4CE)
 I (..\Startup\sys.h)(0x55CC1471)
-F (..\User\ctrl.h)(0x578A2637)()
+F (..\User\ctrl.h)(0x57908D02)()
 F (..\User\data_transfer.c)(0x578C3941)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\data_transfer.o --omf_browse ..\output\data_transfer.crf --depend ..\output\data_transfer.d)
 I (..\User\data_transfer.h)(0x578BA658)
 I (..\Libraries\CMSIS\inc\stm32f4xx.h)(0x4EAA13F6)
@@ -100,13 +102,13 @@ I (..\Libraries\FWlib\inc\stm32f4xx_tim.h)(0x4EAA13FA)
 I (..\Libraries\FWlib\inc\stm32f4xx_usart.h)(0x4EAA13FA)
 I (..\Libraries\FWlib\inc\misc.h)(0x4EAA13FA)
 I (..\User\dgp.h)(0x578F41B0)
-I (..\User\ctrl.h)(0x578A2637)
+I (..\User\ctrl.h)(0x57908D02)
 I (..\User\include.h)(0x579056FE)
 I (..\Hardware\led.h)(0x57805606)
 I (..\Hardware\usart.h)(0x5781FF3E)
 I (F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\include\stdio.h)(0x54C245B8)
 F (..\User\data_transfer.h)(0x578BA658)()
-F (..\User\init.c)(0x578BAD8D)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\init.o --omf_browse ..\output\init.crf --depend ..\output\init.d)
+F (..\User\init.c)(0x5790846F)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\init.o --omf_browse ..\output\init.crf --depend ..\output\init.d)
 I (..\User\init.h)(0x578BA658)
 I (..\Libraries\CMSIS\inc\stm32f4xx.h)(0x4EAA13F6)
 I (..\Libraries\CMSIS\inc\core_cm4.h)(0x4EAA13F6)
@@ -133,7 +135,7 @@ I (F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\include\stdio.h)(0x54C245B8)
 I (..\Hardware\delay.h)(0x50740556)
 I (..\Hardware\timer.h)(0x5781C4CE)
 I (..\Startup\sys.h)(0x55CC1471)
-I (..\User\ctrl.h)(0x578A2637)
+I (..\User\ctrl.h)(0x57908D02)
 I (..\usmart\usmart.h)(0x528CCEDB)
 I (..\usmart\usmart_str.h)(0x53673F41)
 F (..\User\init.h)(0x578BA658)()
@@ -182,31 +184,6 @@ I (..\Libraries\FWlib\inc\stm32f4xx_tim.h)(0x4EAA13FA)
 I (..\Libraries\FWlib\inc\stm32f4xx_usart.h)(0x4EAA13FA)
 I (..\Libraries\FWlib\inc\misc.h)(0x4EAA13FA)
 F (..\User\mymath.h)(0x55FFF547)()
-F (..\User\test.c)(0x578A2694)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\test.o --omf_browse ..\output\test.crf --depend ..\output\test.d)
-I (..\User\test.h)(0x578A2694)
-I (..\Libraries\CMSIS\inc\stm32f4xx.h)(0x4EAA13F6)
-I (..\Libraries\CMSIS\inc\core_cm4.h)(0x4EAA13F6)
-I (F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\include\stdint.h)(0x54C245B8)
-I (..\Libraries\CMSIS\inc\core_cmInstr.h)(0x4EAA13F6)
-I (..\Libraries\CMSIS\inc\core_cmFunc.h)(0x4EAA13F6)
-I (..\Libraries\CMSIS\inc\core_cm4_simd.h)(0x4EAA13F6)
-I (..\Libraries\CMSIS\inc\system_stm32f4xx.h)(0x4EAA13F6)
-I (..\User\stm32f4xx_conf.h)(0x5784DD85)
-I (..\Libraries\FWlib\inc\stm32f4xx_dcmi.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_dma.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_exti.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_gpio.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_rcc.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_syscfg.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_tim.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_usart.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\misc.h)(0x4EAA13FA)
-I (..\User\dgp.h)(0x578F41B0)
-I (..\User\ctrl.h)(0x578A2637)
-I (..\User\include.h)(0x579056FE)
-I (..\Hardware\led.h)(0x57805606)
-I (..\Hardware\usart.h)(0x5781FF3E)
-I (F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\include\stdio.h)(0x54C245B8)
 F (..\Hardware\ov7670.c)(0x578CA16C)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\ov7670.o --omf_browse ..\output\ov7670.crf --depend ..\output\ov7670.d)
 I (..\Hardware\ov7670.h)(0x5789096C)
 I (..\User\stm32f4xx_conf.h)(0x5784DD85)
@@ -260,7 +237,7 @@ I (..\User\include.h)(0x579056FE)
 I (..\Hardware\led.h)(0x57805606)
 I (..\User\data_transfer.h)(0x578BA658)
 I (..\User\dgp.h)(0x578F41B0)
-I (..\User\ctrl.h)(0x578A2637)
+I (..\User\ctrl.h)(0x57908D02)
 F (..\Hardware\usart.h)(0x5781FF3E)()
 F (..\Hardware\led.c)(0x57811EF8)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\led.o --omf_browse ..\output\led.crf --depend ..\output\led.d)
 I (..\Hardware\led.h)(0x57805606)
@@ -282,28 +259,7 @@ I (..\Libraries\FWlib\inc\stm32f4xx_tim.h)(0x4EAA13FA)
 I (..\Libraries\FWlib\inc\stm32f4xx_usart.h)(0x4EAA13FA)
 I (..\Libraries\FWlib\inc\misc.h)(0x4EAA13FA)
 F (..\Hardware\led.h)(0x57805606)()
-F (..\Hardware\pwm_out.c)(0x5780A4FF)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\pwm_out.o --omf_browse ..\output\pwm_out.crf --depend ..\output\pwm_out.d)
-I (..\Hardware\pwm_out.h)(0x5780A404)
-I (..\Libraries\CMSIS\inc\stm32f4xx.h)(0x4EAA13F6)
-I (..\Libraries\CMSIS\inc\core_cm4.h)(0x4EAA13F6)
-I (F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\include\stdint.h)(0x54C245B8)
-I (..\Libraries\CMSIS\inc\core_cmInstr.h)(0x4EAA13F6)
-I (..\Libraries\CMSIS\inc\core_cmFunc.h)(0x4EAA13F6)
-I (..\Libraries\CMSIS\inc\core_cm4_simd.h)(0x4EAA13F6)
-I (..\Libraries\CMSIS\inc\system_stm32f4xx.h)(0x4EAA13F6)
-I (..\User\stm32f4xx_conf.h)(0x5784DD85)
-I (..\Libraries\FWlib\inc\stm32f4xx_dcmi.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_dma.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_exti.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_gpio.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_rcc.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_syscfg.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_tim.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\stm32f4xx_usart.h)(0x4EAA13FA)
-I (..\Libraries\FWlib\inc\misc.h)(0x4EAA13FA)
-I (..\User\mymath.h)(0x55FFF547)
-F (..\Hardware\pwm_out.h)(0x5780A404)()
-F (..\Hardware\timer.c)(0x578CA12F)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\timer.o --omf_browse ..\output\timer.crf --depend ..\output\timer.d)
+F (..\Hardware\timer.c)(0x57907FEB)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\timer.o --omf_browse ..\output\timer.crf --depend ..\output\timer.d)
 I (..\Hardware\timer.h)(0x5781C4CE)
 I (..\Startup\sys.h)(0x55CC1471)
 I (..\Libraries\CMSIS\inc\stm32f4xx.h)(0x4EAA13F6)
@@ -329,7 +285,7 @@ I (..\Hardware\usart.h)(0x5781FF3E)
 I (F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\include\stdio.h)(0x54C245B8)
 I (..\User\data_transfer.h)(0x578BA658)
 I (..\User\dgp.h)(0x578F41B0)
-I (..\User\ctrl.h)(0x578A2637)
+I (..\User\ctrl.h)(0x57908D02)
 F (..\Hardware\timer.h)(0x5781C4CE)()
 F (..\Hardware\delay.c)(0x50740556)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\delay.o --omf_browse ..\output\delay.crf --depend ..\output\delay.d)
 I (..\Hardware\delay.h)(0x50740556)
@@ -615,7 +571,7 @@ I (..\Hardware\usart.h)(0x5781FF3E)
 I (F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\include\stdio.h)(0x54C245B8)
 I (..\Startup\sys.h)(0x55CC1471)
 F (..\usmart\usmart.h)(0x528CCEDB)()
-F (..\usmart\usmart_config.c)(0x578A2694)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\usmart_config.o --omf_browse ..\output\usmart_config.crf --depend ..\output\usmart_config.d)
+F (..\usmart\usmart_config.c)(0x5790823C)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\usmart_config.o --omf_browse ..\output\usmart_config.crf --depend ..\output\usmart_config.d)
 I (..\usmart\usmart.h)(0x528CCEDB)
 I (..\usmart\usmart_str.h)(0x53673F41)
 I (..\Libraries\CMSIS\inc\stm32f4xx.h)(0x4EAA13F6)
@@ -642,7 +598,6 @@ I (..\Hardware\ov7670.h)(0x5789096C)
 I (..\User\include.h)(0x579056FE)
 I (..\Hardware\usart.h)(0x5781FF3E)
 I (F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\include\stdio.h)(0x54C245B8)
-I (..\User\test.h)(0x578A2694)
 F (..\usmart\usmart_str.c)(0x57805606)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Libraries\CMSIS\inc -I..\Libraries\FWlib\inc -I..\Startup -I..\User -I..\Hardware -I..\usmart-I F:\electricity\光电设计大赛\camera_code\camera_front\Project\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM-o ..\output\usmart_str.o --omf_browse ..\output\usmart_str.crf --depend ..\output\usmart_str.d)
 I (..\usmart\usmart_str.h)(0x53673F41)
 I (..\Libraries\CMSIS\inc\stm32f4xx.h)(0x4EAA13F6)

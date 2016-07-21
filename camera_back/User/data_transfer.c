@@ -101,6 +101,7 @@ void Data_Receive_Prepare_2(u8 data)//usart2
 	else
 		state = 0;
 }
+u8 front_data_ok=0;
 void Data_Receive_deal(u8 *data_buf,u8 num)
 {
 	u8 sum = 0,i;
@@ -113,6 +114,7 @@ void Data_Receive_deal(u8 *data_buf,u8 num)
 	{
 		front_measure_info.x = *(data_buf+4);
 		front_measure_info.y = *(data_buf+5);
+		front_data_ok=1;
 	}
 	if(*(data_buf+2)==0X02)
 	{
@@ -197,7 +199,7 @@ void Send_Back_Target(im_info info)
 	
 	Send_Data(data_to_send, _cnt);
 }
-void Send_Rc(Rc_group rc)
+void Send_Front_Rc(Rc_group rc)
 {
 	u8 _cnt=0;
 	vs16 _temp;
@@ -206,6 +208,35 @@ void Send_Rc(Rc_group rc)
 	data_to_send[_cnt++]=0xAA;
 	data_to_send[_cnt++]=0xAF;
 	data_to_send[_cnt++]=0x03;
+	data_to_send[_cnt++]=0;
+	
+	data_to_send[_cnt++]=BYTE1(rc.pitch);
+	data_to_send[_cnt++]=BYTE0(rc.pitch);
+	data_to_send[_cnt++]=BYTE1(rc.roll);
+	data_to_send[_cnt++]=BYTE0(rc.roll);
+	data_to_send[_cnt++]=BYTE1(rc.thr);
+	data_to_send[_cnt++]=BYTE0(rc.thr);
+	data_to_send[_cnt++]=BYTE1(rc.yaw);
+	data_to_send[_cnt++]=BYTE0(rc.yaw);
+	
+	data_to_send[3] = _cnt-4;
+	
+	
+	for(i=0;i<_cnt;i++)
+		sum += data_to_send[i];
+	data_to_send[_cnt++]=sum;
+	
+	Send_Data(data_to_send, _cnt);
+}
+void Send_Back_Rc(Rc_group rc)
+{
+	u8 _cnt=0;
+	vs16 _temp;
+	u8 sum = 0;
+	u8 i = 0;
+	data_to_send[_cnt++]=0xAA;
+	data_to_send[_cnt++]=0xAF;
+	data_to_send[_cnt++]=0x06;
 	data_to_send[_cnt++]=0;
 	
 	data_to_send[_cnt++]=BYTE1(rc.pitch);

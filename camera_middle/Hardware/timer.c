@@ -54,12 +54,13 @@ void TIM3_IRQHandler(void)
 {
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET) //溢出中断
 	{
+		printf("--------------------------------\r\n");
 		printf("roll:%d,pitch:%d,thr:%d,yaw:%d\r\n",Rc_out.roll,Rc_out.pitch,Rc_out.thr,Rc_out.yaw);
 		printf("go_pit_offset:%d\r\n",go_pit_offset);
 		printf("front x:%d,y:%d,ratio:%f\r\n",front_measure_info.x,front_measure_info.y,front_measure_info.ratio);
 		printf("back x:%d,y:%d,ratio:%f\r\n",back_measure_info.x,back_measure_info.y,back_measure_info.ratio);
 		printf("middle x:%d,y:%d,ratio:%f\r\n",middle_measure_info.x,middle_measure_info.y,middle_measure_info.ratio);
-		printf("ready_1:%d,ready_2:%d,ready_3:%d\r\n",ready_1,ready_2,ready_3);
+		printf("ready_1:%d,ready_2:%d,ready_3:%d,ov_frame:%d\r\n",ready_1,ready_2,ready_3,ov_frame);
 		printf("mode :%d\r\n",mode);
 //		if(all_ready==1)
 //		{
@@ -80,7 +81,6 @@ void TIM3_IRQHandler(void)
 //		ready_2=0;
 		ready_3=0;
 		ov_frame=0;
-		over_count=0;
 	}
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);  //清除中断标志位
 }
