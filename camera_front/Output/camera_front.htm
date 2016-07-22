@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\Output\camera_front.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\Output\camera_front.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Thu Jul 21 19:55:48 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Jul 22 10:04:56 2016
 <BR><P>
 <H3>Maximum Stack Usage =        372 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -840,7 +840,6 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_Data
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_IRQHandler
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;front_duty
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1109,11 +1108,10 @@ Global Symbols
 <P><STRONG><a name="[69]"></a>fputc</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, usart.o(i.fputc))
 <BR>[Address Reference Count : 1]<UL><LI> printf8.o(i.__0printf$8)
 </UL>
-<P><STRONG><a name="[bb]"></a>front_duty</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, ctrl.o(i.front_duty))
+<P><STRONG><a name="[bb]"></a>front_duty</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, ctrl.o(i.front_duty))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = front_duty &rArr; Send_Front_Measure &rArr; Send_Data &rArr; Usart2_Send &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_Front_Measure
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_ready
 </UL>
 <BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>

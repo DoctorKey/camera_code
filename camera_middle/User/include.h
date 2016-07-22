@@ -58,9 +58,9 @@
 #define GO_PIT   (20)
 #define BACK_PIT (-20)
 
-#define R_threshold 163
-#define G_threshold 140
-#define B_threshold 190
+#define R_threshold 60
+#define G_threshold 60
+#define B_threshold 100
 
 #define THROW_READY 0.2 //中间摄像头准备投球的阈值
 #define THROW_BALL 0.6 //中间摄像头决定投球的阈值

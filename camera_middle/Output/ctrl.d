@@ -26,3 +26,4 @@
 ..\output\ctrl.o: ..\User\dgp.h
 ..\output\ctrl.o: ..\User\myduty.h
 ..\output\ctrl.o: ..\User\data_transfer.h
+..\output\ctrl.o: ..\User\mymath.h

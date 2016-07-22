@@ -133,6 +133,7 @@ void Data_Receive_deal(u8 *data_buf,u8 num)
 		if(*(data_buf+4)==0x01)
 		{
 			ready_1 = *(data_buf+5);
+			Send_ready(1,ready_1);//接收到就向middle发送
 		}
 		if(*(data_buf+4)==0x02)
 		{

@@ -3,6 +3,7 @@
 #include "dgp.h"
 #include "myduty.h"
 #include "data_transfer.h"
+#include "mymath.h"
 
 //中间摄像头的两组pid参数
 PID_Typedef pitch_pid;
@@ -37,10 +38,7 @@ void PID_Position(PID_Typedef * PID,float target,float measure)
 	
 	PID->integ = PID->integ + PID->error;     
 	
-	if(PID->integ > PID->integ_max)
-		PID->integ = PID->integ_max;   
-	else if(PID->integ < - PID->integ_max)
-		PID->integ = - PID->integ_max;
+	PID->integ = LIMIT(PID->integ,-PID->integ_max,PID->integ_max);
 			
 	PID->output = (PID->kp * PID->error) + (PID->ki * PID->integ) + (PID->kd * PID->deriv);
 	
@@ -84,6 +82,8 @@ void control_go()
 	//	Rc_out.roll = 1500 + roll_ch_offset;
 		Rc_out.yaw = 1500 + yaw_ch_offset;
 		set_pwm(&Rc_out);
+		printf("-----roll:%d,y:%d,x:%d\r\n",Rc_out.roll,front_measure_info.y,front_measure_info.x);
+		front_rc_ok = 0;
 	}
 }
 void control_back()
@@ -95,6 +95,7 @@ void control_back()
 	//	Rc_out.roll = 1500 + roll_ch_offset;
 		Rc_out.yaw = 1500 + yaw_ch_offset;
 		set_pwm(&Rc_out);
+		back_rc_ok = 0;
 	}
 }
 

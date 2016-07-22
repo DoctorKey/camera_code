@@ -44,7 +44,6 @@ void TIM3_IRQHandler(void)
 	{
 		
 		#ifdef DUTY
-		Send_ready(1,ready_1);
 		Send_ready(2,ready_2);
 		#endif
 		

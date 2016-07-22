@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\Output\camera_back.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\Output\camera_back.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Jul 22 00:14:04 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Jul 22 11:50:36 2016
 <BR><P>
 <H3>Maximum Stack Usage =        372 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -531,7 +531,7 @@ Global Symbols
 <P><STRONG><a name="[10]"></a>BusFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.BusFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f4xx.o(RESET)
 </UL>
-<P><STRONG><a name="[8a]"></a>Cam_Init</STRONG> (Thumb, 538 bytes, Stack size 40 bytes, ov7670.o(i.Cam_Init))
+<P><STRONG><a name="[8a]"></a>Cam_Init</STRONG> (Thumb, 532 bytes, Stack size 40 bytes, ov7670.o(i.Cam_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Cam_Init &rArr; DCMI_DMA_Init &rArr; DMA_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
@@ -1218,7 +1218,8 @@ Global Symbols
 <P><STRONG><a name="[bf]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;control_go
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_IRQHandler
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_scan
 <LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
@@ -1246,7 +1247,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;middle_duty
 </UL>
 
-<P><STRONG><a name="[d7]"></a>control_back</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, ctrl.o(i.control_back))
+<P><STRONG><a name="[d7]"></a>control_back</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, ctrl.o(i.control_back))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = control_back &rArr; set_pwm &rArr; SetPwm_1
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pwm
@@ -1254,10 +1255,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;back
 </UL>
 
-<P><STRONG><a name="[d9]"></a>control_go</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, ctrl.o(i.control_go))
+<P><STRONG><a name="[d9]"></a>control_go</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, ctrl.o(i.control_go))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = control_go &rArr; set_pwm &rArr; SetPwm_1
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pwm
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;go
 </UL>

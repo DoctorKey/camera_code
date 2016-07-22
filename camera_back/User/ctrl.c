@@ -2,6 +2,7 @@
 #include "dgp.h"
 #include "data_transfer.h"
 #include "init.h"
+#include "mymath.h"
 
 PID_Typedef roll_pid;
 PID_Typedef yaw_pid;
@@ -20,6 +21,7 @@ void pid_set()
 	roll_pid.kp=0.8;
 	roll_pid.ki=0;
 	roll_pid.kd=0;
+	roll_pid.integ_max = 1000;
 	
 	yaw_pid.kp=1;
 	yaw_pid.ki=0;
@@ -27,7 +29,6 @@ void pid_set()
 }
 void front_duty()
 {
-	Send_ready(1,ready_1);
 	Send_Front_Target(front_measure_info);
 	control_go_output(front_measure_info,back_measure_info);
 }
@@ -50,16 +51,13 @@ void control_yaw(PID_Typedef * PID,im_info front_info,im_info back_info)
 void PID_Position(PID_Typedef * PID,float target,float measure)
 {
 		
-	PID->error = target - measure;
+	PID->error = measure - target;///////////////////change
 	
 	PID->deriv = PID->error - PID->preerror;
 	
-	PID->integ = PID->integ + PID->error;     
+	PID->integ += PID->error;     
 	
-	if(PID->integ > PID->integ_max)
-		PID->integ = PID->integ_max;   
-	else if(PID->integ < - PID->integ_max)
-		PID->integ = - PID->integ_max;
+	PID->integ = LIMIT(PID->integ,-PID->integ_max,PID->integ_max);
 			
 	PID->output = (PID->kp * PID->error) + (PID->ki * PID->integ) + (PID->kd * PID->deriv);
 	
@@ -71,15 +69,15 @@ void PID_Position(PID_Typedef * PID,float target,float measure)
 void control_go_roll(PID_Typedef * PID,im_info front_info,im_info back_info)
 {
 	float target,measure;
-	target = 0;
-//	measure = (front_info.y + back_info.y)/2 - PIC_COL;
+	target = PIC_COL/2;
+	
 	if(front_info.y == 0)
 	{
-		measure = 0;
+		measure = PIC_COL/2;
 	}
 	else
 	{
-		measure = PIC_COL/2 - front_info.y;
+		measure = front_info.y;
 	}
 //	if(front_info.y > 40 && front_info.y < 120)
 //	{
@@ -116,15 +114,15 @@ void control_go_output(im_info front_info,im_info back_info)
 void control_back_roll(PID_Typedef * PID,im_info front_info,im_info back_info)
 {
 	float target,measure;
-	target = 0;
+	target = PIC_COL/2;
 //	measure = (front_info.y + back_info.y)/2 - PIC_COL;
 	if(back_info.y == 0)
 	{
-		measure = 0;
+		measure = PIC_COL/2;
 	}
 	else
 	{
-		measure = PIC_COL/2 - back_info.y;
+		measure = back_info.y;
 	}
 //	if(front_info.y > 40 && front_info.y < 120)
 //	{

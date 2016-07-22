@@ -119,7 +119,7 @@ void Cam_Init()
   	DCMI_InitStructure.DCMI_PCKPolarity = DCMI_PCKPolarity_Falling;
   	DCMI_InitStructure.DCMI_VSPolarity = DCMI_VSPolarity_High;
   	DCMI_InitStructure.DCMI_HSPolarity = DCMI_HSPolarity_Low;
-  	DCMI_InitStructure.DCMI_CaptureRate = DCMI_CaptureRate_1of4_Frame;
+  	DCMI_InitStructure.DCMI_CaptureRate = DCMI_CaptureRate_All_Frame;
   	DCMI_InitStructure.DCMI_ExtendedDataMode = DCMI_ExtendedDataMode_8b;
   	DCMI_Init(&DCMI_InitStructure); 
 		

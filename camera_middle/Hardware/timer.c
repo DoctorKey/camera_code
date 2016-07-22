@@ -77,8 +77,6 @@ void TIM3_IRQHandler(void)
 //				mode=5;
 //			}
 //		}
-//		ready_1=0;
-//		ready_2=0;
 		ready_3=0;
 		ov_frame=0;
 	}
