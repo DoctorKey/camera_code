@@ -62,9 +62,9 @@
 #define G_threshold 60
 #define B_threshold 100
 
-#define THROW_READY 0.2 //中间摄像头准备投球的阈值
-#define THROW_BALL 0.6 //中间摄像头决定投球的阈值
-#define DROP_READY 0.3 //准备降落
+#define THROW_READY 0.1 //中间摄像头准备投球的阈值
+#define THROW_BALL 0.2 //中间摄像头决定投球的阈值
+#define DROP_READY 0.02 //准备降落
 /***********************************************/
 
 #endif

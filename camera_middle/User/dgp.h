@@ -10,6 +10,7 @@ typedef struct{
 	u8 x;
 	u8 y;
 	float ratio;
+	u8 target_get;
 }im_info;
 
 void jpeg_data_process(void);

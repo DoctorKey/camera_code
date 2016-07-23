@@ -27,14 +27,16 @@ Project File Date:  07/20/2016
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin'
 Build target 'SY-STM32F407 V2.0'
-compiling ov7670.c...
-..\Hardware\ov7670\ov7670.c(142): warning:  #550-D: variable "id" was set but never used
-        u8 i,id;
-..\Hardware\ov7670\ov7670.c(180): warning:  #550-D: variable "state" was set but never used
-        u8 state,temp;
-..\Hardware\ov7670\ov7670.c: 2 warnings, 0 errors
+compiling myduty.c...
+..\User\myduty.c(103): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        if(middle_measure_info.ratio > 
+HROW_READY)
+..\User\myduty.c(142): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        if(middle_measure_info.ratio > 
+ROP_READY && drop_ok==1)
+..\User\myduty.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=17828 RO-data=1072 RW-data=480 ZI-data=59536  
+Program Size: Code=18864 RO-data=1128 RW-data=488 ZI-data=59576  
 FromELF: creating hex file...
 "..\Output\camera_back.axf" - 0 Error(s), 2 Warning(s).
 

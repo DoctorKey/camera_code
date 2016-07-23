@@ -6,6 +6,8 @@
 
 PID_Typedef roll_pid;
 PID_Typedef yaw_pid;
+PID_Typedef front_roll_pid;
+PID_Typedef back_roll_pid;
 
 Rc_group Rc_front;
 Rc_group Rc_back;
@@ -18,10 +20,20 @@ u8 back_ctrl_finish;
 
 void pid_set()
 {
-	roll_pid.kp=0.8;
+	roll_pid.kp=0.6;
 	roll_pid.ki=0;
 	roll_pid.kd=0;
 	roll_pid.integ_max = 1000;
+	
+	front_roll_pid.kp=0.6;
+	front_roll_pid.ki=0;
+	front_roll_pid.kd=0;
+	front_roll_pid.integ_max = 1000;
+	
+	back_roll_pid.kp=0.6;
+	back_roll_pid.ki=0;
+	back_roll_pid.kd=0;
+	back_roll_pid.integ_max = 1000;
 	
 	yaw_pid.kp=1;
 	yaw_pid.ki=0;
@@ -141,18 +153,31 @@ void control_back_roll(PID_Typedef * PID,im_info front_info,im_info back_info)
 	{
 		back_info.y = back_info_y_last;
 	}
-	PID_Position(PID,target,measure);
+	PID_Position(PID,measure,target);//////target-measure
 	front_info_y_last = front_info.y;
 }
 void control_back_output(im_info front_info,im_info back_info)
 {
 //	control_yaw(&yaw_pid,front_info,back_info);
-	control_go_roll(&roll_pid,front_info,back_info);
+	control_back_roll(&roll_pid,front_info,back_info);
 	
 	Rc_back.yaw = 1500 + yaw_pid.output;
 	Rc_back.roll = 1500 + roll_pid.output;
 	
-	Send_Front_Rc(Rc_back);
+	Send_Back_Rc(Rc_back);
 }
 
+//--------------前后摄像头融合控制------------
+void control_roll_combine(im_info front_info,im_info back_info)
+{
+	if(front_info.target_get == 1)
+	{
+		control_go_roll(&front_roll_pid,front_info,back_info);
+	}
+	if(back_info.target_get == 1)
+	{
+		control_back_roll(&back_roll_pid,front_info,back_info);
+	}
+	Rc_back.roll = 1500 + front_roll_pid.output + back_roll_pid.output;
+}
 

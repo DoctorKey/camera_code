@@ -27,11 +27,48 @@ Project File Date:  07/20/2016
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin'
 Build target 'SY-STM32F407 V2.0'
+compiling main.c...
 compiling ctrl.c...
+compiling data_transfer.c...
+compiling init.c...
+compiling dgp.c...
+..\User\dgp.c(62): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((G-B)/(R-G))*
+I_3_40;
+..\User\dgp.c(65): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((G-B)/(R-B))*
+I_3_40;
+..\User\dgp.c(68): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((B-R)/(G-B)+2)*
+I_3_40;
+..\User\dgp.c(71): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((B-R)/(G-R)+2)*
+I_3_40;
+..\User\dgp.c(74): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((R-G)/(B-G)+4)*
+I_3_40;
+..\User\dgp.c(77): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((R-G)/(B-R)+4)*
+I_3_40;
+..\User\dgp.c(132): warning:  #177-D: variable "count_x" was declared but never referenced
+        u16 i,j,count_x=0;
+..\User\dgp.c(133): warning:  #177-D: variable "x" was declared but never referenced
+        u32 x=0,y=0,y_tmp;
+..\User\dgp.c(133): warning:  #177-D: variable "y" was declared but never referenced
+        u32 x=0,y=0,y_tmp;
+..\User\dgp.c: 9 warnings, 0 errors
+compiling usart.c...
+compiling ov7670.c...
+..\Hardware\ov7670\ov7670.c(142): warning:  #550-D: variable "id" was set but never used
+        u8 i,id;
+..\Hardware\ov7670\ov7670.c(178): warning:  #550-D: variable "state" was set but never used
+        u8 state,temp;
+..\Hardware\ov7670\ov7670.c: 2 warnings, 0 errors
+compiling timer.c...
 linking...
-Program Size: Code=8152 RO-data=780 RW-data=108 ZI-data=59308  
+Program Size: Code=8716 RO-data=780 RW-data=92 ZI-data=59412  
 FromELF: creating hex file...
-"..\Output\camera_back.axf" - 0 Error(s), 0 Warning(s).
+"..\Output\camera_back.axf" - 0 Error(s), 11 Warning(s).
 
 <h2>Software Packages used:</h2>
 

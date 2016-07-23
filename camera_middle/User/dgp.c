@@ -162,6 +162,9 @@ void get_target2(u16 *jpeg,u8 *H,im_info *info)
 	u8 R,G,B;
 	u16 i,j,count=0;
 	u32 x=0,y=0;
+		
+	info->target_get = 0;
+	
 	for(i=0;i<PIC_ROW;i++)
 	{
 		for(j=0;j<PIC_COL;j++)
@@ -175,11 +178,16 @@ void get_target2(u16 *jpeg,u8 *H,im_info *info)
 				x+=i; //row
 				count++;
 				y+=(j+158)%PIC_COL; //col
-//				*(H+i*PIC_COL+(j+158)%PIC_COL)=254;
+				#ifdef TEST
+				*(H+i*PIC_COL+(j+158)%PIC_COL)=254;
+				#endif	
+				info->target_get = 1;
 			}
 			else
 			{
-//				*(H+i*PIC_COL+(j+158)%PIC_COL)=1;
+				#ifdef TEST
+				*(H+i*PIC_COL+(j+158)%PIC_COL)=1;
+				#endif
 			}
 			
 		}
@@ -187,16 +195,18 @@ void get_target2(u16 *jpeg,u8 *H,im_info *info)
 	
 	info->x = x/count;
 	info->y = y/count;
-//	info->ratio = (float)count/(PIC_ROW*PIC_COL);
+	info->ratio = (float)count/(PIC_ROW*PIC_COL);
 	
-//	j=info->y;
-//	for(i=info->x-3;i<info->x+4;i++)
-//	{
-//		*(H+i*PIC_COL+j)=0;
-//	}
-//	i=info->x;
-//	for(j=info->y-3;j<info->y+4;j++)
-//	{
-//		*(H+i*PIC_COL+j)=0;
-//	}
+	#ifdef TEST
+	j=info->y;
+	for(i=info->x-3;i<info->x+4;i++)
+	{
+		*(H+i*PIC_COL+j)=0;
+	}
+	i=info->x;
+	for(j=info->y-3;j<info->y+4;j++)
+	{
+		*(H+i*PIC_COL+j)=0;
+	}
+	#endif
 }
