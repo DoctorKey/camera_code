@@ -17,7 +17,6 @@ s16 roll_ch_offset;
 s16 pit_ch_offset;
 s16 yaw_ch_offset;
 s16 go_pit_offset;
-s16 back_pit_offset;
 
 void middle_duty()
 {
@@ -63,7 +62,6 @@ void wait_ready()
 		}
 	}	
 }
-u16 go_time;
 void take_off()
 {
 	Rc_out.roll = 1500 + roll_ch_offset;
@@ -73,51 +71,20 @@ void take_off()
 	set_pwm(&Rc_out);
 	delay_ms(500);
 	mode = 2;
-	go_time=time;
 }
-u16 throw_count;//定时
-u8 wait_count=0;
-u16 throw_time;
-
 void go()
 {
+	Rc_out.pitch = 1500 + pit_ch_offset + go_pit_offset;
+	Rc_out.thr = 1300;
 	control_go();
-	if(front_measure_info.x >115)
-	{
-		wait_count = 1;
-	}
-	if(wait_count == 1)
-	{
-		throw_count++;
-	}
-	if(throw_count > throw_time)
-	{
-		Rc_out.pitch = 1500 + pit_ch_offset;
-		Rc_out.thr = 1400;
-		set_pwm(&Rc_out);
-		mode = 3;
-		wait_count = 0;
-		throw_count = 0;
-		printf("定时器投球!!!!!!!\r\n");
-	}
-	if(middle_measure_info.ratio > THROW_READY)
-	{
-		Rc_out.pitch = 1500 + pit_ch_offset;
-		Rc_out.thr = 1400;
-		set_pwm(&Rc_out);
-		mode = 3;
-		printf("middle投球!!!!!!!\r\n");
-	}
-	if(time > go_time + 4)
-	{
-		Rc_out.pitch = 1500 + pit_ch_offset;
-		Rc_out.thr = 1400;
-		set_pwm(&Rc_out);
-		mode = 3;
-		printf("4s go_time:%d, 投球!!!!!!!\r\n",go_time);
-	}
+//	if(middle_measure_info.ratio > THROW_READY)
+//	{
+//		Rc_out.pitch = 1500 + PIT_CH_OFFSET;
+//		Rc_out.thr = 1400;
+//		set_pwm(&Rc_out);
+////		mode = 3;
+//	}
 }
-u8 back_time;
 void throw_ball()
 {
 //	Rc_out.thr = 1400;
@@ -125,66 +92,41 @@ void throw_ball()
 //	control_throw();
 //	if(middle_measure_info.ratio > THROW_BALL)
 //	{
-		Rc_out.pitch = 1500 + pit_ch_offset;
-		Rc_out.thr = 1400;
-		set_pwm(&Rc_out);
-		ctrl_throw(1);
-		delay_ms(40);
-		mode = 4;
-		back_time = time;
+//		ctrl_throw(1);
+//		Rc_out.pitch = 1500 + pit_ch_offset;
+//		Rc_out.thr = 1400;
+//		set_pwm(&Rc_out);
+////		mode = 4;
 //	}
+	ctrl_throw(1);
 }
-u8 drop_ok;
-u8 back_cnt;
 void back()
 {
+	Rc_out.pitch = 1500 + pit_ch_offset + BACK_PIT;
+	Rc_out.thr = 1600;
 	control_back();
-	if(middle_measure_info.ratio > DROP_READY && drop_ok==1)
+	if(middle_measure_info.ratio > DROP_READY)
 	{
 		ctrl_throw(0);
-		Rc_out.pitch = 1500 + pit_ch_offset + go_pit_offset;
+		Rc_out.pitch = 1500 + pit_ch_offset;
 		Rc_out.thr = 1700;
 		set_pwm(&Rc_out);
-		drop_ok = 0;
-		mode = 5;
-	}
-	if(time >back_time +3)
-	{
-		ctrl_throw(0);
-		Rc_out.pitch = 1500 + pit_ch_offset + go_pit_offset;
-		Rc_out.thr = 1700;
-		set_pwm(&Rc_out);
-		drop_ok = 0;
-		mode = 5;
-		printf("3s back_time:%d,飞回降落!!!!!!!\r\n",back_time);
+//		mode = 5;
 	}
 }
 void drop()
 {
 	Rc_out.roll = 1500 + roll_ch_offset;
-	Rc_out.pitch = 1500 + pit_ch_offset + go_pit_offset;
+	Rc_out.pitch = 1500 + pit_ch_offset;
 	Rc_out.yaw = 1500 + yaw_ch_offset;
 	Rc_out.thr = 1700;
 	set_pwm(&Rc_out);
 	ctrl_throw(0);
-	
-	throw_count = 0;
-	wait_count=0;
-	drop_ok=0;
-  back_cnt=0;
-	
-	go_time = 0;
-	back_time = 0;
-	time = 0;
 //	mode = 6;
 }
 void set_mode(u8 command)
 {
 	mode = command;
-}
-void set_time(u16 t)
-{
-	throw_time = t;
 }
 void set_offset(u16 roll_offset,u16 pit_offset,u16 yaw_offset)
 {
@@ -196,8 +138,3 @@ void set_gopit(u16 go_pit)
 {
 	go_pit_offset = go_pit - 1500;
 }
-void set_backpit(u16 back_pit)
-{
-	back_pit_offset = back_pit - 1500;
-}
-

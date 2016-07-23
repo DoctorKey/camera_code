@@ -116,15 +116,11 @@ void Data_Receive_deal(u8 *data_buf,u8 num)
 	{
 		front_measure_info.x = *(data_buf+4);
 		front_measure_info.y = *(data_buf+5);
-		front_measure_info.ratio = (*(data_buf+6))/100.0f;
-		front_measure_info.target_get = *(data_buf+7);
 	}
 	if(*(data_buf+2)==0X02)
 	{
 		back_measure_info.x = *(data_buf+4);
 		back_measure_info.y = *(data_buf+5);
-		back_measure_info.ratio = (*(data_buf+6))/100.0f;
-		back_measure_info.target_get = *(data_buf+7);
 	}
 	if(*(data_buf+2)==0X03)
 	{
@@ -149,8 +145,6 @@ void Send_Front_Measure(im_info info)
 	vs16 _temp;
 	u8 sum = 0;
 	u8 i = 0;
-	u8 ratio;
-	ratio = info.ratio*100;
 	
 	data_to_send[_cnt++]=0xAA;
 	data_to_send[_cnt++]=0xAF;
@@ -159,8 +153,7 @@ void Send_Front_Measure(im_info info)
 	
 	data_to_send[_cnt++] = info.x;
 	data_to_send[_cnt++] = info.y;
-	data_to_send[_cnt++] = ratio;
-	data_to_send[_cnt++] = info.target_get;
+	
 	
 	data_to_send[3] = _cnt-4;
 	
@@ -177,8 +170,6 @@ void Send_Back_Measure(im_info info)
 	vs16 _temp;
 	u8 sum = 0;
 	u8 i = 0;
-	u8 ratio;
-	ratio = info.ratio*100;
 	
 	data_to_send[_cnt++]=0xAA;
 	data_to_send[_cnt++]=0xAF;
@@ -187,8 +178,7 @@ void Send_Back_Measure(im_info info)
 	
 	data_to_send[_cnt++] = info.x;
 	data_to_send[_cnt++] = info.y;
-	data_to_send[_cnt++] = ratio;
-	data_to_send[_cnt++] = info.target_get;
+	
 	
 	data_to_send[3] = _cnt-4;
 	

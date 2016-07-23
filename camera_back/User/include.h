@@ -49,9 +49,9 @@
 #define YAW_OFFSET (0)
 #define ROLL_OFFSET (-76)
 
-#define R_threshold 65
-#define G_threshold 65
-#define B_threshold 95
+#define R_threshold 60
+#define G_threshold 60
+#define B_threshold 100
 
 /***********************************************/
 

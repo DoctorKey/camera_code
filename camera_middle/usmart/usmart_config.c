@@ -25,8 +25,6 @@ struct _m_usmart_nametab usmart_nametab[]=
 	(void*)set_mode,"void set_mode(u8 command)",
 	(void*)set_offset,"void set_offset(u16 roll_offset,u16 pit_offset,u16 yaw_offset)",
 	(void*)set_gopit,"void set_gopit(u16 go_pit)",
-	(void*)set_backpit,"void set_backpit(u16 back_pit)",
-	(void*)set_time,"void set_time(u16 t)",
 //	(void*)led_set,"void led_set(u8 sta)",
 //	(void*)test_fun,"void test_fun(void(*ledset)(u8),u8 sta)",				  	    
 };						  

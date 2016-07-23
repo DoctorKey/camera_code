@@ -16,11 +16,11 @@ Rc_group Rc_back;
 
 void pid_set()
 {
-	pitch_pid.kp = 0.5;
+	pitch_pid.kp = 1;
 	pitch_pid.kd = 0;
 	pitch_pid.ki = 0;
 	
-	roll_pid.kp = 0.5;
+	roll_pid.kp = 1;
 	roll_pid.kd = 0;
 	roll_pid.ki = 0;
 }
@@ -77,47 +77,25 @@ void control_go()
 {
 	if(front_rc_ok==1)
 	{
-		if(front_measure_info.target_get == 1)
-		{
-			Rc_out.pitch = 1500 + pit_ch_offset + go_pit_offset;
-		}
-		else
-		{
-			Rc_out.pitch = 1500 + pit_ch_offset + go_pit_offset/2;
-		}
-		Rc_out.thr = 1300;
 		Rc_out.roll = Rc_front.roll + roll_ch_offset;
+	//	Rc_out.yaw = Back_Rc.yaw;
+	//	Rc_out.roll = 1500 + roll_ch_offset;
 		Rc_out.yaw = 1500 + yaw_ch_offset;
 		set_pwm(&Rc_out);
-		printf("/---f-roll:%d,y:%d,x:%d,get:%d\r\n",Rc_out.roll,front_measure_info.y,front_measure_info.x,front_measure_info.target_get);
+		printf("-----roll:%d,y:%d,x:%d\r\n",Rc_out.roll,front_measure_info.y,front_measure_info.x);
 		front_rc_ok = 0;
 	}
 }
-
 void control_back()
 {
 	if(back_rc_ok==1)
 	{
-		if(back_measure_info.target_get == 1)
-		{
-			Rc_out.pitch = 1500 + pit_ch_offset + back_pit_offset;
-		}
-		else
-		{
-			Rc_out.pitch = 1500 + pit_ch_offset + back_pit_offset/2;
-		}
-		Rc_out.thr = 1600;
 		Rc_out.roll = Rc_back.roll + roll_ch_offset;
+	//	Rc_out.yaw = Back_Rc.yaw;
+	//	Rc_out.roll = 1500 + roll_ch_offset;
 		Rc_out.yaw = 1500 + yaw_ch_offset;
 		set_pwm(&Rc_out);
-		printf("/---b-roll:%d,y:%d,x:%d\r\n",Rc_out.roll,back_measure_info.y,back_measure_info.x);
 		back_rc_ok = 0;
-		back_cnt++;
-		if(back_cnt > 50)
-		{
-			back_cnt = 0;
-			drop_ok = 1;
-		}
 	}
 }
 

@@ -50,9 +50,9 @@ void TIM3_IRQHandler(void)
 		printf("ready_1:%d\r\n",ready_1);
 		#endif
 		
-		#ifdef DUTY
+//		#ifdef DUTY
 		Send_ready(1,ready_1);
-		#endif
+//		#endif
 		
 		ready_1=0;
 		ov_frame=0;

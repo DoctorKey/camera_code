@@ -162,9 +162,6 @@ void get_target2(u16 *jpeg,u8 *H,im_info *info)
 	u8 R,G,B;
 	u16 i,j,count=0;
 	u32 x=0,y=0;
-	
-	info->target_get = 0;
-	
 	for(i=0;i<PIC_ROW;i++)
 	{
 		for(j=0;j<PIC_COL;j++)
@@ -181,7 +178,6 @@ void get_target2(u16 *jpeg,u8 *H,im_info *info)
 				#ifdef TEST
 				*(H+i*PIC_COL+(j+158)%PIC_COL)=254;
 				#endif
-				info->target_get = 1;
 			}
 			else
 			{
@@ -195,7 +191,7 @@ void get_target2(u16 *jpeg,u8 *H,im_info *info)
 	
 	info->x = x/count;
 	info->y = y/count;
-	info->ratio = (float)count/(PIC_ROW*PIC_COL);
+//	info->ratio = (float)count/(PIC_ROW*PIC_COL);
 	
 	#ifdef TEST
 	j=info->y;

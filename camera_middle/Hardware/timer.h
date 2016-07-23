@@ -4,6 +4,4 @@
 
 void TIM3_Int_Init(u16 arr,u16 psc);
 
-extern u16 time;
-
 #endif

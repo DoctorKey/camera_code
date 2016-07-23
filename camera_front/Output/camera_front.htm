@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\Output\camera_front.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\Output\camera_front.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Sat Jul 23 14:26:32 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Jul 22 10:04:56 2016
 <BR><P>
 <H3>Maximum Stack Usage =        372 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -561,7 +561,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart2_IRQ
 </UL>
 
-<P><STRONG><a name="[91]"></a>Data_Receive_deal</STRONG> (Thumb, 196 bytes, Stack size 12 bytes, data_transfer.o(i.Data_Receive_deal))
+<P><STRONG><a name="[91]"></a>Data_Receive_deal</STRONG> (Thumb, 140 bytes, Stack size 12 bytes, data_transfer.o(i.Data_Receive_deal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Data_Receive_deal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Data_Receive_Prepare_2
@@ -826,8 +826,8 @@ Global Symbols
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_ready
 </UL>
 
-<P><STRONG><a name="[a0]"></a>Send_Front_Measure</STRONG> (Thumb, 148 bytes, Stack size 32 bytes, data_transfer.o(i.Send_Front_Measure))
-<BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = Send_Front_Measure &rArr; Send_Data &rArr; Usart2_Send &rArr; USART_ITConfig
+<P><STRONG><a name="[a0]"></a>Send_Front_Measure</STRONG> (Thumb, 108 bytes, Stack size 24 bytes, data_transfer.o(i.Send_Front_Measure))
+<BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = Send_Front_Measure &rArr; Send_Data &rArr; Usart2_Send &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_Data
 </UL>
@@ -1109,14 +1109,14 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> printf8.o(i.__0printf$8)
 </UL>
 <P><STRONG><a name="[bb]"></a>front_duty</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, ctrl.o(i.front_duty))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = front_duty &rArr; Send_Front_Measure &rArr; Send_Data &rArr; Usart2_Send &rArr; USART_ITConfig
+<BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = front_duty &rArr; Send_Front_Measure &rArr; Send_Data &rArr; Usart2_Send &rArr; USART_ITConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_Front_Measure
 </UL>
 <BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[be]"></a>get_target2</STRONG> (Thumb, 202 bytes, Stack size 36 bytes, dgp.o(i.get_target2))
+<P><STRONG><a name="[be]"></a>get_target2</STRONG> (Thumb, 168 bytes, Stack size 36 bytes, dgp.o(i.get_target2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = get_target2
 </UL>
 <BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
