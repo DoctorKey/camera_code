@@ -5,6 +5,8 @@
 #include "data_transfer.h"
 #include "mymath.h"
 
+u8 middle_ctrl;
+
 //中间摄像头的两组pid参数
 PID_Typedef pitch_pid;
 PID_Typedef roll_pid;
@@ -20,7 +22,7 @@ void pid_set()
 	pitch_pid.kd = 0;
 	pitch_pid.ki = 0;
 	
-	roll_pid.kp = 1;
+	roll_pid.kp = 0.6;//寻迹p
 	roll_pid.kd = 0;
 	roll_pid.ki = 0;
 }
@@ -52,12 +54,19 @@ void control_pitch(PID_Typedef * PID,im_info middle_info)
 	measure = middle_info.x;
 	PID_Position(PID,target,measure);
 }
+//寻迹
 void control_roll(PID_Typedef * PID,im_info middle_info)
 {
 	float target,measure;
 	target = PIC_COL/2;
-	measure = middle_info.y;
+	measure = middle_info.line_y;
 	PID_Position(PID,target,measure);
+}
+void control_line()
+{
+	control_roll(&roll_pid,middle_measure_info);
+	Rc_out.roll = 1500 + roll_ch_offset + roll_pid.output;
+	set_pwm(&Rc_out);
 }
 void control_throw()
 {
@@ -75,28 +84,47 @@ void control_throw()
 
 void control_go()
 {
+	#ifndef USE_LINE
 	if(front_rc_ok==1)
 	{
 		Rc_out.roll = Rc_front.roll + roll_ch_offset;
-	//	Rc_out.yaw = Back_Rc.yaw;
-	//	Rc_out.roll = 1500 + roll_ch_offset;
 		Rc_out.yaw = 1500 + yaw_ch_offset;
 		set_pwm(&Rc_out);
-		printf("-----roll:%d,y:%d,x:%d\r\n",Rc_out.roll,front_measure_info.y,front_measure_info.x);
+		printf("--f--roll:%d,y:%d,x:%d\r\n",Rc_out.roll,front_measure_info.y,front_measure_info.x);
 		front_rc_ok = 0;
 	}
+	#endif
+	#ifdef USE_LINE
+	if(middle_ctrl==1)
+	{
+		Rc_out.yaw = 1500 + yaw_ch_offset;
+		control_line();
+		printf("--f--roll:%d,y:%d\r\n",Rc_out.roll,middle_measure_info.line_y);
+		middle_ctrl=0;
+	}
+	#endif
 }
 void control_back()
 {
+	#ifndef USE_LINE
 	if(back_rc_ok==1)
 	{
 		Rc_out.roll = Rc_back.roll + roll_ch_offset;
-	//	Rc_out.yaw = Back_Rc.yaw;
-	//	Rc_out.roll = 1500 + roll_ch_offset;
 		Rc_out.yaw = 1500 + yaw_ch_offset;
 		set_pwm(&Rc_out);
+		printf("--b--roll:%d,y:%d,x:%d\r\n",Rc_out.roll,back_measure_info.y,back_measure_info.x);
 		back_rc_ok = 0;
 	}
+	#endif
+	#ifdef USE_LINE
+	if(middle_ctrl==1)
+	{
+		Rc_out.yaw = 1500 + yaw_ch_offset;
+		control_line();
+		printf("--b--roll:%d,y:%d\r\n",Rc_out.roll,middle_measure_info.line_y);
+		middle_ctrl=0;
+	}
+	#endif
 }
 
 

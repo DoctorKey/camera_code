@@ -537,6 +537,11 @@
               <FileType>1</FileType>
               <FilePath>..\Hardware\timer.c</FilePath>
             </File>
+            <File>
+              <FileName>timer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\timer.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

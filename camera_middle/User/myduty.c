@@ -17,7 +17,7 @@ s16 roll_ch_offset;
 s16 pit_ch_offset;
 s16 yaw_ch_offset;
 s16 go_pit_offset;
-
+s16 back_pit_offset;
 void middle_duty()
 {
 	if(mode==0)
@@ -62,6 +62,9 @@ void wait_ready()
 		}
 	}	
 }
+u32 go_start_time;//ms
+u32 back_start_time;
+
 void take_off()
 {
 	Rc_out.roll = 1500 + roll_ch_offset;
@@ -71,19 +74,47 @@ void take_off()
 	set_pwm(&Rc_out);
 	delay_ms(500);
 	mode = 2;
+	go_start_time = GetSysTime_ms();
 }
+u8 wait_count;
+u32 front_throw_time;
+u16 front_throw_wait_time;
+u16 go_wait_time;
 void go()
 {
 	Rc_out.pitch = 1500 + pit_ch_offset + go_pit_offset;
 	Rc_out.thr = 1300;
 	control_go();
-//	if(middle_measure_info.ratio > THROW_READY)
-//	{
-//		Rc_out.pitch = 1500 + PIT_CH_OFFSET;
-//		Rc_out.thr = 1400;
-//		set_pwm(&Rc_out);
-////		mode = 3;
-//	}
+	if(front_measure_info.x >115 && GetSysTime_ms() > go_start_time + 1000 )
+	{
+		wait_count = 1;
+		front_throw_time = GetSysTime_ms();
+	}
+	if(wait_count == 1 && GetSysTime_ms() > front_throw_time + front_throw_wait_time)
+	{
+		Rc_out.pitch = 1500 + pit_ch_offset + back_pit_offset;
+		Rc_out.thr = 1400;
+		set_pwm(&Rc_out);
+		mode = 3;
+		wait_count = 0;
+		printf("前摄像头定时!!!!!!!\r\n");
+	}
+	if(GetSysTime_ms() > go_start_time + go_wait_time)
+	{
+		Rc_out.pitch = 1500 + pit_ch_offset + back_pit_offset;
+		Rc_out.thr = 1400;
+		set_pwm(&Rc_out);
+		mode = 3;
+		printf("定时器:%dms投球!!!!!!\r\n",go_wait_time);
+	}
+	if(middle_measure_info.ratio > THROW_READY)
+	{
+		Rc_out.pitch = 1500 + pit_ch_offset + back_pit_offset;
+		Rc_out.thr = 1400;
+		set_pwm(&Rc_out);
+		mode = 3;
+		printf("middle投球\r\n");
+	}
 }
 void throw_ball()
 {
@@ -92,26 +123,43 @@ void throw_ball()
 //	control_throw();
 //	if(middle_measure_info.ratio > THROW_BALL)
 //	{
-//		ctrl_throw(1);
-//		Rc_out.pitch = 1500 + pit_ch_offset;
-//		Rc_out.thr = 1400;
-//		set_pwm(&Rc_out);
-////		mode = 4;
+		ctrl_throw(1);
+		Rc_out.pitch = 1500 + pit_ch_offset;
+		Rc_out.thr = 1400;
+		set_pwm(&Rc_out);
+		mode = 4;
 //	}
-	ctrl_throw(1);
+	back_start_time = GetSysTime_ms();
 }
+u8 drop_ok=0;
+u16 back_wait_time;
 void back()
 {
-	Rc_out.pitch = 1500 + pit_ch_offset + BACK_PIT;
+	Rc_out.pitch = 1500 + pit_ch_offset + back_pit_offset;
 	Rc_out.thr = 1600;
 	control_back();
-	if(middle_measure_info.ratio > DROP_READY)
+	if(GetSysTime_ms() > back_start_time + 2000)
+	{
+		drop_ok = 1;
+	}
+	if(GetSysTime_ms() > back_start_time + back_wait_time)
 	{
 		ctrl_throw(0);
 		Rc_out.pitch = 1500 + pit_ch_offset;
 		Rc_out.thr = 1700;
 		set_pwm(&Rc_out);
-//		mode = 5;
+		printf("定时器降落!!!!!\r\n");
+		mode = 5;
+	}
+	if(drop_ok==1 && middle_measure_info.ratio > DROP_READY)
+	{
+		ctrl_throw(0);
+		Rc_out.pitch = 1500 + pit_ch_offset;
+		Rc_out.thr = 1700;
+		set_pwm(&Rc_out);
+		printf("middle降落!!!!!\r\n");
+		mode = 5;
+		drop_ok=0;
 	}
 }
 void drop()
@@ -122,6 +170,9 @@ void drop()
 	Rc_out.thr = 1700;
 	set_pwm(&Rc_out);
 	ctrl_throw(0);
+	
+	wait_count = 0;
+	drop_ok=0;
 //	mode = 6;
 }
 void set_mode(u8 command)
@@ -138,3 +189,15 @@ void set_gopit(u16 go_pit)
 {
 	go_pit_offset = go_pit - 1500;
 }
+void set_backpit(u16 back_pit)
+{
+	back_pit_offset = back_pit - 1500;
+}
+void set_wait_time(u16 go,u16 throw_wait,u16 back)
+{
+	go_wait_time = go;
+	front_throw_wait_time = throw_wait;
+	back_wait_time = back;
+}
+
+

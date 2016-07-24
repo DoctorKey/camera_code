@@ -3,5 +3,8 @@
 #include "sys.h"
 
 void TIM3_Int_Init(u16 arr,u16 psc);
+uint32_t GetSysTime_ms(void);
+
+extern volatile uint32_t sysTickUptime;
 
 #endif

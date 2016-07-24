@@ -15,6 +15,8 @@
 /***************系统******************/
 //#define TEST
 //#define TEST_Y
+#define TEST_LINE
+#define USE_LINE
 
 /***************中断优先级******************/
 #define NVIC_GROUP NVIC_PriorityGroup_3		//中断分组选择 0~7抢占 0~1响应
@@ -62,9 +64,13 @@
 #define G_threshold 60
 #define B_threshold 100
 
-#define THROW_READY 0.2 //中间摄像头准备投球的阈值
-#define THROW_BALL 0.6 //中间摄像头决定投球的阈值
-#define DROP_READY 0.3 //准备降落
+#define R_line_threshold 30
+#define G_line_threshold 30
+#define B_line_threshold 30
+
+#define THROW_READY 0.1 //中间摄像头准备投球的阈值
+#define THROW_BALL 0.2 //中间摄像头决定投球的阈值
+#define DROP_READY 0.02 //准备降落
 /***********************************************/
 
 #endif

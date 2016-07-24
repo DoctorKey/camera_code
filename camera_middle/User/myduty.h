@@ -14,6 +14,8 @@ void drop(void);
 void set_mode(u8 command);
 void set_offset(u16 roll_offset,u16 pit_offset,u16 yaw_offset);
 void set_gopit(u16 go_pit);
+void set_backpit(u16 back_pit);
+void set_wait_time(u16 go,u16 throw_wait,u16 back);
 
 extern u8 all_ready;
 extern u8 mode;

@@ -62,6 +62,7 @@ void TIM3_IRQHandler(void)
 		printf("middle x:%d,y:%d,ratio:%f\r\n",middle_measure_info.x,middle_measure_info.y,middle_measure_info.ratio);
 		printf("ready_1:%d,ready_2:%d,ready_3:%d,ov_frame:%d\r\n",ready_1,ready_2,ready_3,ov_frame);
 		printf("mode :%d\r\n",mode);
+		printf("now time:%dms\r\n",GetSysTime_ms());
 //		if(all_ready==1)
 //		{
 //			if(ready_1==0)
@@ -82,3 +83,11 @@ void TIM3_IRQHandler(void)
 	}
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);  //清除中断标志位
 }
+
+volatile uint32_t sysTickUptime = 0;
+
+uint32_t GetSysTime_ms(void) 
+{
+	return sysTickUptime>>10;
+}
+

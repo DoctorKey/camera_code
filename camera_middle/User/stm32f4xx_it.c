@@ -23,6 +23,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
+#include "timer.h"
+#include "usart.h"
 
 /** @addtogroup EEPROM_Emulation
   * @{
@@ -137,8 +139,10 @@ extern void TimeTick_Decrement(void);	    //引入外部中断计数函数
 **********************************************************************************************************/
 void SysTick_Handler(void)
 {
+	sysTickUptime++;
  TimeTick_Decrement();  //调用中断计数函数
 }
+
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */

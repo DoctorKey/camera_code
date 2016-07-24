@@ -36,6 +36,18 @@ int main(void)
 		LED0(Off);
 	}
 	#endif
+	#ifdef TEST_LINE
+	while(1)
+	{
+		if(jpeg_data_ok==1)	//已经采集完一帧图像了
+		{ 
+			LED0(On);
+			test_line(jpeg_buf,im);
+			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
+		}	
+		LED0(Off);
+	}
+	#endif
   while(1)
 	{
 		if(jpeg_data_ok==1)	//已经采集完一帧图像了
@@ -43,6 +55,7 @@ int main(void)
 			LED0(On);
 			get_target2(jpeg,im,&middle_measure_info);
 			jpeg_data_ok=2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
+			middle_ctrl = 1;//可以执行一次middle控制
 		}	
 		LED0(Off);
 		middle_duty();	

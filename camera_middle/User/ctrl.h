@@ -35,5 +35,6 @@ void control_throw(void);
 extern Rc_group Rc_out;
 extern Rc_group Rc_front;
 extern Rc_group Rc_back;
+extern u8 middle_ctrl;
 
 #endif 
