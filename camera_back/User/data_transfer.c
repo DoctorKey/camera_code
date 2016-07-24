@@ -114,7 +114,7 @@ void Data_Receive_deal(u8 *data_buf,u8 num)
 	{
 		front_measure_info.x = *(data_buf+4);
 		front_measure_info.y = *(data_buf+5);
-		front_data_ok=1;
+		Send_Front_Target(front_measure_info);//马上向middle发送
 	}
 	if(*(data_buf+2)==0X02)
 	{

@@ -27,4 +27,3 @@
 ..\output\ctrl.o: ..\Hardware\timer.h
 ..\output\ctrl.o: ..\Hardware\usart\usart.h
 ..\output\ctrl.o: ..\Hardware\led\led.h
-..\output\ctrl.o: ..\User\mymath.h

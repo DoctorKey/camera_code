@@ -18,3 +18,4 @@
 ..\output\stm32f4xx_it.o: ..\Libraries\FWlib\inc\stm32f4xx_tim.h
 ..\output\stm32f4xx_it.o: ..\Libraries\FWlib\inc\stm32f4xx_usart.h
 ..\output\stm32f4xx_it.o: ..\Libraries\FWlib\inc\misc.h
+..\output\stm32f4xx_it.o: ..\Hardware\usart\usart.h

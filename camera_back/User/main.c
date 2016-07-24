@@ -58,12 +58,6 @@ int main(void)
 			back_duty();	
 			back_ctrl_finish = 1;
 		}
-		if(front_data_ok==1)
-		{
-			LED0(Off);
-			front_duty();
-			front_data_ok = 0;
-		}
 	}
 }
 

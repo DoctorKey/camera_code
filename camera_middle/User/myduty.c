@@ -64,7 +64,13 @@ void wait_ready()
 }
 u32 go_start_time;//ms
 u32 back_start_time;
-
+u16 go_pit_delter;
+u8  wait_count;
+u32 front_throw_time;
+u16 front_throw_wait_time;
+u16 go_wait_time;
+u8 drop_ok=0;
+u16 back_wait_time;
 void take_off()
 {
 	Rc_out.roll = 1500 + roll_ch_offset;
@@ -74,17 +80,15 @@ void take_off()
 	set_pwm(&Rc_out);
 	delay_ms(500);
 	mode = 2;
+	Rc_out.pitch = 1500 + pit_ch_offset + go_pit_offset;
+	go_pit_delter = go_pit_offset*50/go_wait_time;
+	Rc_out.thr = 1300;
+	set_pwm(&Rc_out);
 	go_start_time = GetSysTime_ms();
 }
-u8 wait_count;
-u32 front_throw_time;
-u16 front_throw_wait_time;
-u16 go_wait_time;
 void go()
 {
-	Rc_out.pitch = 1500 + pit_ch_offset + go_pit_offset;
-	Rc_out.thr = 1300;
-	control_go();
+	control_go();//µ÷Õûroll,Êä³öpwm
 	if(front_measure_info.x >115 && GetSysTime_ms() > go_start_time + 1000 )
 	{
 		wait_count = 1;
@@ -92,7 +96,7 @@ void go()
 	}
 	if(wait_count == 1 && GetSysTime_ms() > front_throw_time + front_throw_wait_time)
 	{
-		Rc_out.pitch = 1500 + pit_ch_offset + back_pit_offset;
+		Rc_out.pitch = 1500 + pit_ch_offset;
 		Rc_out.thr = 1400;
 		set_pwm(&Rc_out);
 		mode = 3;
@@ -101,7 +105,7 @@ void go()
 	}
 	if(GetSysTime_ms() > go_start_time + go_wait_time)
 	{
-		Rc_out.pitch = 1500 + pit_ch_offset + back_pit_offset;
+		Rc_out.pitch = 1500 + pit_ch_offset;
 		Rc_out.thr = 1400;
 		set_pwm(&Rc_out);
 		mode = 3;
@@ -109,7 +113,7 @@ void go()
 	}
 	if(middle_measure_info.ratio > THROW_READY)
 	{
-		Rc_out.pitch = 1500 + pit_ch_offset + back_pit_offset;
+		Rc_out.pitch = 1500 + pit_ch_offset;
 		Rc_out.thr = 1400;
 		set_pwm(&Rc_out);
 		mode = 3;
@@ -127,16 +131,17 @@ void throw_ball()
 		Rc_out.pitch = 1500 + pit_ch_offset;
 		Rc_out.thr = 1400;
 		set_pwm(&Rc_out);
+		delay_ms(40);
 		mode = 4;
 //	}
-	back_start_time = GetSysTime_ms();
-}
-u8 drop_ok=0;
-u16 back_wait_time;
-void back()
-{
 	Rc_out.pitch = 1500 + pit_ch_offset + back_pit_offset;
 	Rc_out.thr = 1600;
+	go_pit_delter = back_pit_offset*50/back_wait_time;
+	set_pwm(&Rc_out);
+	back_start_time = GetSysTime_ms();
+}
+void back()
+{
 	control_back();
 	if(GetSysTime_ms() > back_start_time + 2000)
 	{

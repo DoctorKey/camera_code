@@ -210,9 +210,9 @@ void get_target2(u16 *jpeg,u8 *H,im_info *info)
 	info->y = y/count;
 	info->ratio = (float)count/(PIC_ROW*PIC_COL);
 	
-	info->line_x = line_x/line_count;
+//	info->line_x = line_x/line_count;
 	info->line_y = line_y/line_count;
-	info->line_ratio = (float)line_count/(PIC_ROW*PIC_COL);
+//	info->line_ratio = (float)line_count/(PIC_ROW*PIC_COL);
 
 }
 void get_line(u16 *jpeg,u8 *H,im_info *info)

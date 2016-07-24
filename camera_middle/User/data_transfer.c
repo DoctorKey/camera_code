@@ -105,6 +105,8 @@ void Data_Receive_Prepare_2(u8 data)//usart2
 	else
 		state = 0;
 }
+u8 front_info_ok=0;
+u8 back_info_ok=0;
 u8 front_rc_ok=0;
 u8 back_rc_ok=0;
 void Data_Receive_deal(u8 *data_buf,u8 num)
@@ -119,11 +121,13 @@ void Data_Receive_deal(u8 *data_buf,u8 num)
 	{
 		front_measure_info.x = *(data_buf+4);
 		front_measure_info.y = *(data_buf+5);
+		front_info_ok=1;
 	}
 	if(*(data_buf+2)==0X02)
 	{
 		back_measure_info.x = *(data_buf+4);
 		back_measure_info.y = *(data_buf+5);
+		back_info_ok=1;
 	}
 	if(*(data_buf+2)==0X03)
 	{

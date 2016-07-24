@@ -124,7 +124,6 @@ void Cam_Init()
   	DCMI_Init(&DCMI_InitStructure); 
 		
 		DCMI_ITConfig(DCMI_IT_FRAME,ENABLE);//开启帧中断 
-//		DCMI_ITConfig(DCMI_IT_OVF,ENABLE);//开启溢出中断 
 	
 		DCMI_Cmd(ENABLE);	//DCMI使能
 	

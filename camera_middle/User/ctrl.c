@@ -1,5 +1,4 @@
 #include "ctrl.h"
-#include "pwm_out.h"
 #include "dgp.h"
 #include "myduty.h"
 #include "data_transfer.h"
@@ -11,6 +10,9 @@ u8 middle_ctrl;
 PID_Typedef pitch_pid;
 PID_Typedef roll_pid;
 
+PID_Typedef front_pid;
+PID_Typedef back_pid;
+
 Rc_group Rc_out;
 Rc_group Rc_front;
 Rc_group Rc_back;
@@ -18,11 +20,19 @@ Rc_group Rc_back;
 
 void pid_set()
 {
+	front_pid.kp = 0.4;
+	front_pid.kd = 0;
+	front_pid.ki = 0;
+	
+	back_pid.kp = 0.4;
+	back_pid.kd = 0;
+	back_pid.ki = 0;
+	
 	pitch_pid.kp = 1;
 	pitch_pid.kd = 0;
 	pitch_pid.ki = 0;
 	
-	roll_pid.kp = 0.6;//寻迹p
+	roll_pid.kp = 0.4;//寻迹p
 	roll_pid.kd = 0;
 	roll_pid.ki = 0;
 }
@@ -54,19 +64,19 @@ void control_pitch(PID_Typedef * PID,im_info middle_info)
 	measure = middle_info.x;
 	PID_Position(PID,target,measure);
 }
-//寻迹
 void control_roll(PID_Typedef * PID,im_info middle_info)
 {
 	float target,measure;
 	target = PIC_COL/2;
-	measure = middle_info.line_y;
-	PID_Position(PID,target,measure);
-}
-void control_line()
-{
-	control_roll(&roll_pid,middle_measure_info);
-	Rc_out.roll = 1500 + roll_ch_offset + roll_pid.output;
-	set_pwm(&Rc_out);
+	if(middle_info.line_y == 0)
+	{
+		measure = PIC_COL/2;
+	}
+	else
+	{
+		measure = middle_info.line_y;
+	}
+	PID_Position(PID,measure,target);//measure - target
 }
 void control_throw()
 {
@@ -78,80 +88,113 @@ void control_throw()
 	set_pwm(&Rc_out);
 }
 
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
 
+u8 front_info_y_last;
+u8 back_info_y_last;
+
+//前摄像头调整roll
+void control_front_roll(PID_Typedef * PID,im_info front_info,im_info back_info)
+{
+	float target,measure;
+	target = PIC_COL/2;
+	
+	if(front_info.y == 0)
+	{
+		measure = PIC_COL/2;
+	}
+	else
+	{
+		measure = front_info.y;
+	}
+	if(front_info.y < 5 || front_info.y > 155)
+	{
+		front_info.y = front_info_y_last;
+	}
+	PID_Position(PID,measure,target);//error=measure-target
+	front_info_y_last = front_info.y;
+}
+//后摄像头调整roll
+void control_back_roll(PID_Typedef * PID,im_info front_info,im_info back_info)
+{
+	float target,measure;
+	target = PIC_COL/2;
+
+	if(back_info.y == 0)
+	{
+		measure = PIC_COL/2;
+	}
+	else
+	{
+		measure = back_info.y;
+	}
+	if(back_info.y < 5 || back_info.y > 155)
+	{
+		back_info.y = back_info_y_last;
+	}
+	PID_Position(PID,target,measure);
+	front_info_y_last = front_info.y;
+}
+
+
+/////////////////////////////////////////////////
+u8 roll_ctrl=0;
+//-------------------前进时控制---------------
 void control_go()
 {
-	#ifndef USE_LINE
-	if(front_rc_ok==1)
+	if(front_info_ok==1)//大概50ms一次
 	{
-		Rc_out.roll = Rc_front.roll + roll_ch_offset;
-		Rc_out.yaw = 1500 + yaw_ch_offset;
+		control_front_roll(&front_pid,front_measure_info,back_measure_info);
+		printf("--f--y:%d,x:%d,",front_measure_info.y,front_measure_info.x);
+		Rc_out.pitch -= go_pit_delter;
+		front_info_ok = 0;
+		roll_ctrl = 1;
+	}
+	if(back_info_ok==1)//大概50ms一次
+	{		
+		control_back_roll(&back_pid,front_measure_info,back_measure_info);
+		printf("--b--y:%d,x:%d,",back_measure_info.y,back_measure_info.x);
+		back_info_ok = 0;
+		roll_ctrl = 1;
+	}
+	if(roll_ctrl == 1)
+	{
+		Rc_out.roll = 1500 + roll_ch_offset + front_pid.output + back_pid.output;
 		set_pwm(&Rc_out);
-		printf("--f--roll:%d,y:%d,x:%d\r\n",Rc_out.roll,front_measure_info.y,front_measure_info.x);
-		front_rc_ok = 0;
+		printf("roll:%d\r\n",Rc_out.roll);
+		roll_ctrl = 0;
 	}
-	#endif
-	#ifdef USE_LINE
-	if(middle_ctrl==1)
-	{
-		Rc_out.yaw = 1500 + yaw_ch_offset;
-		control_line();
-		printf("--f--roll:%d,y:%d\r\n",Rc_out.roll,middle_measure_info.line_y);
-		middle_ctrl=0;
-	}
-	#endif
 }
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+
+//-------------------后退时控制---------------
 void control_back()
 {
-	#ifndef USE_LINE
-	if(back_rc_ok==1)
+	if(front_info_ok==1)
 	{
-		Rc_out.roll = Rc_back.roll + roll_ch_offset;
-		Rc_out.yaw = 1500 + yaw_ch_offset;
+		control_front_roll(&front_pid,front_measure_info,back_measure_info);
+		printf("--f--y:%d,x:%d,",front_measure_info.y,front_measure_info.x);
+		front_info_ok = 0;
+		roll_ctrl = 1;
+	}
+	if(back_info_ok==1)
+	{		
+		control_back_roll(&back_pid,front_measure_info,back_measure_info);
+		printf("--b--y:%d,x:%d,",back_measure_info.y,back_measure_info.x);
+		Rc_out.pitch -= go_pit_delter;
+		back_info_ok = 0;
+		roll_ctrl = 1;
+	}
+	if(roll_ctrl == 1)
+	{
+		Rc_out.roll = 1500 + roll_ch_offset + front_pid.output + back_pid.output;
 		set_pwm(&Rc_out);
-		printf("--b--roll:%d,y:%d,x:%d\r\n",Rc_out.roll,back_measure_info.y,back_measure_info.x);
-		back_rc_ok = 0;
-	}
-	#endif
-	#ifdef USE_LINE
-	if(middle_ctrl==1)
-	{
-		Rc_out.yaw = 1500 + yaw_ch_offset;
-		control_line();
-		printf("--b--roll:%d,y:%d\r\n",Rc_out.roll,middle_measure_info.line_y);
-		middle_ctrl=0;
-	}
-	#endif
-}
-
-
-
-int16_t pwm[4]={0,0,0,0};//0~500
-void set_pwm(Rc_group *Rc)
-{
-	pwm[0]=(Rc->roll-1000)/2;
-	pwm[1]=(Rc->pitch-1000)/2;
-	pwm[2]=(Rc->thr-1000)/2;
-	pwm[3]=(Rc->yaw-1000)/2;
-	SetPwm_1(pwm,PWM_MIN,PWM_MAX);
-}
-
-int16_t pwm_throw[2]={0,0};
-void ctrl_throw(u8 command)
-{
-	if(command==1)//throw
-	{
-		pwm_throw[0]=250;
-		pwm_throw[1]=250;
-		SetPwm_5(pwm_throw[0],pwm_throw[1],PWM_MIN,PWM_MAX);
-	}else if(command==0)//close
-	{
-		pwm_throw[0]=0;
-		pwm_throw[1]=0;
-		SetPwm_5(pwm_throw[0],pwm_throw[1],PWM_MIN,PWM_MAX);
+		printf("roll:%d\r\n",Rc_out.roll);
+		roll_ctrl = 0;
 	}
 }
+
+
 

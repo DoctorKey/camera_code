@@ -13,6 +13,8 @@ void Send_Front_Measure(im_info info);
 void Send_Back_Measure(im_info info);
 void Send_Rc(Rc_group rc);
 
+extern u8 front_info_ok;
+extern u8 back_info_ok;
 extern u8 front_rc_ok;
 extern u8 back_rc_ok;
 

@@ -4,7 +4,6 @@
 #include "init.h"
 
 extern u8 ov_frame;
-extern volatile u32 jpeg_data_len;
 
 //通用定时器3中断初始化
 //arr：自动重装值。

@@ -23,6 +23,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
+#include "usart.h"
 
 /** @addtogroup EEPROM_Emulation
   * @{

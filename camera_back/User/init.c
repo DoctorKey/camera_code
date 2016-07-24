@@ -35,7 +35,5 @@ u8 All_Init()
 	
 	DCMI_Start();
 	
-	pid_set();
-	
 	return 1;
 }

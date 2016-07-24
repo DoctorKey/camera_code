@@ -22,5 +22,6 @@ extern u8 mode;
 extern s16 roll_ch_offset;
 extern s16 pit_ch_offset;
 extern s16 yaw_ch_offset;
+extern u16 go_pit_delter;
 
 #endif

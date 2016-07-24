@@ -1,14 +1,6 @@
-/******************** (C) COPYRIGHT 2014 ANO Tech ********************************
-  * 作者   ：匿名科创
- * 文件名  ：pwm_out.c
- * 描述    ：PWM输出
- * 官网    ：www.anotc.com
- * 淘宝    ：anotc.taobao.com
- * 技术Q群 ：190169595
-**********************************************************************************/
-
 #include "pwm_out.h"
 #include "mymath.h"
+#include "include.h"
 
 //21分频到 84000000/21 = 4M   0.25us
 
@@ -182,4 +174,31 @@ void SetPwm_5(int16_t pwm_3,int16_t pwm_4,s16 min,s16 max)
  	TIM5->CCR4 = pwm_tem_4 + INIT_DUTY;				//4	
  	TIM5->CCR3 = pwm_tem_3 + INIT_DUTY;				//3	
 }
-/******************* (C) COPYRIGHT 2014 ANO TECH *****END OF FILE************/
+
+int16_t pwm[4]={0,0,0,0};//0~500
+void set_pwm(Rc_group *Rc)
+{
+	pwm[0]=(Rc->roll-1000)/2;
+	pwm[1]=(Rc->pitch-1000)/2;
+	pwm[2]=(Rc->thr-1000)/2;
+	pwm[3]=(Rc->yaw-1000)/2;
+	SetPwm_1(pwm,PWM_MIN,PWM_MAX);
+}
+
+int16_t pwm_throw[2]={0,0};
+void ctrl_throw(u8 command)
+{
+	if(command==1)//throw
+	{
+		pwm_throw[0]=250;
+		pwm_throw[1]=250;
+		SetPwm_5(pwm_throw[0],pwm_throw[1],PWM_MIN,PWM_MAX);
+	}else if(command==0)//close
+	{
+		pwm_throw[0]=0;
+		pwm_throw[1]=0;
+		SetPwm_5(pwm_throw[0],pwm_throw[1],PWM_MIN,PWM_MAX);
+	}
+}
+
+
