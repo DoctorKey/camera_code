@@ -11,7 +11,7 @@ typedef struct
 	u16 yaw;
 }Rc_group;
 
-void front_duty();
+void front_duty(void);
 	
 extern Rc_group Rc_front;
 extern u8 ctrl_finish;

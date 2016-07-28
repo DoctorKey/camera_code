@@ -19,11 +19,13 @@
 ..\output\ctrl.o: ..\Libraries\FWlib\inc\stm32f4xx_tim.h
 ..\output\ctrl.o: ..\Libraries\FWlib\inc\stm32f4xx_usart.h
 ..\output\ctrl.o: ..\Libraries\FWlib\inc\misc.h
-..\output\ctrl.o: ..\Hardware\led\led.h
-..\output\ctrl.o: ..\Hardware\usart\usart.h
+..\output\ctrl.o: ..\Hardware\led.h
+..\output\ctrl.o: ..\Hardware\usart.h
 ..\output\ctrl.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\ctrl.o: ..\Hardware\pwm_out.h
 ..\output\ctrl.o: ..\User\dgp.h
 ..\output\ctrl.o: ..\User\myduty.h
 ..\output\ctrl.o: ..\User\data_transfer.h
 ..\output\ctrl.o: ..\User\mymath.h
+..\output\ctrl.o: ..\Hardware\timer.h
+..\output\ctrl.o: ..\Startup\sys.h

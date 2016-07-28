@@ -128,8 +128,8 @@ void test(u32* jpeg_buf,u8* im)
 void get_Y(u16 *jpeg,u8 *Y)
 {
 	u8 R,G,B;
-	u16 i,j,count_x=0;
-	u32 x=0,y=0,y_tmp;
+	u16 i,j;
+	u32 y_tmp;
 	for(i=0;i<PIC_ROW;i++)
 	{
 		for(j=0;j<PIC_COL;j++)
@@ -170,6 +170,7 @@ void get_target2(u16 *jpeg,u8 *H,im_info *info)
 			G=((*(jpeg+i*PIC_COL+j))&0x7e0)>>3;//G
 			B=((*(jpeg+i*PIC_COL+j))&0xf800)>>8;//B
 
+			#ifdef THROW_RED
 			if( R<R_threshold && G<G_threshold && B>B_threshold)
 			{
 				x+=i; //row
@@ -185,6 +186,25 @@ void get_target2(u16 *jpeg,u8 *H,im_info *info)
 				*(H+i*PIC_COL+(j+158)%PIC_COL)=1;
 				#endif
 			}
+			#endif
+			
+			#ifdef THROW_BLUE
+			if( R>R_threshold && G<G_threshold && B<B_threshold)
+			{
+				x+=i; //row
+				count++;
+				y+=(j+158)%PIC_COL; //col
+				#ifdef TEST
+				*(H+i*PIC_COL+(j+158)%PIC_COL)=254;
+				#endif
+			}
+			else
+			{
+				#ifdef TEST
+				*(H+i*PIC_COL+(j+158)%PIC_COL)=1;
+				#endif
+			}
+			#endif
 			
 		}
 	}

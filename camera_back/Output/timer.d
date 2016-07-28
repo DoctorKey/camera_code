@@ -23,7 +23,7 @@
 ..\output\timer.o: ..\User\ctrl.h
 ..\output\timer.o: ..\User\dgp.h
 ..\output\timer.o: ..\User\init.h
-..\output\timer.o: ..\Hardware\ov7670\ov7670.h
-..\output\timer.o: ..\Hardware\delay\delay.h
-..\output\timer.o: ..\Hardware\usart\usart.h
-..\output\timer.o: ..\Hardware\led\led.h
+..\output\timer.o: ..\Hardware\ov7670.h
+..\output\timer.o: ..\Hardware\delay.h
+..\output\timer.o: ..\Hardware\usart.h
+..\output\timer.o: ..\Hardware\led.h

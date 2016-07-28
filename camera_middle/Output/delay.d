@@ -1,5 +1,5 @@
-..\output\delay.o: ..\Hardware\delay\delay.c
-..\output\delay.o: ..\Hardware\delay\delay.h
+..\output\delay.o: ..\Hardware\delay.c
+..\output\delay.o: ..\Hardware\delay.h
 ..\output\delay.o: ..\Libraries\CMSIS\inc\stm32f4xx.h
 ..\output\delay.o: ..\Libraries\CMSIS\inc\core_cm4.h
 ..\output\delay.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdint.h

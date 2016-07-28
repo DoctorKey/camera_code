@@ -13,16 +13,24 @@ u8 mode=0;
 //back 4
 //drop 5
 
-s16 roll_ch_offset;
-s16 pit_ch_offset;
-s16 yaw_ch_offset;
-s16 go_pit_offset;
-s16 back_pit_offset;
+s16 roll_ch_offset=-73;
+s16 pit_ch_offset=-26;
+s16 yaw_ch_offset=0;
+s16 go_pit_offset=140;
+s16 back_pit_offset=-100;
+
+u16 go_wait_time=4100;
+u16 front_throw_wait_time=300;
+u16 back_wait_time=3000;
+
 void middle_duty()
 {
 	if(mode==0)
 	{
 		wait_ready();
+	}else if(mode==7)
+	{
+		unlock();
 	}else if(mode==1)
 	{
 		take_off();
@@ -38,6 +46,10 @@ void middle_duty()
 	}else if(mode==5)
 	{
 		drop();
+	}
+	else if(mode==6)
+	{
+		lock();
 	}
 	ready_3++;
 }
@@ -62,15 +74,24 @@ void wait_ready()
 		}
 	}	
 }
+void unlock()
+{
+	ctrl_throw(0);
+	Rc_out.yaw = 1500 + yaw_ch_offset;
+	Rc_out.thr = 1900;
+	Rc_out.roll = 1500 + roll_ch_offset;
+	Rc_out.pitch = 1500 + pit_ch_offset;
+	set_pwm(&Rc_out);
+	delay_ms(2000);
+	mode = 1;
+}
 u32 go_start_time;//ms
 u32 back_start_time;
 u16 go_pit_delter;
 u8  wait_count;
 u32 front_throw_time;
-u16 front_throw_wait_time;
-u16 go_wait_time;
 u8 drop_ok=0;
-u16 back_wait_time;
+
 void take_off()
 {
 	Rc_out.roll = 1500 + roll_ch_offset;
@@ -122,21 +143,16 @@ void go()
 }
 void throw_ball()
 {
-//	Rc_out.thr = 1400;
-//	Rc_out.yaw = 1500 + yaw_ch_offset;
-//	control_throw();
-//	if(middle_measure_info.ratio > THROW_BALL)
-//	{
 		ctrl_throw(1);
 		Rc_out.pitch = 1500 + pit_ch_offset;
 		Rc_out.thr = 1400;
 		set_pwm(&Rc_out);
 		delay_ms(40);
 		mode = 4;
-//	}
-	Rc_out.pitch = 1500 + pit_ch_offset + back_pit_offset;
+
+	Rc_out.pitch = 1500 + pit_ch_offset;// + back_pit_offset;
 	Rc_out.thr = 1600;
-	go_pit_delter = back_pit_offset*50/back_wait_time;
+	go_pit_delter = back_pit_offset*100/back_wait_time;
 	set_pwm(&Rc_out);
 	back_start_time = GetSysTime_ms();
 }
@@ -169,16 +185,21 @@ void back()
 }
 void drop()
 {
-	Rc_out.roll = 1500 + roll_ch_offset;
-	Rc_out.pitch = 1500 + pit_ch_offset;
-	Rc_out.yaw = 1500 + yaw_ch_offset;
 	Rc_out.thr = 1700;
 	set_pwm(&Rc_out);
 	ctrl_throw(0);
 	
 	wait_count = 0;
 	drop_ok=0;
-//	mode = 6;
+}
+void lock()
+{
+	Rc_out.roll = 1500 + roll_ch_offset;
+	Rc_out.pitch = 1500 + pit_ch_offset;
+	Rc_out.yaw = 1500 + yaw_ch_offset;
+	Rc_out.thr = 1800;
+	set_pwm(&Rc_out);
+	ctrl_throw(0);
 }
 void set_mode(u8 command)
 {

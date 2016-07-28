@@ -18,13 +18,13 @@
 ..\output\init.o: ..\Libraries\FWlib\inc\stm32f4xx_tim.h
 ..\output\init.o: ..\Libraries\FWlib\inc\stm32f4xx_usart.h
 ..\output\init.o: ..\Libraries\FWlib\inc\misc.h
-..\output\init.o: ..\Hardware\ov7670\ov7670.h
+..\output\init.o: ..\Hardware\ov7670.h
 ..\output\init.o: ..\User\include.h
-..\output\init.o: ..\Hardware\led\led.h
-..\output\init.o: ..\Hardware\usart\usart.h
+..\output\init.o: ..\Hardware\led.h
+..\output\init.o: ..\Hardware\usart.h
 ..\output\init.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\init.o: ..\Hardware\pwm_out.h
-..\output\init.o: ..\Hardware\delay\delay.h
+..\output\init.o: ..\Hardware\delay.h
 ..\output\init.o: ..\Hardware\timer.h
 ..\output\init.o: ..\Startup\sys.h
 ..\output\init.o: ..\User\ctrl.h

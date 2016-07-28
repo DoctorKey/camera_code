@@ -10,7 +10,6 @@ u8 ctrl_finish;//0 允许控制，获得了新的图像数据
 
 void front_duty()
 {
-//	Send_ready(1,ready_1);
 	Send_Front_Measure(front_measure_info);
 	ready_1++;
 }

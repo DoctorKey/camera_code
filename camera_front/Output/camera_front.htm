@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\Output\camera_front.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\Output\camera_front.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Jul 22 10:04:56 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Thu Jul 28 12:31:36 2016
 <BR><P>
 <H3>Maximum Stack Usage =        372 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1183,11 +1183,11 @@ Global Symbols
 <P><STRONG><a name="[8]"></a>usmart_exe</STRONG> (Thumb, 632 bytes, Stack size 128 bytes, usmart.o(i.usmart_exe))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = usmart_exe &rArr; usmart_get_fname
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_parmpos
+<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_parmpos
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_reset_runtime
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_runtime
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
@@ -1267,8 +1267,8 @@ Global Symbols
 <P><STRONG><a name="[9]"></a>usmart_scan</STRONG> (Thumb, 120 bytes, Stack size 16 bytes, usmart.o(i.usmart_scan))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = usmart_scan &rArr; usmart_sys_cmd_exe &rArr; usmart_get_fname
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
@@ -1302,12 +1302,12 @@ Global Symbols
 <P><STRONG><a name="[cf]"></a>usmart_sys_cmd_exe</STRONG> (Thumb, 1554 bytes, Stack size 56 bytes, usmart.o(i.usmart_sys_cmd_exe))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = usmart_sys_cmd_exe &rArr; usmart_get_fname
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
+<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_str2num
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_cmdname
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_aparm
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_scan
 </UL>

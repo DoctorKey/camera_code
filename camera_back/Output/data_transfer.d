@@ -22,8 +22,8 @@
 ..\output\data_transfer.o: ..\User\include.h
 ..\output\data_transfer.o: ..\User\dgp.h
 ..\output\data_transfer.o: ..\User\init.h
-..\output\data_transfer.o: ..\Hardware\ov7670\ov7670.h
-..\output\data_transfer.o: ..\Hardware\delay\delay.h
+..\output\data_transfer.o: ..\Hardware\ov7670.h
+..\output\data_transfer.o: ..\Hardware\delay.h
 ..\output\data_transfer.o: ..\Hardware\timer.h
-..\output\data_transfer.o: ..\Hardware\usart\usart.h
-..\output\data_transfer.o: ..\Hardware\led\led.h
+..\output\data_transfer.o: ..\Hardware\usart.h
+..\output\data_transfer.o: ..\Hardware\led.h

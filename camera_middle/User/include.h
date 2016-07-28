@@ -15,6 +15,11 @@
 /***************系统******************/
 //#define TEST
 //#define TEST_Y
+#define CTRL_ROLL
+#define CTRL_YAW
+
+//#define THROW_RED
+#define THROW_BLUE
 
 /***************中断优先级******************/
 #define NVIC_GROUP NVIC_PriorityGroup_3		//中断分组选择 0~7抢占 0~1响应
@@ -58,17 +63,22 @@
 #define GO_PIT   (20)
 #define BACK_PIT (-20)
 
-#define R_threshold 60
+#ifdef THROW_RED
+#define R_threshold 70
 #define G_threshold 60
-#define B_threshold 100
+#define B_threshold 170
+#endif
 
-#define R_line_threshold 50
-#define G_line_threshold 50
-#define B_line_threshold 80
+#ifdef THROW_BLUE
+#define R_threshold 100
+#define G_threshold 100
+#define B_threshold 100
+#endif
+
 
 #define THROW_READY 0.1 //中间摄像头准备投球的阈值
 #define THROW_BALL 0.2 //中间摄像头决定投球的阈值
-#define DROP_READY 0.02 //准备降落
+#define DROP_READY 0.04 //准备降落
 /***********************************************/
 
 #endif

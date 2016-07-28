@@ -16,6 +16,9 @@
 //#define TEST_Y //÷ª≤‚ ‘ÕºœÒ
 #define DUTY
 
+//#define THROW_RED
+#define THROW_BLUE
+
 //#define USE_USART1
 #define USE_USART2
 
@@ -44,10 +47,16 @@
 /***********************************************/
 
 /***************ctrl******************/
-#define R_threshold 60
+#ifdef THROW_RED
+#define R_threshold 70
 #define G_threshold 60
+#define B_threshold 170
+#endif
+#ifdef THROW_BLUE
+#define R_threshold 100
+#define G_threshold 100
 #define B_threshold 100
-
+#endif
 /***********************************************/
 
 #endif

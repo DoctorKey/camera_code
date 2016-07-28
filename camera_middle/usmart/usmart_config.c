@@ -26,7 +26,8 @@ struct _m_usmart_nametab usmart_nametab[]=
 	(void*)set_offset,"void set_offset(u16 roll_offset,u16 pit_offset,u16 yaw_offset)",
 	(void*)set_gopit,"void set_gopit(u16 go_pit)",
 	(void*)set_backpit,"void set_backpit(u16 back_pit)",
-  (void*)set_wait_time,"void set_wait_time(u16 go,u16 throw_wait,u16 back)",		
+  (void*)set_wait_time,"void set_wait_time(u16 go,u16 throw_wait,u16 back)",	
+	(void*)set_pid,"void set_pid(u16 front_kp,u16 back_kp,u8 choose)",		
 };						  
 ///////////////////////////////////END///////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////

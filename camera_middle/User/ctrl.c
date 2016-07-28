@@ -3,6 +3,7 @@
 #include "myduty.h"
 #include "data_transfer.h"
 #include "mymath.h"
+#include "timer.h"
 
 u8 middle_ctrl;
 
@@ -10,8 +11,9 @@ u8 middle_ctrl;
 PID_Typedef pitch_pid;
 PID_Typedef roll_pid;
 
-PID_Typedef front_pid;
-PID_Typedef back_pid;
+PID_Typedef front_roll_pid;
+PID_Typedef back_roll_pid;
+PID_Typedef yaw_pid;
 
 Rc_group Rc_out;
 Rc_group Rc_front;
@@ -20,13 +22,17 @@ Rc_group Rc_back;
 
 void pid_set()
 {
-	front_pid.kp = 0.4;
-	front_pid.kd = 0;
-	front_pid.ki = 0;
+	front_roll_pid.kp = 0.4;
+	front_roll_pid.kd = 0;
+	front_roll_pid.ki = 0;
+
+	back_roll_pid.kp = 0.4;
+	back_roll_pid.kd = 0;
+	back_roll_pid.ki = 0;
 	
-	back_pid.kp = 0.4;
-	back_pid.kd = 0;
-	back_pid.ki = 0;
+	yaw_pid.kp = 0.4;
+	yaw_pid.kd = 0;
+	yaw_pid.ki = 0;
 	
 	pitch_pid.kp = 1;
 	pitch_pid.kd = 0;
@@ -136,6 +142,24 @@ void control_back_roll(PID_Typedef * PID,im_info front_info,im_info back_info)
 }
 
 
+void control_yaw(PID_Typedef * PID,im_info front_info,im_info back_info)
+{
+	float target,measure;
+	target = PIC_COL;
+		
+	if(front_info.y ==0)
+	{
+		front_info.y = PIC_COL/2;
+	}
+	if(back_info.y == 0)
+	{
+		back_info.y = PIC_COL/2;
+	}
+	measure = front_info.y+back_info.y;
+	
+	PID_Position(PID,measure,target);//errer = measure - target
+}
+
 /////////////////////////////////////////////////
 u8 roll_ctrl=0;
 //-------------------前进时控制---------------
@@ -143,7 +167,12 @@ void control_go()
 {
 	if(front_info_ok==1)//大概50ms一次
 	{
-		control_front_roll(&front_pid,front_measure_info,back_measure_info);
+		#ifdef CTRL_ROLL
+		control_front_roll(&front_roll_pid,front_measure_info,back_measure_info);
+		#endif
+		#ifdef CTRL_YAW
+		control_yaw(&yaw_pid,front_measure_info,back_measure_info);
+		#endif
 		printf("--f--y:%d,x:%d,",front_measure_info.y,front_measure_info.x);
 		Rc_out.pitch -= go_pit_delter;
 		front_info_ok = 0;
@@ -151,16 +180,27 @@ void control_go()
 	}
 	if(back_info_ok==1)//大概50ms一次
 	{		
-		control_back_roll(&back_pid,front_measure_info,back_measure_info);
+		#ifdef CTRL_ROLL
+		control_back_roll(&back_roll_pid,front_measure_info,back_measure_info);
+		#endif
+		#ifdef CTRL_YAW
+		control_yaw(&yaw_pid,front_measure_info,back_measure_info);
+		#endif
 		printf("--b--y:%d,x:%d,",back_measure_info.y,back_measure_info.x);
 		back_info_ok = 0;
 		roll_ctrl = 1;
 	}
 	if(roll_ctrl == 1)
 	{
-		Rc_out.roll = 1500 + roll_ch_offset + front_pid.output + back_pid.output;
-		set_pwm(&Rc_out);
+		#ifdef CTRL_ROLL
+		Rc_out.roll = 1500 + roll_ch_offset + front_roll_pid.output + back_roll_pid.output;
 		printf("roll:%d\r\n",Rc_out.roll);
+		#endif
+		#ifdef CTRL_YAW
+		Rc_out.yaw = 1500 + yaw_ch_offset + yaw_pid.output + yaw_pid.output;
+		printf("yaw:%d\r\n",Rc_out.yaw);
+		#endif
+		set_pwm(&Rc_out);
 		roll_ctrl = 0;
 	}
 }
@@ -174,27 +214,60 @@ void control_back()
 {
 	if(front_info_ok==1)
 	{
-		control_front_roll(&front_pid,front_measure_info,back_measure_info);
+		#ifdef CTRL_ROLL
+		control_front_roll(&front_roll_pid,front_measure_info,back_measure_info);
+		#endif
+		#ifdef CTRL_YAW
+		control_yaw(&yaw_pid,front_measure_info,back_measure_info);
+		#endif
 		printf("--f--y:%d,x:%d,",front_measure_info.y,front_measure_info.x);
 		front_info_ok = 0;
 		roll_ctrl = 1;
 	}
 	if(back_info_ok==1)
 	{		
-		control_back_roll(&back_pid,front_measure_info,back_measure_info);
+		#ifdef CTRL_ROLL
+		control_back_roll(&back_roll_pid,front_measure_info,back_measure_info);
+		#endif
+		#ifdef CTRL_YAW
+		control_yaw(&yaw_pid,front_measure_info,back_measure_info);
+		#endif
 		printf("--b--y:%d,x:%d,",back_measure_info.y,back_measure_info.x);
-		Rc_out.pitch -= go_pit_delter;
+		if(GetSysTime_ms() < back_start_time + back_wait_time/2)
+		{
+			Rc_out.pitch += go_pit_delter;
+		}else if(GetSysTime_ms() < back_start_time + back_wait_time)
+		{
+			Rc_out.pitch -= go_pit_delter;
+		}	
 		back_info_ok = 0;
 		roll_ctrl = 1;
 	}
 	if(roll_ctrl == 1)
 	{
-		Rc_out.roll = 1500 + roll_ch_offset + front_pid.output + back_pid.output;
-		set_pwm(&Rc_out);
+		#ifdef CTRL_ROLL
+		Rc_out.roll = 1500 + roll_ch_offset + front_roll_pid.output + back_roll_pid.output;
 		printf("roll:%d\r\n",Rc_out.roll);
+		#endif
+		#ifdef CTRL_YAW
+		Rc_out.yaw = 1500 + yaw_ch_offset + yaw_pid.output + yaw_pid.output;
+		printf("yaw:%d\r\n",Rc_out.yaw);
+		#endif
+		set_pwm(&Rc_out);
+		
 		roll_ctrl = 0;
 	}
 }
-
+void set_pid(u16 front_kp,u16 back_kp,u8 choose)
+{
+	if(choose == 1)
+	{
+		front_roll_pid.kp = front_kp/1000;
+		back_roll_pid.kp = back_kp/1000;
+	}else if(choose == 2)
+	{
+		yaw_pid.kp = front_kp/1000;
+	}
+}
 
 

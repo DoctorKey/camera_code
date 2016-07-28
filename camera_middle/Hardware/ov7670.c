@@ -124,7 +124,6 @@ void Cam_Init()
   	DCMI_Init(&DCMI_InitStructure); 
 		
 		DCMI_ITConfig(DCMI_IT_FRAME,ENABLE);//开启帧中断 
-//		DCMI_ITConfig(DCMI_IT_OVF,ENABLE);//开启溢出中断 
 	
 		DCMI_Cmd(ENABLE);	//DCMI使能
 	
@@ -146,13 +145,12 @@ u8 OV7670_Init(void)
 	delay_ms(5);
 	id=OV_ReadID();
 
-		for(i=0;i<sizeof(ov7670_init_reg_tbl)/sizeof(ov7670_init_reg_tbl[0]);i++)
-		{
-	   	OV_WriteReg(ov7670_init_reg_tbl[i][0],ov7670_init_reg_tbl[i][1]);
-  	}
+	for(i=0;i<sizeof(ov7670_init_reg_tbl)/sizeof(ov7670_init_reg_tbl[0]);i++)
+	{
+		OV_WriteReg(ov7670_init_reg_tbl[i][0],ov7670_init_reg_tbl[i][1]);
+	}
 
-//	OV7670_HW(192,192,842,442);
-		OV7670_config_window(184+80*2,10+60*2,161,121);
+	OV7670_config_window(184+80*2,10+60*2,161,121);
 		
 	return 0; 
 }

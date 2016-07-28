@@ -20,6 +20,6 @@
 ..\output\pwm_out.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\pwm_out.o: ..\User\mymath.h
 ..\output\pwm_out.o: ..\User\include.h
-..\output\pwm_out.o: ..\Hardware\led\led.h
-..\output\pwm_out.o: ..\Hardware\usart\usart.h
+..\output\pwm_out.o: ..\Hardware\led.h
+..\output\pwm_out.o: ..\Hardware\usart.h
 ..\output\pwm_out.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h

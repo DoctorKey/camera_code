@@ -22,12 +22,48 @@ Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
 F:\electricity\光电设计大赛\camera_code\camera_front\Project\camera_front.uvprojx
-Project File Date:  07/21/2016
+Project File Date:  07/25/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin'
 Build target 'SY-STM32F407 V2.0'
-"..\Output\camera_front.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+compiling ctrl.c...
+compiling data_transfer.c...
+compiling init.c...
+compiling dgp.c...
+..\User\dgp.c(61): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((G-B)/(R-G))*
+I_3_40;
+..\User\dgp.c(64): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((G-B)/(R-B))*
+I_3_40;
+..\User\dgp.c(67): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((B-R)/(G-B)+2)*
+I_3_40;
+..\User\dgp.c(70): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((B-R)/(G-R)+2)*
+I_3_40;
+..\User\dgp.c(73): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((R-G)/(B-G)+4)*
+I_3_40;
+..\User\dgp.c(76): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                                h_tmp=(float)((R-G)/(B-R)+4)*
+I_3_40;
+..\User\dgp.c: 6 warnings, 0 errors
+compiling ov7670.c...
+..\Hardware\ov7670.c(141): warning:  #550-D: variable "id" was set but never used
+    u8 i,id;
+..\Hardware\ov7670.c(178): warning:  #550-D: variable "state" was set but never used
+        u8 state,temp;
+..\Hardware\ov7670.c: 2 warnings, 0 errors
+compiling usart.c...
+compiling timer.c...
+compiling usmart_config.c...
+linking...
+Program Size: Code=12864 RO-data=988 RW-data=412 ZI-data=59204  
+FromELF: creating hex file...
+"..\Output\camera_front.axf" - 0 Error(s), 8 Warning(s).
 
 <h2>Software Packages used:</h2>
 

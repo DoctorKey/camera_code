@@ -129,8 +129,8 @@ void test(u32* jpeg_buf,u8* im)
 void get_H(u16 *jpeg,u8 *H,im_info *info)
 {
 	u8 R,G,B;
-	u16 i,j,count_x=0;
-	u32 x=0,y=0,y_tmp;
+	u16 i,j;
+	u32 y_tmp;
 	for(i=0;i<PIC_ROW;i++)
 	{
 		for(j=0;j<PIC_COL;j++)

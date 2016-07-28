@@ -7,19 +7,17 @@
 "..\output\dgp.o"
 "..\output\mymath.o"
 "..\output\myduty.o"
-"..\output\delay.o"
-"..\output\led.o"
-"..\output\usart.o"
-"..\output\ov7670.o"
 "..\output\pwm_out.o"
 "..\output\timer.o"
+"..\output\delay.o"
+"..\output\led.o"
+"..\output\ov7670.o"
+"..\output\usart.o"
 "..\output\misc.o"
 "..\output\stm32f4xx_exti.o"
-"..\output\stm32f4xx_fsmc.o"
 "..\output\stm32f4xx_gpio.o"
 "..\output\stm32f4xx_usart.o"
 "..\output\stm32f4xx_rcc.o"
-"..\output\stm32f4xx_spi.o"
 "..\output\stm32f4xx_tim.o"
 "..\output\stm32f4xx_dma.o"
 "..\output\stm32f4xx_dcmi.o"
@@ -30,7 +28,7 @@
 "..\output\usmart.o"
 "..\output\usmart_config.o"
 "..\output\usmart_str.o"
---library_type=microlib --strict --scatter "..\Output\camera_back.sct"
+--library_type=microlib --strict --scatter "..\Output\camera_middle.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
---list "..\Listings\camera_back.map" -o ..\Output\camera_back.axf
+--list "..\Listings\camera_middle.map" -o ..\Output\camera_middle.axf

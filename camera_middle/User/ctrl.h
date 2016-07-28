@@ -23,6 +23,8 @@ void control_go(void);
 void control_back(void);
 void control_throw(void);
 
+void set_pid(u16 front_kp,u16 back_kp,u8 choose);
+
 extern Rc_group Rc_out;
 extern Rc_group Rc_front;
 extern Rc_group Rc_back;

@@ -20,5 +20,5 @@
 ..\output\stm32f4xx_it.o: ..\Libraries\FWlib\inc\misc.h
 ..\output\stm32f4xx_it.o: ..\Hardware\timer.h
 ..\output\stm32f4xx_it.o: ..\Startup\sys.h
-..\output\stm32f4xx_it.o: ..\Hardware\usart\usart.h
+..\output\stm32f4xx_it.o: ..\Hardware\usart.h
 ..\output\stm32f4xx_it.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdio.h

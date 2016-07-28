@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,__FPU_PRESENT=1,__FPU_USED =1,ARM_MATH_CM4,__CC_ARM</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS\inc;..\Libraries\FWlib\inc;..\Startup;..\User;..\Hardware\delay;..\Hardware\led;..\Hardware\usart;..\Hardware\lcd;..\Hardware\ov7670;..\Hardware;..\usmart</IncludePath>
+              <IncludePath>..\Libraries\CMSIS\inc;..\Libraries\FWlib\inc;..\Startup;..\User;..\Hardware;..\usmart</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -483,51 +483,6 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Hardware\delay\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>delay.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Hardware\delay\delay.h</FilePath>
-            </File>
-            <File>
-              <FileName>led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Hardware\led\led.c</FilePath>
-            </File>
-            <File>
-              <FileName>led.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Hardware\led\led.h</FilePath>
-            </File>
-            <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Hardware\usart\usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Hardware\usart\usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>ov7670.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Hardware\ov7670\ov7670.c</FilePath>
-            </File>
-            <File>
-              <FileName>ov7670.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Hardware\ov7670\ov7670.h</FilePath>
-            </File>
-            <File>
-              <FileName>ov7670cfg.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Hardware\ov7670\ov7670cfg.h</FilePath>
-            </File>
-            <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\timer.c</FilePath>
@@ -536,6 +491,61 @@
               <FileName>timer.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Hardware\timer.h</FilePath>
+            </File>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\led.h</FilePath>
+            </File>
+            <File>
+              <FileName>ov7670.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\ov7670.c</FilePath>
+            </File>
+            <File>
+              <FileName>ov7670.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\ov7670.h</FilePath>
+            </File>
+            <File>
+              <FileName>ov7670cfg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\ov7670cfg.h</FilePath>
+            </File>
+            <File>
+              <FileName>pwm_out.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\pwm_out.c</FilePath>
+            </File>
+            <File>
+              <FileName>pwm_out.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\pwm_out.h</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\usart.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -553,11 +563,6 @@
               <FilePath>..\Libraries\FWlib\src\stm32f4xx_exti.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fsmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Libraries\FWlib\src\stm32f4xx_fsmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Libraries\FWlib\src\stm32f4xx_gpio.c</FilePath>
@@ -571,11 +576,6 @@
               <FileName>stm32f4xx_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Libraries\FWlib\src\stm32f4xx_rcc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Libraries\FWlib\src\stm32f4xx_spi.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_tim.c</FileName>
@@ -621,13 +621,6 @@
         </Group>
         <Group>
           <GroupName>Doc</GroupName>
-          <Files>
-            <File>
-              <FileName>readme.txt</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\readme.txt</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

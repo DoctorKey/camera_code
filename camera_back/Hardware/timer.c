@@ -43,7 +43,7 @@ void TIM3_IRQHandler(void)
 	{
 		
 		#ifdef DUTY
-		Send_ready(2,ready_2);
+		Send_ready(2,ready_2);//每秒进入dutyback的次数，发送back数据
 		#endif
 		
 		ov_frame=0;

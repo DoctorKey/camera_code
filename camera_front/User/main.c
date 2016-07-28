@@ -48,7 +48,6 @@ int main(void)
 		{ 			
 			LED0(On);
 			get_target2(jpeg,im,&front_measure_info);
-//			get_info(jpeg,im,&front_measure_info);
 			jpeg_data_ok = 2;	//标记jpeg数据处理完了,可以让DMA去采集下一帧了.
 			ctrl_finish = 0;
 		}			

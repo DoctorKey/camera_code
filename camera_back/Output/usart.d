@@ -1,5 +1,5 @@
-..\output\usart.o: ..\Hardware\usart\usart.c
-..\output\usart.o: ..\Hardware\usart\usart.h
+..\output\usart.o: ..\Hardware\usart.c
+..\output\usart.o: ..\Hardware\usart.h
 ..\output\usart.o: ..\Libraries\CMSIS\inc\stm32f4xx.h
 ..\output\usart.o: ..\Libraries\CMSIS\inc\core_cm4.h
 ..\output\usart.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdint.h

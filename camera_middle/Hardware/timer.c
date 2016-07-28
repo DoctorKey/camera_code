@@ -63,21 +63,6 @@ void TIM3_IRQHandler(void)
 		printf("ready_1:%d,ready_2:%d,ready_3:%d,ov_frame:%d\r\n",ready_1,ready_2,ready_3,ov_frame);
 		printf("mode :%d\r\n",mode);
 		printf("now time:%dms\r\n",GetSysTime_ms());
-//		if(all_ready==1)
-//		{
-//			if(ready_1==0)
-//			{
-//				mode=5;
-//			}
-//			else if(ready_2==0)
-//			{
-//				mode=5;
-//			}
-//			else if(ready_3==0)
-//			{
-//				mode=5;
-//			}
-//		}
 		ready_3=0;
 		ov_frame=0;
 	}
